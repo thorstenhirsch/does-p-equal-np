@@ -74,3 +74,46 @@ Markierung `[NUR-SNIPPET]` für alles, was nicht am Volltext verifiziert wurde.
 - **Fine-grained complexity of NP-complete problems** (arXiv:2601.05044, Übersicht 2026).
 - **Geometric Complexity Theory**: Mulmuley selbst veranschlagt ~100 Jahre; die
   Positivitätshypothesen gelten als "formidable".
+
+## NACHTRAG: Der konkreteste KI-Befund (Leitung, vor Tiefenphase)
+
+**arXiv:2509.18057, "Reinforced Generation of Combinatorial Structures:
+Hardness of Approximation" / "... Applications to Complexity Theory"**
+(aktiv revidiert, mindestens bis v7; begleitender Google-Research-Blogpost
+"AI as a research partner: Advancing theoretical computer science with AlphaEvolve").
+
+Das ist der bislang stärkste dokumentierte Fall, in dem ein KI-System **neue,
+publizierte Resultate in der Komplexitätstheorie** hervorgebracht hat: [NUR-SNIPPET]
+
+- **MAX-4-CUT**: NP-schwer zu approximieren innerhalb des Faktors **0,987**
+  (vorheriger Stand: 0,9883) — via neu entdeckter Gadget-Reduktion.
+- **MAX-3-CUT**: Faktor **0,9649** (vorher bester gadget-basierter Wert: 0,9853).
+- **Metrisches TSP**: NP-schwer zu approximieren innerhalb **111/110**
+  (vorher: 117/116).
+- **MAX-CUT / MAX-Independent-Set auf zufälligen 3- und 4-regulären Graphen**:
+  nahezu optimale obere und bedingte untere Schranken für Certification-Algorithmen,
+  erreicht durch Konstruktion nahezu extremaler Ramanujan-Graphen mit bis zu 163 Knoten.
+- Das gefundene MAX-4-CUT-Gadget hat 19 Variablen und eine stark asymmetrische
+  Gewichtung (Faktoren bis 1429×) — eine Struktur, die menschliche Forschende
+  zuvor nicht in Betracht gezogen hatten.
+- Methodisch bemerkenswert: Die Verifikation der Kandidaten ist selbst exponentiell
+  teuer; AlphaEvolve wurde daher auch auf die **Verifikationsprozedur** angesetzt
+  und beschleunigte sie um bis zu 10.000×.
+
+### Warum das die Kernfrage des Projekts entscheidet — und warum nicht
+
+Das ist echter, nachprüfbarer KI-Beitrag zur Komplexitätstheorie. Aber die
+Ergebnisklasse ist entscheidend:
+
+- Es sind **Inapproximierbarkeitsresultate der Form "X ist NP-schwer"**.
+  Solche Aussagen **setzen P ≠ NP voraus**, um praktische Konsequenzen zu haben;
+  sie beweisen es nicht. Sie verschieben keine Schranke zwischen P und NP.
+- Die KI liefert hier **endliche kombinatorische Zeugen** (Gadgets, Graphen)
+  innerhalb eines von Menschen gebauten Beweisrahmens. Das ist strukturell
+  eine Suchaufgabe mit maschinell prüfbarem Erfolgskriterium — genau die
+  Aufgabenklasse, in der LLM-gestützte evolutionäre Suche funktioniert.
+- P vs. NP ist **keine** solche Aufgabe: Es gibt kein endliches Objekt, dessen
+  Auffinden die Frage entscheidet, und kein billiges Verifikationsorakel.
+
+Diese Unterscheidung — *suchbare endliche Zeugen* vs. *unendliche Quantifizierung
+über alle Algorithmen* — sollte eine tragende Achse des Abschlusspapiers werden.

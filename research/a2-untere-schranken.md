@@ -74,7 +74,7 @@ Zahl nennt, ohne das Modell zu nennen, sagt nichts.
 |---|---|---|---|
 | Allgemeine Schaltkreise, **volle binäre Basis B₂** | **3,1n − o(n)** | Li & Yang, STOC 2022 | `[VERIFIZIERT]` |
 | Allgemeine Schaltkreise, **Basis U₂** (ohne XOR/XNOR) | **5n − o(n)** | Iwama & Morizumi, 2002 | `[VERIFIZIERT]` |
-| De-Morgan-**Formeln** | ~n³⁻ᵒ⁽¹⁾ | Håstad 1998 (Verbesserungen Tal u.a.) | `[NUR-SNIPPET]` |
+| De-Morgan-**Formeln** | Ω̃(n³), genauer Ω(n³/(log²n·log log n)) | Håstad 1998 (Andreev-Funktion, shrinkage exponent 2); Tal | `[NUR-SNIPPET]` |
 | **Monotone** Schaltkreise (CLIQUE) | exponentiell, exp(Ω(√k)) bzw. exp(cn^{1/6−o(1)}) | Razborov 1985; Alon–Boppana 1987; Tardos 1988 | `[VERIFIZIERT]` |
 | **AC⁰** (konst. Tiefe d, PARITY) | exp(Ω(n^{1/(d−1)})) | Furst–Saxe–Sipser 1981 / Ajtai 1983 / Håstad 1986 | `[VERIFIZIERT]` |
 | **AC⁰[p]**, p prim (MOD_q, q≠p) | exponentiell | Razborov 1987, Smolensky 1987 | `[VERIFIZIERT]` |
@@ -330,6 +330,12 @@ seit rund 50 Jahren. `[NUR-SNIPPET]`, Konfidenz hoch.
   plus Platzhierarchiesatz. `[NUR-SNIPPET]`, Konfidenz mittel-hoch.
   Vorher lieferte HPV auf demselben Weg nur SPACE[n] ⊄ TIME[o(n log n)] — der Sprung geht
   also von "fast linear" auf "quadratisch". `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]`
+- **Folgt ebenfalls (Schaltkreiskorollar, für dieses Kapitel besonders relevant):**
+  Schaltkreise mit beschränktem Fan-In der Größe s lassen sich auf jeder Eingabe in Platz
+  **√s · poly(log s)** auswerten. `[NUR-SNIPPET]`, aus der ECCC-Abstract-Synthese,
+  Konfidenz mittel-hoch. Das ist eine *obere* Schranke über Schaltkreise — und genau
+  deshalb relevant: Der Satz bewegt die Zeit-Platz-Landschaft, indem er zeigt, wie
+  **wenig** Platz Berechnung braucht. Er macht Platz-Trennungen also eher schwerer.
 - **Folgt NICHT:** P ≠ PSPACE. Williams selbst formuliert es als "a little progress on the
   P versus PSPACE problem". Für P ≠ PSPACE bräuchte man eine superpolynomielle Trennung;
   hier ist eine quadratische erreicht. **Und: P ≠ PSPACE ist eine mindestens so schwere
@@ -502,6 +508,46 @@ wird: Ein Refuter ist ein *Algorithmus*, der Gegenbeispiele *produziert* — als
 mit billigem Verifikationsorakel (B2 der Leitachse). Zugleich bleibt die *Schranke selbst*
 eine universell quantifizierte Aussage. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]`
 
+### 3.7 Der größte tatsächliche Fortschritt 2023–2026: nahezu maximale Schranken für S₂E
+
+Dies ist der Befund, den ich in der Auftragsliste vermisst habe und der dort ergänzt gehört.
+
+**Resultat.** Es gibt eine Sprache in **S₂E** (symmetric exponential time), die für **jede**
+Eingabelänge Schaltkreise der Größe mindestens **2ⁿ/n** erfordert — also *nahezu maximale*
+Schaltkreiskomplexität im Sinne von Shannon.
+- Lijie Chen, Shuichi Hirahara, Hanlin Ren: *Symmetric Exponential Time Requires
+  Near-Maximum Circuit Size*, STOC 2024 (ECCC TR23-144; arXiv:2309.12912).
+- Zeyong Li: *…: Simplified, Truly Uniform*, STOC 2024 (arXiv:2310.17762) — verstärkt auf
+  **alle** Eingabelängen (S₂E ⊄ i.o.-SIZE[2ⁿ/n]).
+- Journalfassung: **Journal of the ACM 73(1), 12. Februar 2026** (doi 10.1145/3778166).
+`[VERIFIZIERT]` für Existenz, Autorenschaft, Venue und Kernaussage (zwei unabhängige Suchen).
+
+**Die Methode: Range Avoidance.** Gegeben ein Schaltkreis C: {0,1}ⁿ → {0,1}^{n+1}, finde
+eine Zeichenkette **außerhalb** seines Bildes. Solche Ketten existieren aus Abzählgründen
+immer; die Frage ist, wie schwer es ist, eine zu *finden*. Chen–Hirahara–Ren geben einen
+single-valued FS₂P-Algorithmus für Avoid — und daraus fällt die Schaltkreisschranke.
+`[NUR-SNIPPET]`, Konfidenz mittel.
+
+**Weitere Ausbeute laut Synthese:** almost-everywhere-Schranken nahe am Maximum auch für
+Σ₂E ∩ Π₂E und ZPE^NP; sowie **pseudodeterministische FZPP^NP-Konstruktionen** für
+Ramsey-Graphen, **rigide Matrizen**, Pseudozufallsgeneratoren, Zwei-Quellen-Extraktoren,
+lineare Codes und harte Wahrheitstafeln. `[NUR-SNIPPET]`, Konfidenz mittel.
+Der Rigiditäts-Punkt schließt an §3.2 an: Man kann rigide Matrizen inzwischen
+*pseudodeterministisch konstruieren* — nur eben nicht in Polynomialzeit, sondern mit
+NP-Orakel und Randomisierung.
+
+**Die Einordnung, die entscheidend ist.** `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
+Dieses Resultat ist **der** substanzielle Fortschritt bei Schaltkreisschranken der letzten
+Dekade — und er verschiebt exakt gar nichts an der P-vs-NP-Frage. Der Grund: S₂E ist eine
+**exponentialzeitliche** Klasse mit zwei symmetrischen Quantoren. Vorher kannte man für
+solche Klassen bestenfalls sogenannte "half-exponential" Schranken; jetzt ist man beim
+Maximum. Das heißt: **Für hinreichend mächtige Klassen sind nahezu optimale Schranken
+erreichbar.** Und für NP steht weiterhin 3,1n.
+
+Die Lehre für das Papier: Der Engpass ist nicht die Größe der Schranke, die man beweisen
+kann. Der Engpass ist, **wie schwach die Klasse sein darf, in der die harte Funktion liegt**.
+Genau auf dieser Achse gibt es seit Jahrzehnten keine Bewegung in Richtung NP.
+
 ---
 
 ## 4. Das "Algorithms-to-lower-bounds"-Paradigma
@@ -568,10 +614,15 @@ Programm 2024–2026.
   Der Weg von NQP zu NP ist kein Feintuning; das Hierarchiesatz-Argument braucht
   Nichtdeterminismus-Zeitreserve, die NP nicht hat. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
 - Die Methode braucht **unten** eine Klasse mit brauchbarer Normalform (ACC⁰: SYM⁺).
-  Für allgemeine Schaltkreise wäre der benötigte Algorithmus ein nichttrivialer
-  **CircuitSAT-Algorithmus** — der würde bereits die SETH und vermutlich die ETH widerlegen.
-  `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`, gestützt durch die Self-Improvement-Aussage
-  in §3.4, die genau diese Selbstblockade quantifiziert.
+  Für die volle Klasse gilt der Satz weiterhin — die Suchsynthese bestätigt explizit:
+  **"When the circuit class C is general fan-in 2 circuits, non-trivial Circuit-SAT
+  algorithms imply NEXP ⊄ P/poly."** `[NUR-SNIPPET]`, Konfidenz mittel-hoch
+  (vgl. Williams, *Improving Exhaustive Search Implies Superpolynomial Lower Bounds*).
+  Genau das ist die Selbstblockade: Ein solcher Algorithmus würde die SETH widerlegen und
+  vermutlich die ETH; die Self-Improvement-Arbeit (§3.4) quantifiziert das. Man müsste
+  also, um eine untere Schranke zu bekommen, zuerst die zentralen Härteannahmen des
+  Feldes umstoßen. Und selbst dann bekäme man **NEXP** ⊄ P/poly — nicht NP.
+  `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
 - Vyas & Williams (ITCS 2023, "On Oracles and Algorithmic Methods for Proving Lower Bounds)
   untersuchen die Grenzen der Methode orakeltheoretisch. `[NUR-SNIPPET]`, nicht näher geprüft.
 
@@ -593,14 +644,24 @@ des Feldes widerlegen würde. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]`
 | Bewiesen (explizit, B₂), 2016 | 3,0116n |
 | Bewiesen (explizit, B₂), 2022 | **3,1n** |
 | Fortschritt 1984→2022 | **+0,1n in 38 Jahren** |
+| Stand 2026 | unverändert 3,1n (über Suche bestätigt: kein neuer Rekord) |
 | Nicht-explizit (Shannon 1949) | ≈ 2ⁿ/n |
 | Bei n = 1000: bewiesen vs. Shannon | ≈ 3 100 vs. ≈ 10²⁹⁸ |
+| Dieselbe Zahl, aber für die Klasse S₂E | **2ⁿ/n** — also erreicht (2024/2026) |
 
 **Die zentrale Formulierung für das Papier:** Wir brauchen n^{ω(1)}. Wir haben 3,1n.
 Und wir haben **nicht einmal 4n**. Wir haben für kein explizites Problem über einer
 allgemeinen Basis **irgendeine superlineare** Schranke — die Grenze verläuft nicht bei
 "polynomiell vs. superpolynomiell", sondern bereits bei **"linear vs. superlinear"**.
-`[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
+Die Literatur formuliert das mit entwaffnender Direktheit: *"We remain unable to identify
+an explicit function in NP that requires circuits of size 10n."* `[NUR-SNIPPET]`
+(Suchsynthese aus Übersichtstexten, Formulierung sinngemäß über zwei Suchen bestätigt;
+als Zitat nur mit dieser Einschränkung verwenden.) `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
+für die Schlussfolgerung.
+
+**Und der Kontrast, der die Diagnose schärft:** Dieselbe Community hat 2024 für S₂E die
+*maximal mögliche* Schranke 2ⁿ/n bewiesen (§3.7). Es fehlt also nicht an Technik für große
+Zahlen. Es fehlt an Technik für **schwache Klassen**. `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 
 ### 5.2 Was sich in 15 Jahren (2011–2026) tatsächlich bewegt hat
 
@@ -610,13 +671,21 @@ allgemeinen Basis **irgendeine superlineare** Schranke — die Grenze verläuft 
 - 2017: Hadamard ist **nicht** rigide (Alman–Williams) — ein wichtiger *Negativbefund*.
 - 2018: NEXP → NQP (Murray–Williams).
 - 2022: 3,0116n → 3,1n (Li–Yang).
+- **2023/24: S₂E ⊄ SIZE[2ⁿ/n]** (Chen–Hirahara–Ren; Li) — nahezu maximale Schranke,
+  JACM Feb. 2026. **Der quantitativ größte Sprung der Dekade.**
 - 2024: Tree Evaluation in O(log n · log log n) Platz (Cook–Mertz).
 - 2025: TIME[t] ⊆ SPACE[O(√(t log t))] (Williams); SPACE[n] ⊄ TIME[n^{2−ε}].
-- 2024–2026: Refuter-/Konstruktivitäts-Programm, Win-Win-Schranken.
+- 2024–2026: Refuter-/Konstruktivitäts-Programm, Win-Win-Schranken, Range Avoidance.
 
 **Was sich nicht bewegt hat:** Keine superlineare Schaltkreisschranke für irgendeine
-NP-Funktion. Keine Schranke gegen TC⁰ jenseits des Trivialen. Kein Ansatz, der NP statt
-NEXP/NQP erreicht. **Die Zielgröße hat sich in 15 Jahren nicht um einen Exponenten bewegt.**
+NP-Funktion. Keine Schranke gegen TC⁰ jenseits des Trivialen — nicht einmal n^{1,1} gegen
+LTF-Schaltkreise. Kein Ansatz, der NP statt NEXP/NQP/S₂E erreicht.
+**Die Zielgröße hat sich in 15 Jahren nicht um einen Exponenten bewegt.**
+
+**Und es kamen neue Barrieren hinzu**, nicht nur neue Schranken: locality barrier (2020/22),
+die algebrization-Barriere in neuer Form (Chen–Hu–Ren, ITCS 2026). Das Feld erzeugt
+weiterhin **Unmöglichkeitsaussagen über die eigenen Methoden** in etwa derselben Rate wie
+positive Resultate. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
 
 ### 5.3 Ehrlichkeit über Extrapolation
 
@@ -624,12 +693,14 @@ Der naheliegende Fehlschluss wäre eine Trendrechnung: "0,1n in 38 Jahren, also 
 und superpolynomiell nie." Diese Zahl wäre **methodisch wertlos**, und zwar aus drei Gründen —
 das gehört ausdrücklich ins Papier: `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 
-1. **Der gesuchte Sprung ist qualitativ, nicht quantitativ.** Zwischen 3,1n und n^{log n}
-   liegt kein Zahlenintervall, das man abschreitet, sondern ein Methodenwechsel. Gate
-   elimination kann *prinzipiell* keine superlineare Schranke liefern: Man eliminiert
-   pro Substitution eine konstante Zahl von Gattern bei n Substitutionsschritten — das
-   Verfahren ist strukturell auf O(n) begrenzt. Der Amano–Tarui-Befund (§1.3) ist die
-   bewiesene Instanz dieses Arguments für U₂.
+1. **Der gesuchte Sprung ist qualitativ, nicht quantitativ — und das ist bewiesen.**
+   Zwischen 3,1n und n^{log n} liegt kein Zahlenintervall, das man abschreitet, sondern
+   ein Methodenwechsel. Gate elimination kann *prinzipiell* keine superlineare Schranke
+   liefern: **Golovnev–Hirsch–Knop–Kulikov (MFCS 2016, JCSS 2018)** zeigen, dass die
+   Technik an einer Konstanten c endet, die nur von der Anzahl der Substitutionen pro
+   Induktionsschritt abhängt. Amano–Tarui (§1.3) ist die entsprechende Aussage für die
+   k-mixed-Variante über U₂. Eine Trendrechnung entlang der Zahlen 3 → 3,0116 → 3,1
+   extrapoliert also **innerhalb einer Methode, die nachweislich nicht ans Ziel führt.**
 2. **Durchbrüche im Feld sind historisch nicht trendförmig, sondern sprunghaft.**
    Williams 2011 war aus dem Stand der Technik von 2010 nicht extrapolierbar. Cook–Mertz
    2024 ebenfalls nicht. Eine lineare Extrapolation hätte beide verfehlt — sie unterschätzt
@@ -639,10 +710,12 @@ das gehört ausdrücklich ins Papier: `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 
 **Die belastbare Aussage ist stattdessen strukturell:** Für jede Technik, die substanzielle
 untere Schranken geliefert hat, wurde anschließend ihr eigener Endpunkt **bewiesen**
-(Monotonie → Tardos; AC⁰/AC⁰[p] → natural proofs; gate elimination/U₂ → Amano–Tarui;
-magnification → locality barrier). Die einzige Technik ohne bewiesenen Endpunkt ist die
-algorithmische Methode — und die hat eine *plausible* Selbstblockade (§4.3). Das ist ein
-deutlich informativeres Bild als jede Trendrechnung. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
+(Monotonie → Tardos; AC⁰/AC⁰[p] → natural proofs; **gate elimination über B₂ und U₂ →
+Golovnev–Hirsch–Knop–Kulikov**, zusätzlich Amano–Tarui für U₂; Valiant-Rigidität →
+Alman–Williams; magnification → locality barrier; algebrisierende Argumente → Chen–Hu–Ren
+2026). Die einzige Technik ohne bewiesenen Endpunkt ist die algorithmische Methode — und
+die hat eine *plausible*, in §4.3 belegte Selbstblockade. Das ist ein deutlich
+informativeres Bild als jede Trendrechnung. `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 
 ---
 
@@ -705,14 +778,29 @@ Vollständige Liste, entsprechend `docs/02-team-briefing.md` §1:
 6. **Der genaue Inhalt von arXiv:2602.23503 (Spiky Rank)** — Existenz und Abstract bestätigt,
    sonst nichts. Ebenso arXiv:2608.06592 (Superlogarithmic-Rank Rigidity).
 7. **Die STOC-2026-Best-Paper-Zuordnung** stützt sich auf **eine** Meldung
-   (cs.columbia.edu, "The Theory Group Wins Big at STOC 2026") plus den Titelabgleich mit
-   der STOC-2026-Programmseite. Die offizielle SIGACT-Best-Paper-Seite habe ich nicht
-   eingesehen. Konfidenz mittel. Insbesondere ist unklar, ob beide Arbeiten *Best Paper*
-   oder eine davon eine andere Auszeichnung erhielt.
-8. **Der TC⁰-Stand.** Ich habe für TC⁰ keine belastbare Zahl recherchiert; die Tabellenzeile
-   "im Wesentlichen nichts" ist Erfahrungswissen, nicht belegt. Konfidenz niedrig.
-9. **Die Nečiporuk/Håstad-Formelschranken** (n²/log²n für branching programs, n³⁻ᵒ⁽¹⁾ für
-   De-Morgan-Formeln) habe ich nicht eigenständig gesucht; sie stehen hier als Kanon.
+   (cs.columbia.edu, "The Theory Group Wins Big at STOC 2026": *zwei* Best Paper Awards
+   und 17 angenommene Arbeiten) plus Titelabgleich mit der STOC-2026-Programmseite.
+   Die offizielle SIGACT-Best-Paper-Seite habe ich nicht eingesehen. Bestätigt ist über
+   zwei Suchen das Monotonicity-Testing-Paper als Best Paper; dass das *zweite* Best Paper
+   "Finding Bugs in Short Proofs" ist, ist plausibel (Yuhao Li ist Columbia), aber
+   **nicht direkt belegt**. Konfidenz mittel. Ferner ist nicht auszuschließen, dass die
+   im Auftrag genannte Bezeichnung "Refuter Problems for Proof Complexity" ein anderer
+   Titel derselben oder einer verwandten Arbeit ist.
+8. **Der TC⁰-Stand** ist inzwischen mit einer Suche belegt (keine Schranken jenseits
+   n^{1,1} für LTF-Schaltkreise; Razborov–Wigderson nur für Tiefe 3). Aber nur **eine**
+   Suche — Triangulation fehlt. Konfidenz mittel.
+9. **Die Nečiporuk-Schranke für branching programs** (n²/log²n) habe ich nicht gesucht;
+   sie steht hier als Kanon. Die De-Morgan-Formelschranken sind dagegen belegt:
+   Håstad, shrinkage exponent 2, Ω̃(n³) für Andreevs Funktion; Tal verbessert auf
+   Ω(n³/(log²n · log log n)). `[NUR-SNIPPET]`, eine Suche, Konfidenz mittel.
+10. **Die Reichweite des Range-Avoidance-Ansatzes.** Dass er auf NP nicht anwendbar ist,
+    ist meine Schlussfolgerung aus der Klassenangabe S₂E, nicht ein Literaturbefund.
+11. **arXiv:2604.23958 (Constructive Separations from Gate Elimination)** — ich habe die
+    Aussage "liefert Refuter auch für Li–Yangs 3,1n" nur aus der Abstract-Synthese.
+    `[PREPRINT]`, Konfidenz mittel-niedrig.
+12. **Chen–Hu–Ren, ITCS 2026 (neue Algebrization-Barriere)** — nur als Suchtreffer mit
+    Titel und Venue gesehen, Inhalt ungeprüft. Konfidenz für die Existenz hoch,
+    für den Inhalt niedrig.
 
 ---
 
@@ -725,6 +813,9 @@ Vollständige Liste, entsprechend `docs/02-team-briefing.md` §1:
 - K. Iwama, H. Morizumi: *An Explicit Lower Bound of 5n − o(n) for Boolean Circuits* (U₂) — https://link.springer.com/chapter/10.1007/3-540-45687-2_29 · https://www.wisdom.weizmann.ac.il/~ranraz/publications/P5nlb.pdf
 - K. Amano, J. Tarui: *A Well-Mixed Function with Circuit Complexity 5n ± o(n): Tightness of the Lachish–Raz-Type Bounds* — https://link.springer.com/chapter/10.1007/978-3-540-79228-4_30
 - A. Golovnev, Dissertation *Circuit Complexity: New Techniques and Their Limitations* — https://golovnev.org/theses/phd_nyu.pdf
+- **A. Golovnev, E. A. Hirsch, A. Knop, A. S. Kulikov: *On the Limits of Gate Elimination*, MFCS 2016 / JCSS 2018** — https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.MFCS.2016.46 · https://www.sciencedirect.com/science/article/pii/S0022000018305166 · https://golovnev.org/papers/limits.pdf
+- M. G. Find, E. A. Hirsch u.a.: *Improving 3n Circuit Complexity Lower Bounds* — https://edwardahirsch.github.io/edwardahirsch/papers/386.pdf
+- Formelschranken: *Shrinkage under Random Projections, and Cubic Formula Lower Bounds for AC⁰* — https://arxiv.org/abs/2012.02210 · http://theoryofcomputing.net/articles/v019a007/ ; A. Tal, *Shrinkage of De Morgan Formulae by Spectral Techniques* — https://ieeexplore.ieee.org/document/6979040 ; *Formula Lower Bounds via the Quantum Method* — https://www.ias.edu/sites/default/files/math/csdm/16-17/TalSTOC2017.pdf
 
 **Eingeschränkte Modelle**
 - Furst–Saxe–Sipser / Ajtai / Håstad, AC⁰ und Switching Lemma — https://en.wikipedia.org/wiki/Switching_lemma · https://www.cs.umd.edu/~jkatz/complexity/f05/switching-lemma.pdf · https://simons.berkeley.edu/sites/default/files/docs/10142/restrictionmethods.pdf
@@ -732,6 +823,8 @@ Vollständige Liste, entsprechend `docs/02-team-briefing.md` §1:
 - Razborov 1985 (CLIQUE, monoton), Alon–Boppana 1987 — https://www.cs.tau.ac.il/~nogaa/PDFS/Publications/The%20monotone%20circuit%20complexity%20of%20Boolean%20functions.pdf
 - É. Tardos: *The gap between monotone and non-monotone circuit complexity is exponential*, Combinatorica 8 (1988), 141–142 — https://link.springer.com/article/10.1007/BF02122563 · https://www.cs.cornell.edu/~eva/Gap.Between.Monotone.NonMonotone.Circuit.Complexity.is.Exponential.pdf
 - R. Williams: *Nonuniform ACC Circuit Lower Bounds*, JACM 61(1):2, 2014 — https://people.csail.mit.edu/rrw/acc-lbs-journal-final.pdf
+- C. Murray, R. Williams (NQP) — https://people.csail.mit.edu/rrw/easy-witness-nqp.pdf
+- TC⁰-Stand: *Toward Super-Polynomial Size Lower Bounds for Depth-Two Threshold Circuits* — https://arxiv.org/pdf/1805.10698 · *Super-Linear Gate and Super-Quadratic Wire Lower Bounds for Depth-Two and Depth-Three Threshold Circuits* — https://arxiv.org/pdf/1511.07860 · *Tight Correlation Bounds for Circuits Between AC0 and TC0*, CCC 2023 — https://arxiv.org/pdf/2304.02770
 
 **2024–2026**
 - R. Williams: *Simulating Time With Square-Root Space*, STOC 2025 — https://arxiv.org/html/2502.17779 · https://people.csail.mit.edu/rrw/time-vs-space.pdf · https://dl.acm.org/doi/10.1145/3717823.3718225 · https://dl.acm.org/doi/epdf/10.1145/3798104
@@ -751,8 +844,21 @@ Vollständige Liste, entsprechend `docs/02-team-briefing.md` §1:
 - STOC 2026 Auszeichnungen (Sekundärquelle) — https://www.cs.columbia.edu/2026/the-theory-group-wins-big-at-stoc-2026/ · Programm: https://acm-stoc.org/stoc2026/accepted-papers.html
 - Monotonicity Testing (STOC 2026) — vgl. https://arxiv.org/pdf/2410.09235
 
+**Nahezu maximale Schranken für große Klassen (Range Avoidance)**
+- L. Chen, S. Hirahara, H. Ren: *Symmetric Exponential Time Requires Near-Maximum Circuit Size*, STOC 2024 — https://arxiv.org/pdf/2309.12912 · ECCC TR23-144: https://eccc.weizmann.ac.il/report/2023/144/download/ · https://dl.acm.org/doi/10.1145/3618260.3649624
+- Z. Li: *Symmetric Exponential Time Requires Near-Maximum Circuit Size: Simplified, Truly Uniform*, STOC 2024 — https://arxiv.org/abs/2310.17762 · https://dl.acm.org/doi/abs/10.1145/3618260.3649615
+- Journalfassung: *Journal of the ACM* 73(1), 12.02.2026 — https://dl.acm.org/doi/10.1145/3778166
+- L. Chen, Y. Hu, H. Ren: *New Algebrization Barriers to Circuit Lower Bounds via Communication Complexity of Missing-String*, ITCS 2026 — https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.37
+- *Range Avoidance and Remote Point: New Algorithms and Hardness*, ITCS 2026 — https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2026.79
+
 **Algorithmische Methode**
 - R. Williams: *Complexity Lower Bounds from Algorithm Design* (Invited, LICS 2021) — https://people.csail.mit.edu/rrw/LICS21.pdf
+- R. Williams: *Algorithms for Circuits and Circuits for Algorithms* (Vortragsfolien) — https://cseweb.ucsd.edu/~slovett/workshops/socal-theory-day-2014/williams-talk.pdf
+- R. Williams: *Improving Exhaustive Search Implies Superpolynomial Lower Bounds* — https://www.researchgate.net/publication/394531168_Improving_Exhaustive_Search_Implies_Superpolynomial_Lower_Bounds
+- M. Müller, J. Pich: *Provability of weak circuit lower bounds* — https://users.ox.ac.uk/~coml0742/papers/wclbs.pdf
+
+**Institutioneller Kontext**
+- Workshop *Frontiers in Complexity Lower Bounds*, Isaac Newton Institute, Cambridge, 7.–11. September 2026 — https://www.newton.ac.uk/event/lfcw01/ · https://cstheory-events.org/2026/05/13/workshop-frontiers-in-complexity-lower-bounds/
 - R. Santhanam: *An Algorithmic Approach to Uniform Lower Bounds*, CCC 2023 — https://eccc.weizmann.ac.il/report/2023/028/download/
 - N. Vyas, R. Williams: *On Oracles and Algorithmic Methods for Proving Lower Bounds*, ITCS 2023 — https://people.csail.mit.edu/rrw/itcs23-oracles.pdf
 - *Lower Bounds Against Sparse Symmetric Functions of ACC Circuits* — https://arxiv.org/abs/2001.07788

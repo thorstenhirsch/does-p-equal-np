@@ -37,9 +37,13 @@ Kein Volltextzugang. Alles, was nicht aus dem kanonischen Kontext stammt, ist
    *occurrence obstructions* die Permanent-vs-Determinante-Trennung **nicht** leisten können.
    Das ist ein hartes, peer-reviewtes Negativresultat gegen den in Mulmuley–Sohoni
    formulierten Weg. `[VERIFIZIERT]`
-5. **GCT ist 2026 kein totes, aber ein umgebautes und deutlich bescheideneres Programm.**
-   Es gibt laufende Aktivität (Publikationen bis 2025/26, Lehrbuch-Survey 2025, Workshops),
-   aber der Anspruch hat sich von „Weg zu P vs. NP" zu „darstellungstheoretische
+5. **Der konkreteste Messwert ist ernüchternd.** Die beste bekannte untere Schranke für
+   die **determinantal complexity** der Permanente ist **n²/2** (Mignon–Ressayre 2004),
+   über ℝ verbessert auf (n−1)²+1 (Yabe 2015). Gebraucht wird **superpolynomiell**.
+   Seit über 20 Jahren steht die Zahl bei „quadratisch". `[NUR-SNIPPET]`, Konfidenz hoch.
+6. **GCT ist 2026 kein totes, aber ein umgebautes und deutlich bescheideneres Programm.**
+   Es gibt laufende Aktivität (Publikationen bis 2026, Lehrbuch-Survey 2025, Workshops,
+   Drittmittel), aber der Anspruch hat sich von „Weg zu P vs. NP" zu „darstellungstheoretische
    Untersuchung von Orbitabschlüssen" verschoben. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]`
 
 ---
@@ -231,6 +235,34 @@ auseinanderfallen können. Ein GCT-Erfolg beweist zunächst die **Border-Variant
 daraus die eigentliche Vermutung folgt, ist Gegenstand der Debordering-Forschung.
 Das ist eine weitere, oft übersehene Zwischenstufe zwischen „GCT gelingt" und „VP ≠ VNP".
 
+### 3.4 Der konkreteste Messwert: determinantal complexity der Permanente
+
+`[NUR-SNIPPET]`, mehrfach triangulierend bestätigt, Konfidenz hoch:
+
+- **Beste bekannte untere Schranke:** dc(perm_n) ≥ **n²/2** — **Mignon–Ressayre (2004)**.
+- **Verbesserung über ℝ:** (n−1)²+1 — **Yabe (2015)**, über den Begriff des
+  „bi-polynomial rank" (arXiv:1504.00151).
+- **Border-Variante:** **Landsberg–Manivel–Ressayre** zeigen, dass die Permanente nicht
+  einmal im Abschluss der Polynome mit determinantal complexity < n²/2 liegt — bewiesen
+  über die Dimension dualer Varietäten.
+- **Benötigt für Valiants Hypothese:** **superpolynomiell** in n.
+
+`[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` **Das ist die nüchternste verfügbare Kennzahl
+für den Abstand der algebraischen Route zum Ziel.** Zwischen n²/2 und n^ω(1) liegt kein
+Faktor, sondern ein Größenordnungssprung in der Beweistechnik. Die Zahl hat sich seit 2004
+im Wesentlichen nicht bewegt. Sie ist das algebraische Gegenstück zu den ~5n-Schranken für
+Boolesche Schaltkreise: gleiche Struktur des Problems, nur auf einem höheren Sockel.
+
+**2026-Randnotiz:** K. Sheshadri, *A near-quadratic lower bound on the border determinantal
+complexity of Σᵢ xᵢⁿ via conormal specialization*, arXiv:2606.13628, 11.06.2026,
+`[PREPRINT]`. Laut Abstract-Snippet die **ersten** border-determinantalen unteren Schranken
+für eine explizite Familie, die **superlinear in der Variablenzahl** sind — und zwar
+passend zu den bekannten O(n²)-oberen Schranken. **Wichtig für die redliche Einordnung:**
+Das Zielpolynom ist die **Potenzsumme** Σxᵢⁿ, **nicht die Permanente**; es ist ein
+Einzelautor-Preprint ohne erkennbares Peer Review; und die Schranke ist quadratisch, also
+weiterhin himmelweit von superpolynomiell entfernt. Nicht als Fortschritt Richtung
+VP ≠ VNP verkaufen.
+
 ---
 
 ## 4. Geometric Complexity Theory (GCT)
@@ -336,6 +368,31 @@ obstructions**. Wichtig für die redliche Darstellung:
   **Positivitätshypothesen** (Kronecker-, Plethysmuskoeffizienten kombinatorisch
   deuten), die als „formidable" gelten.
 
+**Die konstruktive Linie: Obstructions aus Symmetrien.**
+`[VERIFIZIERT]` für Existenz, `[NUR-SNIPPET]` für Inhalt:
+
+- **C. Ikenmeyer, U. Kandasamy, *Implementing geometric complexity theory: On the
+  separation of orbit closures via symmetries*, STOC 2020** (arXiv:1911.03990).
+  Laut Snippet wird der Orbitabschluss der **Potenzsumme** von dem des **Produkts der
+  Variablen** getrennt, indem die **Symmetriegruppen** beider Polynome und deren
+  darstellungstheoretische Zerlegungskoeffizienten ausgenutzt werden. Die Konstruktion
+  liefert eine **multiplicity obstruction, die weder eine occurrence obstruction noch eine
+  „vanishing ideal occurrence obstruction" ist**.
+- **P. Dutta, F. Gesmundo, C. Ikenmeyer, G. Jindal, V. Lysikov, *Geometric complexity
+  theory for product-plus-power*, Journal of Symbolic Computation 132, 2026**
+  (arXiv:2211.07055). Laut Snippet wird der GCT-Ansatz gegen die Potenzsumme
+  **vollständig durchgeführt**, indem Ikenmeyer–Kandasamy (STOC'20) auf einen neuen
+  Orbitabschluss verallgemeinert wird; es entstehen **neue multiplicity obstructions,
+  konstruiert allein aus den Symmetrien der Polynome**.
+
+`[EIGENE EINSCHÄTZUNG, Konfidenz mittel]` **Das ist die beste Nachricht, die GCT in der
+Periode zu bieten hat — und sie ist zugleich das präziseste Maß für die Verkleinerung des
+Anspruchs.** Die Methode funktioniert **nachweislich und konstruktiv** — aber an
+Modellpaaren wie Potenzsumme vs. Produkt von Linearformen, die komplexitätstheoretisch
+harmlos sind. Es ist der Übergang von „wir haben einen Plan für perm vs. det" zu
+„wir üben die Technik an kleineren Objekten". Das ist legitime und gute Mathematik.
+Es ist kein Fortschritt bei perm vs. det.
+
 **Zusätzliche Erschwernis aus der algebraischen Kombinatorik.** Ikenmeyer–Pak
 (FOCS) und Ikenmeyer–Pak–Panova (SODA) gehören laut Igor Paks Blog zu der sehr kleinen
 Gruppe von **„not in #P"-Resultaten**: Es gibt Hinweise, dass zentrale
@@ -356,6 +413,21 @@ VP vs. VNP stellt. `[NUR-SNIPPET]`
   bereits in `research/00-lead-sondierung.md` und `research/a1-kanon-und-barrieren.md`
   übernommen). Konfidenz hoch für die Existenz der Aussage, niedrig für ihren exakten
   Wortlaut und Kontext.
+- **Mulmuleys eigene Positionierung ist moderater, als sie oft wiedergegeben wird.**
+  In einem Gastbeitrag auf Lance Fortnows Blog *Computational Complexity*
+  („Ketan Mulmuley Responds", 21.04.2008) korrigiert Mulmuley ausdrücklich die ihm
+  zugeschriebene Behauptung, jeder Ansatz zur Trennung von P und NP müsse durch GCT gehen:
+  **„This is not what I think or said."** Er hält fest: „One cannot really say that GCT is
+  the only way to separate P from NP or that any approach must go through it" — es gebe aber
+  „good mathematical reasons to believe why it may well be among the 'easiest' approaches
+  to the P vs. NP problem". `[NUR-SNIPPET]`, Konfidenz mittel für den exakten Wortlaut.
+  **Für das Papier relevant:** Die starke Lesart („GCT ist *der* Weg") ist eine
+  Fremdzuschreibung, die der Urheber selbst zurückgewiesen hat. Sie darf ihm nicht
+  untergeschoben werden — auch nicht, um ihn zu kritisieren.
+- **Programmatische Darstellung für ein Informatikpublikum:** K. Mulmuley,
+  *The GCT Program Toward the P vs. NP Problem*, **CACM 55(6), Juni 2012**
+  (DOI 10.1145/2184319.2184341) — laut Snippet als Statusaktualisierung zu Fortnows
+  CACM-Übersicht gedacht. `[NUR-SNIPPET]`
 - **Haltung der Community:** `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]` Aus den zugänglichen
   Signalen (siehe §6) lässt sich ein differenziertes Bild rekonstruieren:
   **Respekt für die Mathematik, Skepsis gegenüber dem Zeitplan, Desinteresse an der
@@ -430,6 +502,8 @@ Obstructions), und deren Explizitheit über Positivitätsresultate zu erzwingen.
 | **Lehrbuch-Survey** | Bläser–Ikenmeyer, *Introduction to Geometric Complexity Theory*, Theory of Computing, **Graduate Surveys 10, S. 1–166, publiziert 31.05.2025** (eingereicht 04.08.2018, revidiert 05.04.2021) | `[VERIFIZIERT]` Existenz/Umfang |
 | **Aktuelle Forschungsarbeit** | van den Berg, Dutta, Gesmundo, Ikenmeyer, Lysikov, *Algebraic Metacomplexity and Representation Theory*, **CCC 2025** | `[VERIFIZIERT]` Existenz/Venue |
 | **Debordering-Survey** | Dutta–Lysikov, arXiv:2510.13049, **Okt. 2025**, 54 S., invited, TMSC under review | `[PREPRINT]` |
+| **GCT-Fachartikel 2026** | Dutta, Gesmundo, Ikenmeyer, Jindal, Lysikov, *Geometric complexity theory for product-plus-power*, **J. Symbolic Computation 132 (2026)** | `[VERIFIZIERT]` Existenz/Venue |
+| **Border-Schranke 2026** | K. Sheshadri, arXiv:2606.13628, 11.06.2026 (Potenzsumme, nicht Permanente) | `[PREPRINT]` |
 | **Workshop** | **„Frontiers in Complexity Lower Bounds", Isaac Newton Institute, Cambridge, 07.–11.09.2026.** Organisation: **Igor Carboni Oliveira, Nutan Limaye, Rahul Santhanam**. Registrierung £225 / £175 Studierende, Anmeldeschluss 19.07.2026. Thema laut Ankündigung: „revisit the state of the art in complexity lower bounds, including recent work on lower bounds in weak models and new approaches to showing lower bounds for stronger models, as well as work on formulating and understanding various kinds of barriers" | `[VERIFIZIERT]` (newton.ac.uk/event/lfcw01, cstheory-events.org, DMANET-Ankündigung 05/2026) |
 | **Workshopreihe** | Workshop on Algebraic Complexity Theory (WACT), 7. Auflage 2023 Warwick, fortlaufend (Ikenmeyer-Vortragsfolien „Algebraic and geometric complexity theory" für WACT25) | `[NUR-SNIPPET]` |
 | **Drittmittel** | DFG-Projekt „geometric complexity theory" (GEPRIS-Projektnummer 408113219) | `[NUR-SNIPPET]` |
@@ -446,7 +520,10 @@ Obstructions), und deren Explizitheit über Positivitätsresultate zu erzwingen.
   belastbares Signal dafür, wo das Feld 2026 seine Fronten sieht: bei **schwachen Modellen,
   Meta-Komplexität und Barrieren**, nicht bei Orbitabschlüssen.
   `[NUR-SNIPPET]` für die Programmbeschreibung — ein vollständiges Vortragsprogramm konnte
-  nicht eingesehen werden (WebFetch gesperrt). **Diese Einschränkung ist relevant:**
+  nicht eingesehen werden (WebFetch gesperrt). Über talks.cam ließ sich lediglich ein
+  Einzelvortrag belegen (Halley Goldberg, Warwick, „Asymmetry and Complexity of
+  Nondeterministic Computations", Mo. 07.09.2026, 15:30, Seminar Room 1) — ein
+  Meta-Komplexitäts-Thema. **Diese Einschränkung ist relevant:**
   Es ist möglich, dass GCT-Vorträge im Programm stehen; ausschließen kann ich es nicht.
 - **Das Publikationsaufkommen ist real, aber umgewidmet.** Die aktiven Arbeiten sind
   Metakomplexität, Debordering, algebraische Kombinatorik, Highest-Weight-Vektoren —
@@ -473,10 +550,11 @@ ganze Punkt:
   Drittmittel, Lehrbuch, Workshops, ein produktiver Kern von ~8–10 Forschenden.
   „Randerscheinung" wäre sachlich falsch.
 - **Erledigt als Fahrplan:** Der konkret ausformulierte Plan (occurrence obstructions) ist
-  **widerlegt**. Der Nachfolgeplan (multiplicity obstructions) hat einen
-  Machbarkeits-Existenzbeweis in **Modellsituationen** und sonst nichts. Die Zeitschätzung
-  des Urhebers liegt bei ~100 Jahren. Es gibt **kein** Zwischenresultat der Form
-  „Etappe k von n erreicht" auf dem Weg zu perm vs. det.
+  **widerlegt**. Der Nachfolgeplan (multiplicity obstructions) ist in **Modellsituationen**
+  (Chow-Varietät, Potenzsumme vs. Produkt, product-plus-power) **konstruktiv durchgeführt**
+  — und nirgends sonst. Die Zeitschätzung des Urhebers liegt bei ~100 Jahren. Es gibt
+  **kein** Zwischenresultat der Form „Etappe k von n erreicht" auf dem Weg zu perm vs. det;
+  die dafür einschlägige Kennzahl (determinantal complexity, §3.4) steht seit 2004 bei n²/2.
 
 Die Formel für das Papier: **GCT ist ein Programm ohne Zwischenstände.** Genau das
 unterscheidet es von Wiles/Taniyama–Shimura, wo Zwischenetappen existierten und
@@ -506,6 +584,8 @@ Vorab deklarierte Tiefenbegrenzung, hier eingelöst:
    Sekundärwiedergabe. Vgl. den im Team-Briefing dokumentierten Fall des
    Pseudo-Fortnow-Zitats: **Diese Zahl darf im Papier nicht als wörtliches Zitat erscheinen.**
 6. **Das Vortragsprogramm des Newton-Institute-Workshops.** Ob GCT dort vorkommt, ist offen.
+   Belegt ist ein einziger Einzelvortrag (Goldberg, Meta-Komplexität); die Vollliste war
+   nicht einsehbar.
 7. **Die Mathematik selbst.** Ich kann nicht beurteilen, ob multiplicity obstructions
    aussichtsreich sind, ob die Positivitätshypothesen erreichbar sind, oder ob die
    complexity barrier ein tiefes oder ein rhetorisches Argument ist. Das war auftragsgemäß
@@ -650,6 +730,30 @@ Sie zeigt, dass ein „endliches Suchobjekt" allein nichts nützt.
 22. K. Mulmuley: *Explicit Proofs and The Flip*, arXiv:1009.0246 `[PREPRINT]`
 23. Wikipedia, *Geometric complexity theory* (Sekundärquelle für Mulmuleys Zeitschätzung) —
     https://en.wikipedia.org/wiki/Geometric_complexity_theory `[NUR-SNIPPET]`
+23a. K. Mulmuley: *The GCT Program Toward the P vs. NP Problem*, CACM 55(6), Juni 2012,
+    DOI 10.1145/2184319.2184341 — https://dl.acm.org/doi/10.1145/2184319.2184341 ·
+    https://cacm.acm.org/research/the-gct-program-toward-the-p-vs-np-problem/ `[NUR-SNIPPET]`
+23b. L. Fortnow (Hg.): *Ketan Mulmuley Responds*, Computational Complexity Weblog,
+    21.04.2008 — https://blog.computationalcomplexity.org/2008/04/ketan-mulmuley-responds.html `[NUR-SNIPPET]`
+23c. C. Ikenmeyer, U. Kandasamy: *Implementing geometric complexity theory: On the
+    separation of orbit closures via symmetries*, STOC 2020, DOI 10.1145/3357713.3384257 —
+    https://arxiv.org/abs/1911.03990 `[VERIFIZIERT]` (Existenz)
+23d. P. Dutta, F. Gesmundo, C. Ikenmeyer, G. Jindal, V. Lysikov: *Geometric complexity
+    theory for product-plus-power*, J. Symbolic Computation 132 (2026) —
+    https://arxiv.org/abs/2211.07055 ·
+    https://www.sciencedirect.com/science/article/pii/S0747717125000409 `[VERIFIZIERT]` (Existenz)
+
+**Determinantal complexity**
+23e. T. Mignon, N. Ressayre: *A quadratic bound for the determinant and permanent problem*
+    (IMRN 2004) — Sekundärbeleg: M. Bläser, *Determinant versus permanent*, ADFOCS-17
+    Lecture Notes, https://conferences.mpi-inf.mpg.de/adfocs-17/material/MB_LN.pdf `[NUR-SNIPPET]`
+23f. Y. Yabe: *Bi-polynomial rank and determinantal complexity*, arXiv:1504.00151 —
+    https://arxiv.org/abs/1504.00151 `[PREPRINT]`
+23g. M. Kumar, B. L. Volk: *A Lower Bound on Determinantal Complexity*, CCC 2021 /
+    arXiv:2009.02452 — https://arxiv.org/abs/2009.02452 `[NUR-SNIPPET]`
+23h. K. Sheshadri: *A near-quadratic lower bound on the border determinantal complexity of
+    Σᵢ xᵢⁿ via conormal specialization*, arXiv:2606.13628, 11.06.2026 —
+    https://arxiv.org/abs/2606.13628 `[PREPRINT]`
 
 **Metakomplexität / Anschlussarbeiten**
 24. *AC⁰[p]-Frege Cannot Efficiently Prove that Constant-Depth Algebraic Circuit Lower
@@ -670,5 +774,8 @@ Sie zeigt, dass ein „endliches Suchobjekt" allein nichts nützt.
     https://gepris.dfg.de/gepris/projekt/408113219 `[NUR-SNIPPET]`
 30. G. Panova: *Computational Complexity in Algebraic Combinatorics*, Yale, 24.10.2025 —
     https://calendar.math.yale.edu/node/25185 `[NUR-SNIPPET]`
+30a. talks.cam, Einzelvortrag im Workshopprogramm: H. Goldberg (Warwick),
+    *Asymmetry and Complexity of Nondeterministic Computations*, 07.09.2026 —
+    https://talks.cam.ac.uk/talk/index/272850/ `[NUR-SNIPPET]`
 31. I. Pak, Blogeintrag zu „not in #P"-Resultaten —
     https://igorpak.wordpress.com/2023/09/14/the-power-of-negative-thinking-combinatorial-and-geometric-inequalities/ `[NUR-SNIPPET]`

@@ -33,10 +33,25 @@ metrisches TSP 117/116 → 111/110).
 
 Die daraus abgeleitete **Leitunterscheidung**, an der sich alle Agenten abarbeiten sollen:
 
-> **Suchbare endliche Zeugen** (Gadgets, Graphen, Konstruktionen — maschinell
-> prüfbares Erfolgskriterium, genau die Domäne, in der KI-Suche funktioniert)
-> **vs. unendliche Quantifizierung über alle Algorithmen** (P vs. NP — kein
-> endliches entscheidendes Objekt, kein billiges Verifikationsorakel).
+> **Endlicher Suchkern in einem menschlichen Lifting-Rahmen** vs.
+> **Probleme ohne endlichen Suchkern.**
+
+KI-gestützte Suche funktioniert, wenn drei Bedingungen zugleich erfüllt sind:
+- **B1**: Das gesuchte Objekt ist endlich und maschinell repräsentierbar
+  (ein Gadget, ein Graph, ein Programm).
+- **B2**: Es gibt ein billiges oder erzwingbar billig gemachtes Verifikationsorakel.
+- **B3**: Es existiert ein **von Menschen bewiesener Lifting-Rahmen**, der vom
+  endlichen Objekt auf die allgemeine Aussage schließt (z.B. das PCP-Theorem
+  plus Gadget-Reduktionskalkül).
+
+**Korrektur gegenüber einer früheren Fassung dieses Briefings** (Befund A6):
+Der Schnitt verläuft *nicht* "endliches vs. unendliches Ergebnis". FunSearchs
+Cap-Set-Schranke ist asymptotisch, die Inapproximierbarkeitsresultate sind
+universelle Theoreme. Endlich ist allein das **gesuchte Objekt**; die
+Allgemeinheit kommt ausschließlich über B3 herein.
+
+P vs. NP verletzt B1, B2 und B3 — am gravierendsten B3: Die drei Barrieren
+*sind* genau die Feststellung, dass kein tragfähiger Lifting-Rahmen bekannt ist.
 
 Prüfe für deinen Bereich: Bestätigt oder widerlegt dein Befund diese Achse?
 Gegenbefunde sind ausdrücklich erwünscht.

@@ -53,6 +53,14 @@ Allgemeinheit kommt ausschließlich über B3 herein.
 P vs. NP verletzt B1, B2 und B3 — am gravierendsten B3: Die drei Barrieren
 *sind* genau die Feststellung, dass kein tragfähiger Lifting-Rahmen bekannt ist.
 
+**Dritte Kategorie: Autoformalisierung** (Ergänzung nach Befund A7).
+Neben "Zeugensuche" und "offener Quantifizierung" gibt es einen dritten Typ
+KI-Leistung: die **Übersetzung eines bereits verstandenen Beweises** in ein
+Formalisat. Claudes Lean-Formalisierung von Fermats letztem Satz (04.09.2026)
+gehört hierher — sie entdeckt nichts, sie überträgt. Für P vs. NP strukturell
+irrelevant, weil **kein Ausgangsbeweis existiert, den man übersetzen könnte**.
+Wer diese Kategorie nicht trennt, extrapoliert den FLT-Erfolg falsch.
+
 Prüfe für deinen Bereich: Bestätigt oder widerlegt dein Befund diese Achse?
 Gegenbefunde sind ausdrücklich erwünscht.
 
@@ -68,8 +76,14 @@ Diese Punkte sind **unverifiziert** und sollen von den zuständigen Agenten gepr
   verifiziert, nicht die *Aussage*. → A7 klärt das.
 - GPT-5/Erdős-Problem-Claim, Rücknahme nach ca. 17 Stunden (Oktober 2025). → A8.
 - "Khanukov 2026" — angeblich ein weiterer LLM-Direktversuch an P vs. NP. → A8.
-- Fortnow (Juni 2026) zu P vs. NP in Lean sinngemäß: "we don't even have a
-  viable approach". → A1 oder A7, Wortlaut prüfen.
+- ~~Fortnow (Juni 2026): "we don't even have a viable approach"~~
+  **WIDERLEGT (A7, Konfidenz hoch): Dieser Wortlaut ist nicht belegbar und darf
+  nicht zitiert werden.** Belegt sind aus "Respect the P v NP Problem" (10.06.2026)
+  stattdessen: "Don't waste your time trying a formal approach via Lean" und
+  "Computational complexity is very messy to formulate technically"; ferner, dass
+  er nicht einmal triviale Abgeschlossenheitslemmata für P KI-gestützt in Lean
+  verifiziert bekam. Ein Musterfall dafür, wie ein plausibel klingendes
+  Pseudo-Zitat durch eine Rechercheerzählung wandert.
 - Gasarch-Umfragezahlen 2002/2012/2019. → A1.
 
 ## 4. Muss-Kriterien für die Anerkennung eines Durchbruchs (aus S1, verbindlich)
@@ -95,3 +109,11 @@ Diese Punkte sind **unverifiziert** und sollen von den zuständigen Agenten gepr
    - falls zutreffend: Widerspruch zu einer Annahme dieses Briefings.
 
 Negativbefunde sind vollwertige Ergebnisse. Nichts auffüllen, nichts aufwerten.
+
+## 6. Werkzeugbeschränkung (verbindlich, Nachtrag)
+
+Die GitHub-Werkzeuge dieser Session sind auf das Projekt-Repository beschränkt.
+**Keine Code- oder Repository-Suche über fremde GitHub-Repositories.** Ein Agent
+hat diese Grenze bereits einmal überschritten; die Befunde werden im Papier als
+solche gekennzeichnet, die Praxis wird nicht fortgesetzt. Recherche läuft über
+WebSearch.

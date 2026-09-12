@@ -6,6 +6,29 @@
 
 ---
 
+## Kernbefunde auf einen Blick
+
+1. **MCSP für totale, einwertige Funktionen ist offen — und die Grenze zu MCSP\* ist qualitativ,
+   nicht graduell.** Eine Reduktion nach partiellem MCSP darf ⋆-Positionen setzen; eine Reduktion
+   nach totalem MCSP muss die Funktion vollständig festlegen und dann **untere Schaltkreisschranken
+   beweisen**. Konfidenz hoch.
+2. **NP-Härte von MCSP ist kein Zwischenschritt, sondern enthält bereits einen Durchbruch**
+   (Murray–Williams: deterministische many-one-Reduktion SAT ≤ MCSP ⟹ EXP ≠ ZPP). Konfidenz hoch.
+3. **Ilangos Zufallsorakel-Resultat (FOCS 2023) benutzt genau die Evidenzform, die nachweislich
+   schon einmal versagt hat** — die Random Oracle Hypothesis ist seit 1994 widerlegt (IP vs. PSPACE).
+   Konfidenz hoch.
+4. **Hardness Magnification hat eine eigene Barriere hervorgebracht (locality), bevor sie einen
+   Ertrag lieferte.** Konfidenz hoch.
+5. **Genau eine unbedingte, bewiesene, nichttriviale Implikationskette existiert: Liu–Pass
+   (OWF ⟺ MK^tP average-case-hart). Sie führt nicht zu P ≠ NP.** Konfidenz hoch.
+6. **Zwei Leads aus dem Auftrag sind zu korrigieren:** die STOC-2023-Approximationsarbeit ist von
+   Huang–Ilango–Ren, nicht Hirahara; der STOC-2026-Best-Paper-Status der Refuter-Arbeit ist nicht
+   belegbar (drei andere Preisträger identifiziert). Konfidenz mittel-hoch bzw. mittel-hoch.
+7. **Aktueller als alle Auftragsleads:** Hirahara–Ilango, FOCS 2025 — bedingte NP-Härte von
+   **constant-gap** MCSP unter **quasipolynomiellen, nicht-Levin**-Reduktionen. Konfidenz mittel.
+
+---
+
 ## 0. Methodische Vorbemerkung (verbindlich mitzulesen)
 
 Gemäß `docs/02-team-briefing.md` §1 ist **WebFetch gesperrt**. Es gab **keinen Volltextzugang** zu
@@ -932,6 +955,18 @@ Alle URLs aus WebSearch-Trefferlisten; **kein Volltext abgerufen** (WebFetch ges
   https://www.rahulilango.com/papers/FOCS2020.pdf
 - Hirahara, *Limits of Minimum Circuit Size Problem as Oracle*, CCC 2016 —
   https://drops.dagstuhl.de/storage/00lipics/lipics-vol050-ccc2016/LIPIcs.CCC.2016.18/LIPIcs.CCC.2016.18.pdf
+- Hirahara, Ilango, *NP-hardness of the Minimum Circuit Size Problem from Well-Studied
+  Assumptions*, FOCS 2025 — https://eccc.weizmann.ac.il/author/1209/ (ECCC-Autorenseite Ilango)
+- Mazor, Pass, *Gap MCSP Is Not (Levin) NP-Complete in Obfustopia*, CCC 2024,
+  DOI 10.4230/LIPIcs.CCC.2024.36 — https://eprint.iacr.org/2024/420
+- Hirahara, Ilango, Loff, *Communication Complexity is NP-hard* (2025) —
+  https://arxiv.org/abs/2507.10426
+- Kabanets, Kolokolova, *Kolmogorov's Approach to P vs. NP: Chain Rules for Time-Bounded Kolmogorov
+  Complexity*, STOC 2026, DOI 10.1145/3798129.3800780 — https://eccc.weizmann.ac.il/report/2025/089/
+- Chang, Chor, Goldreich, Hartmanis, Håstad, Ranjan, Rohatgi, *The Random Oracle Hypothesis is
+  False*, JCSS 49(1), 24–39, 1994 —
+  https://www.sciencedirect.com/science/article/pii/S0022000005800844 ;
+  https://userpages.cs.umbc.edu/chang/papers/roh/
 - Simons Institute, *Meta-Complexity Open Problems* (2023) —
   https://wiki.simons.berkeley.edu/lib/exe/fetch.php?media=mc23%3A91meta-complexity_open-problems.pdf
 
@@ -976,8 +1011,17 @@ Alle URLs aus WebSearch-Trefferlisten; **kein Volltext abgerufen** (WebFetch ges
   https://doi.org/10.1145/3801091 ; Preprint https://arxiv.org/pdf/2312.08163
 - *A Lower Bound for k-DNF Resolution on Random CNF Formulas via Expansion*, CCC 2025 —
   https://drops.dagstuhl.de/storage/00lipics/lipics-vol339-ccc2025/LIPIcs.CCC.2025.32/LIPIcs.CCC.2025.32.pdf
+- Refuter-Arbeit, weitere Fassung: ECCC TR24-190 — https://eccc.weizmann.ac.il/report/2024/190/
+- *Exponential Lower Bounds for AC⁰-Frege Imply Superpolynomial Frege Lower Bounds* —
+  https://www.cs.toronto.edu/~toni/Papers/frege.pdf
+- Beame, *Some Open Problems in Proof Complexity* —
+  https://www.cs.toronto.edu/~toni/Courses/Proofcomplexity/Paul/Proof5.pdf
 - Columbia CS, *The Theory Group Wins Big at STOC 2026* —
   https://www.cs.columbia.edu/2026/the-theory-group-wins-big-at-stoc-2026/
+- Ruhr-Universität Bochum, *Jonas Haferkamp Wins Best Paper Award at STOC 2026* —
+  https://informatik.rub.de/en/jonas-haferkamp-wins-best-paper-award-at-stoc-2026/
+- UW Allen School, *Chinmay Nirkhe receives Best Paper Award at STOC 2026* —
+  https://www.cs.washington.edu/allen-school-blog/chinmay-nirkhe-best-paper-award-stoc-2026/
 - STOC 2026 Accepted Papers — https://acm-stoc.org/stoc2026/accepted-papers.html
 
 ### Unabhängigkeit / Metamathematik

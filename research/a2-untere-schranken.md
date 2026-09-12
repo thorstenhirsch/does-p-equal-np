@@ -729,11 +729,13 @@ Prüfung der drei Bedingungen für den Kern des Gebiets (superpolynomielle Schra
   Größen. Es gibt keinen endlichen Zeugen.
 - **B2 (billiges Verifikationsorakel):** **verletzt.** Selbst wenn man einen Kandidatenbeweis
   hätte, ist seine Prüfung genau das, woran Fortnow mit Lean scheiterte (vgl. A7).
-- **B3 (menschlicher Lifting-Rahmen):** **verletzt** — und das ist die Pointe. Die vier
-  bewiesenen Endpunkte aus §5.3 *sind* die präzise Feststellung, dass kein Lifting-Rahmen
+- **B3 (menschlicher Lifting-Rahmen):** **verletzt** — und das ist die Pointe. Die Tabelle
+  der bewiesenen Endpunkte in §2.6 *ist* die präzise Feststellung, dass kein Lifting-Rahmen
   existiert: Monotone Schranken liften nicht (Tardos, bewiesen), AC⁰[p]-Schranken liften
-  nicht (natural proofs, bedingt bewiesen), U₂-gate-elimination liftet nicht über 5n
-  (Amano–Tarui, bewiesen), magnification liftet nicht (locality barrier, bewiesen).
+  nicht (natural proofs, bedingt bewiesen), gate elimination liftet nicht ins Superlineare
+  (Golovnev–Hirsch–Knop–Kulikov, bewiesen), Valiant-Rigidität liftet nicht vom besten
+  Kandidaten (Alman–Williams, bewiesen), magnification liftet nicht (locality barrier,
+  bewiesen). **Jede dieser Aussagen ist ein Satz, keine Vermutung.**
 
 **Die Präzisierung — ein Teilgegenbefund.** Es gibt in diesem Gebiet **einen** Ort, an dem
 B1–B3 *doch* erfüllt sind, und das ist **Williams' algorithmische Methode**:

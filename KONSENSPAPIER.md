@@ -170,10 +170,21 @@ Laufzeit mit W selbst wächst — also exponentiell in der Eingabelänge. Eine K
 mit 100 Bit ergibt 2¹⁰⁰ Schritte. Diese Verwechslung ist eine der häufigsten
 Bruchstellen in falschen Beweisen.
 
+Dabei ist eine Feinheit wichtig, damit der Punkt nicht überdehnt wird: Knapsack ist
+**schwach** NP-vollständig, und nur deshalb existiert das pseudopolynomielle Programm
+überhaupt. Für ein **stark** NP-vollständiges Problem — 3-PARTITION, TSP — würde ein
+pseudopolynomieller Algorithmus sehr wohl P = NP liefern. „Pseudopolynomiell ist
+irrelevant" wäre also falsch; richtig ist: bei Knapsack ist es kein Fortschritt
+Richtung P = NP.
+
 **Clique für festes k ist in P, Clique ist NP-vollständig.** Bei fixiertem k gibt es
 nur O(n^k) Kandidatenmengen — polynomiell für jedes feste k. NP-vollständig wird es,
-wenn k Teil der Eingabe ist. Der Unterschied liegt in der Quantifizierung, nicht in
-der Problemstruktur.
+wenn k Teil der Eingabe ist.
+
+Der Mechanismus dahinter lohnt die Genauigkeit, weil er den Kern von „polynomiell"
+trifft: P verlangt einen **festen** Exponenten. „Für jedes k liegt das Problem in P"
+ist die Aussage ∀k ∃c; gebraucht wird aber ∃c ∀k — *ein* Exponent, der für alle k
+funktioniert. Die Vertauschung zweier Quantoren trennt hier P von NP-vollständig.
 
 **„Kein bekannter Algorithmus" ist nicht „kein Algorithmus".** Fünfzig Jahre
 erfolgloser Suche sind ein Indiz, kein Beweis. Das ist die triviale Richtung des
@@ -211,7 +222,7 @@ vor 2100 gelöst?" (2002: 62 %, 2012: 53 %, 2019: 66 %). Verifiziert für 2002:
 61 von 100 für P ≠ NP (davon 7 mit Zweifeln), 9 für P = NP.
 
 Der Anteil „wird nie gelöst" lag bei 5 %, 3 % und 9 % (bei 100, 152 und 124
-Befragten). Die 9 % sind sieben Personen — kein Trend, sondern Rauschen.
+Befragten). Die 9 % sind rund elf Personen — kein Trend, sondern Rauschen.
 
 ---
 
@@ -222,9 +233,15 @@ Befragten). Die 9 % sind sieben Personen — kein Trend, sondern Rauschen.
 Dieser Abschnitt ist der wichtigste des Papiers, weil er jede „wir sind nah dran"-
 Erzählung beendet.
 
+**Markierungsvorbehalt (auf Forderung des Red Teams):** Sämtliche Zahlen dieser
+Tabelle und sämtliche Venue-Angaben der Tabelle in §4.3 sind `[NUR-SNIPPET]`. Sie
+haben eine zusätzliche Kontrolle, die den drei Konfabulationsfällen aus §9 fehlte —
+die interne Konsistenz der Ketten 3n → 3,0116n → 3,1n und 1,307031594 → …578. Das
+stützt die **Größenordnung**, nicht die einzelnen Ziffern.
+
 | Größe | Stand 2026 | Für P ≠ NP gebraucht |
 |---|---|---|
-| Untere Schranke, explizites Problem, volle Basis B₂ | **3,1n − o(n)** | superpolynomiell |
+| Untere Schranke, explizites Problem, volle Basis B₂ `[NUR-SNIPPET]` | **3,1n − o(n)** | superpolynomiell |
 | Fortschritt 1984 → 2022 | **+0,1 Gatter pro Eingabebit** | |
 | Determinantal complexity der Permanente | **n²/2** (2004) | superpolynomiell |
 | Beste 3-SAT-Basis | **1,307031578ⁿ** | polynomiell |
@@ -237,8 +254,8 @@ STOC 2022) 3,1n − o(n), für affine dispersers. In achtunddreißig Jahren ist 
 Koeffizient um **ein Zehntel** gestiegen.
 
 **Achtung, verbreitete Basisverwechslung:** Die häufig zitierten **5n − o(n)**
-(Iwama–Morizumi 2002) gelten über **U₂** — der vollen binären Basis *ohne* XOR und
-XNOR —, also über dem schwächeren Modell, in dem Schranken leichter und größer
+(Iwama–Morizumi 2002) gelten über **U₂** — also über B₂ *ohne* XOR und XNOR —, dem
+schwächeren Modell, in dem Schranken leichter und größer
 ausfallen. Für P vs. NP zählt B₂, weil P/poly darüber definiert ist. Die Zahlen sind
 nicht vergleichbar, werden aber regelmäßig nebeneinandergestellt. `[VERIFIZIERT]`
 
@@ -255,10 +272,12 @@ unverändert funktioniert — insbesondere klassische Diagonalisierung —, kann
 Frage daher nicht entscheiden.
 
 **Natural Proofs** (Razborov–Rudich 1994/97). Die meisten bekannten
-Schranken-Beweise liefern ein Prädikat, das *constructive* (effizient auswertbar)
-und *large* (auf einem nennenswerten Anteil aller Funktionen erfüllt) ist. Ein
-solcher Beweis für allgemeine Schaltkreise würde kryptographische Pseudozufalls-
-funktionen brechen. Wer an deren Existenz glaubt, muss natural proofs ausschließen.
+Schranken-Beweise liefern ein Prädikat mit drei Eigenschaften: *useful* (es trennt
+die schwere Funktion von allen einfachen — das ist die Eigenschaft, die die Schranke
+überhaupt liefert), *constructive* (effizient auswertbar) und *large* (auf einem
+nennenswerten Anteil aller Funktionen erfüllt). Ein solches Prädikat für allgemeine
+Schaltkreise würde kryptographische Pseudozufallsfunktionen brechen. Constructive
+und large allein ergeben keinen Beweis — usefulness ist der Teil, der die Arbeit tut. Wer an deren Existenz glaubt, muss natural proofs ausschließen.
 Wichtig: Das ist ein **bedingtes** Resultat — es hängt an einer kryptographischen
 Annahme.
 
@@ -269,26 +288,40 @@ auch die arithmetisierenden Methoden, mit denen IP = PSPACE bewiesen wurde.
 **Die verbreitete Überinterpretation ist falsch.** Die Barrieren zeigen **nicht**,
 dass P vs. NP unlösbar oder von ZFC unabhängig ist. Sie zeigen, dass bestimmte
 Technikfamilien nicht ausreichen. Der Beleg, dass sie umgehbar sind, existiert:
-**Ryan Williams' NEXP ⊄ ACC⁰** (JACM 2014, Gödelpreis 2024) umgeht Relativization
-und Algebrization. Der Mechanismus ist instruktiv: Alle bekannten SAT-Algorithmen,
-die Brute Force schlagen, brechen zusammen, sobald man Orakel oder deren algebraische
-Fortsetzung hinzufügt — wer schneller sein will, *muss* Instanzstruktur nutzen, die
-Black-Box-Methoden gar nicht sehen. `[VERIFIZIERT]`
+**Ryan Williams' NEXP ⊄ ACC⁰** (JACM 2014; Gödelpreis 2024 `[NUR-SNIPPET]` — eine
+Preisträgerzuordnung, also genau die Angabenklasse, die §9 für nicht belastbar
+erklärt) umgeht **alle drei**. Der Mechanismus ist geteilt und deshalb instruktiv:
+
+- Gegen **Relativization und Algebrization**: Alle bekannten SAT-Algorithmen, die
+  Brute Force schlagen, brechen zusammen, sobald man Orakel oder deren algebraische
+  Fortsetzung hinzufügt — wer schneller sein will, *muss* Instanzstruktur nutzen,
+  die Black-Box-Methoden gar nicht sehen.
+- Gegen **Natural Proofs**: Das Argument liefert kein *large* Prädikat; es trennt
+  nicht „fast alle Funktionen" von den einfachen, sondern arbeitet über eine
+  einzelne, sehr komplexe Funktion.
+
+Anmerkung zur Quellenlage: Die auffindbare Laudatio nennt Relativization und Natural
+Proofs; die Umgehung von Algebrization ist über eine zweite Quelle belegt. `[NUR-SNIPPET]`
 
 ### 4.3 Jede Technik hat einen bewiesenen Endpunkt
 
 Dies ist der Befund, den der Strategieagent in der Konsensrunde als unverzichtbar
 bezeichnet hat — weil er „noch nicht" von „nicht so" unterscheidet.
 
-| Technik | Endpunkt | Quelle |
-|---|---|---|
-| gate elimination | **kann prinzipiell keine superlinearen Schranken liefern** | Golovnev–Hirsch–Knop–Kulikov, MFCS 2016 / JCSS 2018 |
-| monotone Schaltkreise | exponentielle Lücke zur allgemeinen Komplexität | Tardos 1988 |
-| AC⁰, AC⁰[p] | natural proofs | Razborov–Rudich |
-| Valiant-Rigidität | Hadamard-Matrizen sind **nicht** rigide | Alman–Williams 2017 |
-| hardness magnification | **locality barrier** | Chen–Hirahara–Oliveira–Pich–Rajgopal–Santhanam, JACM 69(4) 2022 |
-| GCT, occurrence obstructions | **können perm vs. det nicht trennen** | Bürgisser–Ikenmeyer–Panova, JAMS 32(1) 2019 |
-| algebrisierende Methoden | erweiterte Schranke | Chen–Hu–Ren, ITCS 2026 `[NUR-SNIPPET]` |
+| Technik | Endpunkt | Art | Quelle |
+|---|---|---|---|
+| gate elimination | **kann prinzipiell keine superlinearen Schranken liefern** — für einen formalisierten Rahmen typischer gate-elimination-Argumente, nicht wörtlich für jede denkbare Variante | unbedingt | Golovnev–Hirsch–Knop–Kulikov, MFCS 2016 / JCSS 2018 |
+| monotone Schaltkreise | exponentielle Lücke zur allgemeinen Komplexität | unbedingt | Tardos 1988 |
+| AC⁰, AC⁰[p] | *kein* Endpunkt — die Technik funktioniert hier, weil es in AC⁰ keine PRFs gibt; sie skaliert nur nicht nach oben | — | Håstad; Razborov–Smolensky |
+| natural proofs (allgemein) | schließt die large-Prädikat-Familie aus | **bedingt** (Existenz von PRFs) | Razborov–Rudich |
+| Valiant-Rigidität | Hadamard-Matrizen sind nicht rigide **im für Valiants Programm nötigen Parameterbereich**; ein gegenläufiges Preprint von 2026 existiert | unbedingt, aber umstritten | Alman–Williams 2017 |
+| hardness magnification | **locality barrier** | unbedingt | Chen–Hirahara–Oliveira–Pich–Rajgopal–Santhanam, JACM 69(4) 2022 |
+| GCT, occurrence obstructions | **können perm vs. det nicht trennen** | unbedingt | Bürgisser–Ikenmeyer–Panova, JAMS 32(1) 2019 |
+| algebrisierende Methoden | erweiterte Schranke | — | Chen–Hu–Ren, ITCS 2026 `[NUR-SNIPPET]` |
+
+Die Spalte „Art" ist wichtiger, als sie aussieht: **Nur die natural-proofs-Barriere
+ist bedingt** — sie hängt an der Existenz kryptographischer Pseudozufallsfunktionen.
+Alle übrigen Einträge sind unbedingte Sätze.
 
 Der erste Eintrag verdient Hervorhebung: **3,1n ist kein Zwischenstand auf dem Weg
 zu superpolynomiellen Schranken, sondern der ausgereizte Endpunkt einer Methode.**
@@ -305,7 +338,12 @@ Der Eindruck völligen Stillstands wäre falsch. Es bewegt sich — nur nicht do
 **Ryan Williams, Februar 2025** (ECCC TR25-017, STOC 2025): Jede Mehrband-
 Turingmaschine mit Zeit t ist in Raum O(√(t log t)) simulierbar. Daraus folgt
 SPACE[n] ⊄ TIME[n^{2−ε}]. Das ist die erste substanzielle Verbesserung seit rund
-fünfzig Jahren — ein Sprung von „fast linear" (Hopcroft–Paul–Valiant) auf
+fünfzig Jahren.
+
+Hier ist Präzision nötig, weil sich zwei Größen leicht vermischen: Die **Simulation**
+verbessert sich von O(t / log t) (Hopcroft–Paul–Valiant) auf O(√(t log t)). Die
+daraus **abgeleitete Zeitschranke** verbessert sich von SPACE[n] ⊄ TIME[o(n log n)]
+auf SPACE[n] ⊄ TIME[n^{2−ε}] — das ist der Sprung von „fast linear" auf
 „quadratisch". **Es ist ausdrücklich kein Beweis von P ≠ PSPACE**; eine frühere,
 stärkere Formulierung der Projektleitung wurde von A2 korrigiert. Das Werkzeug kam
 von Cook–Mertz (Tree Evaluation) — die damit zugleich einen lange gehandelten
@@ -320,7 +358,8 @@ die *nahezu maximale* Schranke erreicht. Der Engpass ist also nicht die
 Schrankengröße, sondern die Schwäche der Klassen, für die wir sie zeigen können.
 
 **Und die Front liegt näher an ACC⁰, als man denkt:** Gegen TC⁰ — eine Gatterart
-darüber — ist nichts bekannt, nicht einmal n^{1,1}. `[NUR-SNIPPET]`
+darüber — ist nichts bekannt; die belegte Angabe „nicht einmal n^{1,1}" bezieht sich
+auf LTF-Schaltkreise. `[NUR-SNIPPET]`
 
 ### 4.5 Meta-Komplexität: die lebendigste Front
 
@@ -360,19 +399,33 @@ Goldreich, Hartmanis, Håstad, Ranjan, Rohatgi, JCSS 1994) — für fast alle A 
 IP^A ≠ PSPACE^A, während unrelativiert IP = PSPACE gilt. Das Resultat benutzt exakt
 die Evidenzform, die historisch schon einmal versagt hat.
 
+Der Fairness halber: Ilango argumentiert seinerseits, die Relativierung sei hier
+**gezielte Barriereumgehung und kein Artefakt**. Welche Lesart trägt, entscheidet
+nicht dieses Papier; festzuhalten ist nur, dass die Beweislast beim Resultat liegt.
+
+**Und die Front ist nach 2023 weitergelaufen — in beide Richtungen.**
+Hirahara und Ilango (FOCS 2025) zeigen bedingte NP-Härte von *constant-gap* MCSP —
+allerdings unter quasipolynomiellen, **nicht-Levin**-Reduktionen, also mit
+erheblichen Abschwächungen gegenüber dem, was der Titel suggeriert. In der
+Gegenrichtung zeigen Mazor und Pass (CCC 2024), dass Gap-MCSP unter
+Indistinguishability Obfuscation **nicht** Levin-NP-vollständig ist. Die Frage ist
+offener geworden, nicht geschlossener. `[NUR-SNIPPET]`
+
 ### 4.6 Die algebraische Route
 
 **Aus VP ≠ VNP folgt P ≠ NP nicht.** Diese Implikation wird regelmäßig zu stark
 dargestellt; sie ist dreifach gebrochen: Sie läuft nur als Kontraposition, liefert
 die *nichtuniforme* Variante (P/poly = NP/poly), und hängt in Charakteristik 0
-zusätzlich an der verallgemeinerten Riemannschen Vermutung. Die tragfähige Formel:
-**VP ≠ VNP ist notwendig, nicht hinreichend.**
+zusätzlich an der verallgemeinerten Riemannschen Vermutung — **über endlichen Körpern
+gilt der Transfer dagegen unbedingt** (VP = VNP ⇒ NC²/poly = P/poly = NP/poly =
+PH/poly). Die tragfähige Formel: **VP ≠ VNP ist notwendig, nicht hinreichend.**
 
 **Limaye–Srinivasan–Tavenas** (FOCS 2021 Best Paper, JACM 2025) erzielten die ersten
 superpolynomiellen Schranken gegen arithmetische Schaltkreise beliebiger konstanter
 Tiefe — vorher war bei Produkttiefe 2 Schluss. Der Abstand zum Ziel ist exakt
-benennbar: Der „Chasm at Depth Four" verlangt n^{ω(√d)} für homogene Tiefe 4, um
-VP ≠ VNP zu liefern. LST liefert superpolynomiell — schwächer.
+benennbar: Der „Chasm at Depth Four" — eine Kette von Resultaten von Agrawal–Vinay,
+Koiran und Tavenas, nicht ein Einzelsatz — verlangt n^{ω(√d)} für homogene Tiefe 4,
+um VP ≠ VNP zu liefern. LST liefert superpolynomiell — schwächer.
 
 **GCT** (Mulmuley–Sohoni) ist der einzige bekannte Versuch, P vs. NP überhaupt in
 eine **endliche Objektsuche** zu übersetzen: Eine Obstruction ist eine Partition λ.
@@ -394,9 +447,10 @@ Kurz: **nicht bekannt, und die populäre Darstellung ist Unsinn.**
 
 Razborov (1995) zeigte Unbeweisbarkeit in **S₂²(α)** — relativiert, unter einer
 Pseudozufallsgenerator-Annahme, in einer Theorie weit unterhalb der Peano-Arithmetik.
-Über ZFC sagt das nichts. Ben-David und Halevi haben zudem darauf hingewiesen, dass
-Unabhängigkeit ein unattraktives Szenario wäre: Sie käme praktisch fast so gut wie
-P = NP.
+Über ZFC sagt das nichts. Ben-David und Halevi haben zudem ein Resultat dazu bewiesen, das das Szenario
+unattraktiv macht: Unabhängigkeit **von PA plus allen wahren Π₁-Sätzen** — einer sehr
+starken Theorie — käme praktisch fast so gut wie P = NP. Das ist ausdrücklich keine
+Aussage über ZFC-Unabhängigkeit im Allgemeinen.
 
 Zu trennen ist strikt: *nicht bekannt unabhängig* ≠ *unabhängig*.
 
@@ -421,13 +475,25 @@ Rechnet man mit c = log₂(Basis) — c = 1 wäre Brute Force, c = 0 Polynomialz
 | 1999–2011 | 2,4 · 10⁻³ |
 | **2011–2026** | **6,2 · 10⁻⁷** |
 
-Das ist eine **rund 32.000-fache Verlangsamung**. Naiv-lineare Extrapolation ergäbe
-c = 0 um 2077, ist aber methodisch wertlos; mit der tatsächlichen Rate der letzten
-fünfzehn Jahre wären es **rund 620.000 Jahre**.
+Das ist eine **rund 32.000-fache Verlangsamung**.
 
-Entscheidend ist die Form der Reihe: Sie sieht nicht nach Annäherung an 0 aus,
-sondern nach **Konvergenz gegen c ≈ 0,386** — genau das, was die Exponential Time
-Hypothesis behauptet.
+Hier ist eine Selbstkorrektur nötig, auf die das Red Team zu Recht bestanden hat:
+Eine frühere Fassung dieses Papiers nannte eine Extrapolation („rund 620.000 Jahre")
+und bezeichnete sie im selben Atemzug als methodisch wertlos. Beides zusammen geht
+nicht. **Die Extrapolation ist Kurvenanpassung an drei Punkte und wird hier nicht
+geführt.** Ebenso wäre die naheliegende Aussage, die Reihe konvergiere gegen c ≈ 0,386 und
+bestätige damit die Exponential Time Hypothesis, in zwei Hinsichten zu stark: Die
+ETH behauptet nur s₃ > 0, **keinen bestimmten Grenzwert**; und die Reihe misst den
+Stand der **Analysetechnik**, nicht s₃ selbst — sie könnte stagnieren, während s₃
+weit darunter liegt. Was sich sagen lässt: Die Reihe sieht nach Stagnation oberhalb
+eines positiven Werts aus. Das ist mit der ETH vollständig verträglich und beweist
+sie nicht.
+
+Was **belastbar** bleibt, ist der Befund ohne Extrapolation: Die Fortschrittsrate ist
+über vierzig Jahre um mehrere Größenordnungen gefallen, und die jüngste Verbesserung
+betrifft die achte Nachkommastelle. Eine Reihe, die sich so verhält, ist kein Indiz
+für eine bevorstehende Annäherung an Polynomialzeit. Mehr lässt sich daraus nicht
+ableiten, und mehr wird hier nicht behauptet.
 
 ### 5.2 Der SAT-Solver-Einwand ist widerlegt, nicht offen
 
@@ -437,9 +503,12 @@ Millionen Variablen. Ist das nicht ein Hinweis auf P = NP?
 **Nein — und das ist bewiesen, nicht bloß vermutet.**
 
 CDCL mit Neustarts **p-simuliert die allgemeine Resolution** (Pipatsrisawat–Darwiche,
-Overhead O(n⁴); Atserias–Fichte–Thurley). Damit überträgt sich **Hakens exponentielle
-Resolutionsschranke für das Schubfachprinzip (1985)** als **unbedingte** untere
-Schranke auf real eingesetzte Solver — ohne jede Annahme über P vs. NP.
+Overhead O(n⁴); Atserias–Fichte–Thurley) — genauer: idealisierte CDCL-Modelle mit
+unbeschränkten Neustarts, nicht jede reale Implementierung. Damit überträgt sich
+**Hakens exponentielle Resolutionsschranke für das Schubfachprinzip (1985)** als
+**unbedingte** untere Schranke auf diese Solverklasse — ohne jede Annahme über
+P vs. NP. Was Haken ausschließt, ist die effiziente *Widerlegung* von PHP durch
+resolutionsbasierte Verfahren; über andere Algorithmen sagt er nichts.
 
 Praxisleistung und Worst-Case-Härte koexistieren also nachweislich. Das ist kein
 Spannungsverhältnis, das sich zugunsten von P = NP auflösen ließe.
@@ -456,6 +525,8 @@ Gegenthese, es handelt sich um eine Selbstkorrektur. `[PREPRINT]`
 Auch der Compute-Ertrag spricht Bände. SAT Competition 2026, Hauptkategorie:
 1 Kern × 5000 s löste 276 Instanzen; 32 Kerne × 1000 s lösten 300; 800 Kerne × 200 s
 lösten 301. **Die 32-fache Rechenzeit im letzten Schritt kauft genau eine Instanz.**
+(Hardware und Timeouts sind zwischen den Tracks nicht identisch; aussagekräftig ist
+die Größenordnung, nicht die exakte Differenz. `[NUR-SNIPPET]`)
 
 ### 5.3 Quanten
 
@@ -489,13 +560,17 @@ Combinatorial Structures", aktiv revidiert bis mindestens v7 vom 9. März 2026),
 begleitet von einem Google-Research-Beitrag. **Status: `[PREPRINT]`** — eine
 Konferenz- oder Journalversion war nicht auffindbar.
 
-Verifizierte Resultate:
+Berichtete Resultate (`[PREPRINT]`, `[NUR-SNIPPET]`):
 
 | Problem | vorher | mit AlphaEvolve |
 |---|---|---|
 | MAX-4-CUT | 0,9883 | **0,987** |
 | MAX-3-CUT | 0,9853 (gadget-basiert) | **0,9649** |
 | Metrisches TSP | 117/116 | **111/110** |
+
+*Lesehilfe: Ein kleinerer Wert bedeutet eine **stärkere Härteschranke**, nicht einen
+schnelleren Algorithmus. Jede Zeile ist eine Aussage **innerhalb** der Hypothese
+P ≠ NP — siehe §6.2.*
 
 Dazu nahezu optimale obere und bedingte untere Schranken für Certification-
 Algorithmen bei MAX-CUT und MAX-Independent-Set auf zufälligen 3- und 4-regulären
@@ -505,7 +580,10 @@ Das gefundene MAX-4-CUT-Gadget hat 19 Variablen und eine stark asymmetrische
 Gewichtung mit Faktoren bis 1429:1 — eine Struktur, die menschliche Forschende nicht
 in Betracht gezogen hatten. Methodisch elegant: Da die Verifikation der Kandidaten
 selbst exponentiell teuer ist, wurde AlphaEvolve auch auf die **Verifikations-
-prozedur** angesetzt und beschleunigte sie um bis zu 10.000×.
+prozedur** angesetzt und beschleunigte sie um bis zu 10.000×. Der naheliegende
+Einwand — ein evolvierter Verifier könnte evolvierte Fehler durchwinken — ist
+adressiert: Die finalen Gadgets wurden **per Brute Force unabhängig nachverifiziert**;
+die evolvierte Prozedur beschleunigt nur die Suche, nicht die Endprüfung.
 
 **Zwei Präzisierungen, die in der Berichterstattung fehlen.** Erstens sind die
 MAX-k-CUT- und TSP-Resultate **unbedingte** NP-Härte auf PCP/Håstad-Basis, nicht
@@ -560,20 +638,34 @@ Komplexitätsresultat.
 ### 6.5 Automatisches Beweisen: die Fähigkeitsgrenze in Zahlen
 
 2024–2026 war ein außergewöhnlicher Zeitraum: AlphaProof (IMO-Silber 2024,
-Nature 2025), Seed-Prover (5 von 6 IMO-Aufgaben 2025), AlphaProof Nexus mit neun
-Erdős-Problemen (Mai 2026), AxiomProver (vier zuvor ungelöste Probleme, Anfang 2026),
-OpenAI mit zehn forschungsnahen Problemen (August 2026), Anthropics Lean-Formalisierung
-von Fermats letztem Satz (September 2026).
+Nature 2025), Seed-Prover (IMO 2025), AlphaProof Nexus mit neun Erdős-Problemen
+(Mai 2026), AxiomProver (vier zuvor ungelöste Probleme, Anfang 2026 — `[CLAIM]`,
+der Peer-Review-Status ist strittig), OpenAI mit zehn forschungsnahen Problemen
+(August 2026), Anthropics Lean-Formalisierung von Fermats letztem Satz
+(September 2026).
+
+**Eine Korrektur in eigener Sache**, weil sie exemplarisch ist: Eine frühere Fassung
+dieses Papiers schrieb „Seed-Prover: 5 von 6 IMO-Aufgaben 2025". Das ist falsch.
+Unter Wettbewerbsbedingungen waren es **4 vollständige plus 1 teilweise Lösung,
+30 Punkte, IMO-zertifiziertes Silber**; die fünfte Lösung entstand erst nachträglich
+per extended search. Genau die Art Aufrundung, die §9 anprangert — hier im eigenen
+Text.
 
 Der Erfolgsgradient ist dennoch eindeutig:
 
-| Benchmark | Erfolgsquote |
-|---|---|
-| miniF2F | ~99 % |
-| Putnam | ~50 % |
-| CombiBench | ~30 % |
-| OEIS | 44/492 ≈ 8,9 % |
-| **Erdős-Probleme** | **9/353 ≈ 2,5 %** |
+| Benchmark | System | Erfolgsquote |
+|---|---|---|
+| miniF2F | Seed-Prover | ~99 % |
+| Putnam | Seed-Prover | ~50 % |
+| CombiBench | Seed-Prover | ~30 % |
+| OEIS | AlphaProof Nexus | 44/492 ≈ 8,9 % |
+| **Erdős-Probleme** | AlphaProof Nexus | **9/353 ≈ 2,5 %** |
+
+Die Tabelle mischt zwei Systeme; als Gradient über Aufgabenschwierigkeit ist sie
+dennoch aussagekräftig. Den stärksten Beleg liefert ohnehin ein Hersteller selbst:
+Anthropic hält zu den eigenen Resultaten rund um die Riemannsche Zetafunktion fest,
+dass die verwendeten Techniken **nicht zum Beweis der Vermutung führten**.
+`[NUR-SNIPPET]`
 
 Erfolg setzt voraus: kurzer Beweis, endlicher Suchraum, billiges Verifikationsorakel,
 vorhandener Formalisierungskontext in mathlib. **P vs. NP scheitert an allen vieren.**
@@ -588,7 +680,10 @@ library" — die nicht existiert.
 
 Die FLT-Formalisierung (September 2026) gehört weder zur Zeugensuche noch zur offenen
 Quantifizierung. Sie ist **Übersetzung eines seit 1995 verstandenen Beweises** —
-Kevin Buzzard nennt es genau so, eine „autoformalization achievement".
+Kevin Buzzard nennt es genau so, eine „autoformalization achievement". Die
+Größenordnung ist bemerkenswert: rund 13 Millionen Zeilen Lean und 29.500 Theoreme
+in elf Tagen, gegenüber einem menschlichen Formalisierungsprojekt, das bis 2029
+finanziert ist. `[NUR-SNIPPET]`
 
 Für P vs. NP ist diese Kategorie strukturell irrelevant: **Es existiert kein
 Ausgangsbeweis, den man übersetzen könnte.** Wer den FLT-Erfolg auf P vs. NP
@@ -609,8 +704,10 @@ Charakterisierung dessen, wo KI-gestützte Suche trägt. Drei Bedingungen müsse
 - **B2 — billiges Verifikationsorakel.** Kandidaten lassen sich effizient prüfen,
   oder die Prüfung lässt sich effizient machen.
 - **B3 — menschlich bewiesener Lifting-Rahmen.** Ein Satz trägt vom endlichen Objekt
-  zur allgemeinen Aussage. Das PCP-Theorem plus Gadget-Reduktionskalkül ist das
-  Musterbeispiel.
+  zur allgemeinen Aussage — **und die Techniken, die das Objekt liefern, sind mit
+  diesem Rahmen kompatibel.** Das PCP-Theorem plus Gadget-Reduktionskalkül ist das
+  Musterbeispiel. Der zweite Halbsatz ist nicht kosmetisch: Hardness Magnification
+  erfüllt den ersten und scheitert am zweiten (§7.3).
 
 **Wichtige Präzisierung:** Der Schnitt verläuft *nicht* zwischen endlichem und
 unendlichem Ergebnis. FunSearchs Cap-Set-Schranke ist asymptotisch, die
@@ -619,8 +716,11 @@ Inapproximierbarkeitsresultate sind universelle Theoreme. Endlich ist allein das
 
 ### 7.2 Warum P vs. NP durchfällt
 
-**B1 fällt aus.** Es gibt kein endliches Objekt, dessen Auffinden die Frage
-entscheidet. GCT ist der einzige bekannte Versuch, eines zu konstruieren.
+**B1 fällt aus — für die P ≠ NP-Richtung.** Es gibt kein endliches Objekt, dessen
+Auffinden diese Richtung entscheidet. GCT ist der einzige bekannte Versuch, eines zu
+konstruieren. Für die P = NP-Richtung existiert ein endliches Objekt sehr wohl: ein
+Algorithmus. Dort scheitert es nicht an B1, sondern an B2 — was die folgende Pointe
+erst scharf macht.
 
 **B2 fällt aus — und zwar beidseitig.** Das ist der schärfste Punkt des Rasters, und
 er wird meist übersehen. Für P ≠ NP wäre zu verifizieren, dass *kein* Algorithmus
@@ -670,9 +770,13 @@ Methode.** Das gesuchte Objekt ist ein Circuit-SAT-Algorithmus (endlich, B1 ✓)
 seine Leistung ist messbar (B2 ✓), und der Lifting-Rahmen ist ein bewiesener Satz:
 *nichttrivialer C-SAT-Algorithmus ⟹ untere Schranke gegen C* (B3 ✓).
 
-Die Einschränkung ist gravierend, aber sie hebt den Befund nicht auf: Der Rahmen
-liefert **NEXP ⊄ C**, nicht NP. Man müsste also erst ETH oder SETH umstoßen und
-bekäme dann eine Aussage über NEXP.
+Die Einschränkung ist gravierend, aber sie hebt den Befund nicht auf: Für
+**allgemeine** Schaltkreise (fan-in 2) liefert der Rahmen NEXP ⊄ P/poly, nicht NP —
+man müsste also erst ETH oder SETH umstoßen und bekäme dann eine Aussage über NEXP.
+
+**Für eingeschränkte Klassen gilt diese Hürde nicht.** Williams bewies NEXP ⊄ ACC⁰
+2011 ohne jeden ETH-Bezug. Genau deshalb ist der Vorschlag in §11.1 auf eingeschränkte
+Klassen gerichtet und nicht auf den allgemeinen Fall.
 
 Trotzdem ist dies die einzige bekannte Stelle im gesamten Feld, an der alle drei
 Bedingungen erfüllt sind — und damit die einzige, an der KI-gestützte Suche nach dem
@@ -741,11 +845,14 @@ Computer Science 19(12):1912405, Dezember 2025** — peer-reviewt, bei Springer 
 Der Titel behauptet, was P ≠ NP implizieren würde.
 
 **Die Autoren räumen in arXiv:2401.01193 selbst ein, dass ihr Resultat nicht für
-k-SAT mit konstanter Klausellänge gilt — 3-SAT ist nicht abgedeckt.** Es geht um
+k-SAT mit konstanter Klausellänge gilt — 3-SAT ist nicht abgedeckt.** `[NUR-SNIPPET]` Es geht um
 SAT-Instanzen mit langen Klauseln. Für P vs. NP folgt daraus nichts, denn 3-SAT ist
 NP-vollständig, und genau darüber schweigt die Arbeit.
 
-Zwei unabhängige Widerlegungen liegen vor:
+Zwei unabhängige, voneinander unabhängig entstandene **Kritiken** liegen vor. (Nicht
+„Widerlegungen": Allender und Williams formulieren, das Argument bleibe „far short of
+a proof"; die Arbeit von Chavrimootoo et al. ist ein Preprint. Die Aufstufung wäre
+genau die Art Übertreibung, die dieses Papier andernorts kritisiert.)
 
 - **Chavrimootoo, He, Kotler-Berkowitz, Liuson und Nie** (U Rochester, arXiv:2312.02071,
   2023): Fehler in den Haupttheoremen; die für downward self-reducibility nötige
@@ -753,6 +860,9 @@ Zwei unabhängige Widerlegungen liegen vor:
 - **Eric Allender und Ryan Williams** (Frontiers of Computer Science, Vol. 20,
   Art. 2001405, 2026): Das Argument bleibe „far short of a proof", weil es „an
   assumption about all possible SAT algorithms that is unwarranted" mache.
+  (Beide Wortlaute `[NUR-SNIPPET]` — §9 erklärt Zitatwortlaute ausdrücklich für
+  nicht belastbar; sie stehen hier, weil sie der Kern der Kritik sind, nicht weil
+  wir sie verifizieren konnten.)
 
 **Der eigentliche Befund ist die Konvergenz:** Zwei Gruppen, zwei Jahre auseinander,
 ohne Bezug aufeinander, treffen dieselbe Bruchstelle. Das ist stärker als jede
@@ -762,10 +872,14 @@ Ein Hinweis zur Rezeption: Eine frühe Suchsynthese der Projektleitung sprach vo
 „Kommentaren von sieben Experten" im selben Heft. A8 fand über dreißig Anfragen
 **genau einen**. Der Widerspruch bleibt unaufgelöst und wird hier nicht geglättet.
 
-**Das Urteil nach dem Prüfraster** (M1 Barrierenrechenschaft, M2
-Übergeneralisierungstest, M3 keine Strukturannahme über Algorithmen, M5 keine
-Axiomschmuggelware): M1 nicht erfüllt, M3 klar verletzt, M5 verletzt, M2 nur formal
-bestanden — durch Verengung des Gegenstands.
+**Einordnung, nicht Begutachtung.** Eine frühere Fassung dieses Papiers fällte hier
+ein Urteil nach dem Prüfraster M1–M5. Das war ein Verstoß gegen die eigene
+Selbstbindung aus §2.3: Wir haben den Volltext nicht gelesen und können ihn nicht
+beurteilen. Was sich sagen lässt, ist dies: **Die veröffentlichte Kritik greift
+genau an den Stellen an, die M1 (Barrierenrechenschaft) und M3 (Strukturannahme über
+Algorithmen) benennen** — Allender und Williams beim unterstellten downward
+self-reducibility, Chavrimootoo et al. bei der Existenz der dafür nötigen Struktur.
+Ob diese Kritik zutrifft, entscheidet die Fachöffentlichkeit, nicht dieses Papier.
 
 Wichtig für die Einordnung: **Das ist kein Mathematikversagen, sondern ein
 Publikationsversagen.** Die Arbeit hat Peer Review bestanden. Korrigiert hat die
@@ -776,17 +890,22 @@ Enzyklopädien und künftige Trainingskorpora.
 ### 8.4 Der Fall arXiv:2309.05689: Zirkularität
 
 „Large Language Model for Science: A Study on P vs. NP" ließ GPT-4 über 97
-Dialogrunden mittels „Socratic reasoning" auf **P ≠ NP** schließen. Das Papier
-zirkuliert seither als Beleg dafür, dass ein Sprachmodell eigenständig zu diesem
-Schluss gelangt sei.
+Dialogrunden mittels „Socratic reasoning" auf **P ≠ NP** schließen.
 
 **Die Autorenliste lautet: Qingxiu Dong, Li Dong, Ke Xu, Guangyan Zhou, Yaru Hao,
 Zhifang Sui, Furu Wei.**
 
-Die Urheber von „SAT requires exhaustive search" sind Koautoren Nummer 3 und 4. Das
-Abstract sagt es selbst: Der Schluss stehe „in alignment with (Xu and Zhou, 2023)".
+Die Urheber von „SAT requires exhaustive search" sind Koautoren Nummer 3 und 4.
 Zwei Agenten haben die Liste unabhängig voneinander über je mehrere unterschiedlich
-formulierte Anfragen bestätigt.
+formulierte Anfragen bestätigt. `[NUR-SNIPPET]`
+
+**Entscheidend für die Bewertung: Die Autoren legen die Verbindung im eigenen
+Abstract offen** — dort steht, der Schluss stehe „in alignment with (Xu and Zhou,
+2023)". Der Befund lautet deshalb nicht „täuschend", sondern **evidentiell wertlos**:
+Eine Bestätigung durch die eigenen Koautoren ist keine unabhängige Bestätigung. Und
+eine Einschränkung, die das Papier ausdrücklich macht: **Wir wissen nicht**, ob dem
+Modell das Argument im Dialog zugeführt wurde oder ob es ihm aus Trainingsdaten
+bekannt war. Der Zirkularitätsbefund trägt ohne diese Unterstellung.
 
 Die Verschränkung läuft in beide Richtungen: Die Verteidigungsschrift arXiv:2401.01193
 stammt von Dong, Zhou und Xu — die Erstautorin des LLM-Papers ist Mitverteidigerin
@@ -802,22 +921,30 @@ inzwischen peer-reviewt widerlegt.
 
 Zwei Fälle aus dem Jahr 2026 beleuchten dieselbe Grenze von zwei Seiten.
 
-**Der ehrliche Fall.** OpenAI etablierte am 8. September 2026 die Fefferman-Alternative
-C/D zu Navier–Stokes — Blowup **mit** glattem Forcing; 166 Seiten, Lean-verifiziert,
+**Der sachlich korrekt deklarierte Fall.** OpenAI etablierte am 8. September 2026 die
+Fefferman-Alternative **C/D** zu Navier–Stokes. Die vier Fefferman-Alternativen
+trennen sich genau hier: C und D erlauben Blowup **mit** glattem Forcing, A und B
+verlangen Regularität **ohne** Forcing. Etabliert wurde die schwächere Hälfte; 166 Seiten, Lean-verifiziert,
 88 Stunden Suche plus 17 Stunden Formalisierung. Der Fehlermodus war **nicht** ein
 falsches Statement, kein `sorry`, kein geschmuggeltes Axiom: Der Lean-Beweis ist
 gültig, das Statement sauber. Der Bruch liegt eine Ebene höher — **welches der vier
 formal korrekten Statements die informelle Frage beantwortet.** Die ungeforcte
 Regularität bleibt offen, das Clay Institute erkennt das Resultat nicht an.
 **Das kann Lean prinzipiell nicht entscheiden.** Aufgedeckt haben es Menschen.
+(Zum Vorgang gehört auch ein Prioritätsstreit: Buckmaster und Alpöge erhoben am
+15. August im Umfeld eines Euler-Resultats Vorwürfe zur Nutzung von Sitzungsdaten.
+`[NUR-SNIPPET]`)
 
-**Der unehrliche Fall.** Ein aktueller P=NP-Claim (arXiv:2606.03194, Pedigree
+**Der Fall mit umdeklarierten Lücken.** Ein aktueller P=NP-Claim (arXiv:2606.03194, Pedigree
 Polytopes) wirbt mit „Zero `sorry`s in the main chain". Die eigene README des
 zugehörigen Repositories listet sechs `Axiom`e — darunter ausgerechnet die
 Cook-Levin/Karp-Brücke „STSP ∈ P → P = NP". Eine Datei enthält
 `axiom PolynomialSeparationOracle (P : Type) : Prop`, ein uninterpretiertes,
-inhaltsleeres Prädikat. Die Lücken wurden nicht offengelassen, sondern **umgebucht**:
-`sorry` erzeugt eine Warnung, `axiom` nicht.
+inhaltsleeres Prädikat. Der sachliche Befund lautet: Die Lücken erscheinen nicht als `sorry`, sondern als
+`axiom` — und das ist prüfungsrelevant, weil `sorry` eine Warnung erzeugt und `axiom`
+nicht. **Über die Absicht dahinter sagt dieses Papier nichts**; eine frühere Fassung
+tat es, auf Basis einer einzigen Quelle, deren Erhebungsweg unten selbst als
+unzulässig vermerkt ist.
 
 *Herkunftsvermerk: Dieser Befund stammt aus einer Code-Suche über ein fremdes
 öffentliches Repository und damit außerhalb des Bereichs, auf den die
@@ -829,7 +956,25 @@ Voraussetzungen — niemals die Angemessenheit dieser Voraussetzungen oder der
 Formalisierung des Satzes selbst. Ein grünes Lean-Zertifikat ist ein starkes Indiz
 für handwerkliche Solidität und **kein** Wahrheitsbeweis.
 
-### 8.6 KI-verstärkte Crank-Literatur
+### 8.6 Wenn die Meldung selbst der Fehler ist
+
+Alle bisherigen Fälle betreffen fehlerhafte Arbeiten. Dieser betrifft die
+**Berichterstattung über eine korrekte Arbeit** — und gehört hierher, weil er
+denselben Fehlertyp zeigt: unterschlagene Voraussetzungen.
+
+> AlphaEvolves 4×4-Schema mit 48 Multiplikationen gilt über **komplexen Koeffizienten
+> in Charakteristik 0**, nicht über beliebigen Ringen. Winograd erreichte **1967**
+> bereits 48 über jedem kommutativen Ring, Waksman **1970** sogar **46** über
+> kommutativen Ringen mit Division durch 2. Die Verallgemeinerung auf rationale
+> Koeffizienten leisteten Dumas, Pernet und Sedoglavic 2025 nachträglich — also
+> Menschen. Die vielfach wiederholte Formel „erste Verbesserung über Strassen hinaus
+> seit 56 Jahren" vergleicht über Ringklassen hinweg und ist **falsch**.
+> `[NUR-SNIPPET]`
+
+Das Resultat selbst bleibt eine echte Entdeckung. Falsch ist die Einordnung — und
+zwar in genau der Richtung, die dem berichtenden System nützt.
+
+### 8.7 KI-verstärkte Crank-Literatur
 
 Ein neues Phänomen: Sprachmodelle erzeugen plausibel klingende Pseudobeweise in
 großer Zahl, und Preprint-Server ohne Moderation verbreiten sie.
@@ -844,7 +989,7 @@ Das ist bemerkenswerterweise ein Erfolg, kein Versagen: Literatursuche ist eine
 Aufgabe mit endlichem, prüfbarem Ziel — B1 und B2 erfüllt. **Die Fehlmeldung entstand
 erst beim Umdeuten von „gefunden" in „bewiesen".**
 
-### 8.7 Die wiederkehrenden Fehlermuster
+### 8.8 Die wiederkehrenden Fehlermuster
 
 Aus allen geprüften Fällen, mit dem jeweils billigsten aufdeckenden Test:
 
@@ -860,6 +1005,9 @@ Aus allen geprüften Fällen, mit dem jeweils billigsten aufdeckenden Test:
 | Zirkularität | arXiv:2309.05689 | Sind Bestätiger und Urheber personengleich? |
 | Axiom-Umbuchung | Pedigree Polytopes | `axiom`-Deklarationen zählen, nicht nur `sorry` |
 | Titel-Inhalt-Divergenz trotz Peer Review | Xu/Zhou | Deckt der Satz ab, was der Titel suggeriert? |
+| **Endorsement-Wäsche** | Mulmuleys „This is not what I think or said" (§4.6); das Fortnow-Pseudozitat (§9) | Hat die zitierte Person das so gesagt — und zu *dieser* Frage? |
+| **Gap-Minimierung** | „nur noch wenige Lücken"; Khanukovs „a small number of identified gaps" | Sind die Lücken benannt und einzeln geprüft, oder nur gezählt? |
+| **Unterschlagene Voraussetzungen in der Meldung** | „erste Verbesserung seit 56 Jahren" (§8.6) | Über welcher Struktur/Klasse gilt das Resultat — und galt Vergleichbares vorher schon? |
 
 ---
 
@@ -872,22 +1020,41 @@ untersucht und die eigenen Fehlleistungen verschweigt, wäre unbrauchbar.
 **In drei dokumentierten Fällen hat die Suchschicht Plausibles synthetisiert:**
 
 **Fall 1 — ein Pseudo-Zitat.** Der Projektleitung wurde Lance Fortnow der Satz
-zugeschrieben, zu P vs. NP in Lean gebe es „not even a viable approach". Der Wortlaut
-ist **nicht belegbar**. Er wanderte über das Team-Briefing in zwei Agentenberichte; ein
-Entwurf führte ihn sogar als „über zwei Suchen bestätigt". Gefunden hat es A7, bestätigt
-A1 mit drei gezielten Gegenproben. Was Fortnow tatsächlich schreibt, ist inhaltlich
-stärker: Er stellt selbst die Frage, ob ein KI-erzeugter Beweis von P ≠ NP bevorstehe,
-und antwortet „No, it isn't" — er erwarte zu Lebzeiten keinen Beweis „by man or
-machine". Seine Begründung ist eine Basisrate, keine Prinzipienaussage.
+zugeschrieben, es gebe „not even a viable approach" — in unserer Wiedergabe zudem
+fälschlich auf Lean bezogen, während der kolportierte Wortlaut sich auf das Lösen von
+P vs. NP insgesamt bezog. Der Wortlaut ist **nicht belegbar**. Er wanderte über das
+Team-Briefing in zwei Agentenberichte; ein Entwurf führte ihn sogar als „über zwei
+Suchen bestätigt". Gefunden hat es A7, bestätigt A1 durch zwei gezielte Gegenproben
+und eine indirekte.
+
+Belegbar sind stattdessen zwei andere Aussagen Fortnows: *„Don't waste your time
+trying a formal approach via Lean"* und *„Computational complexity is very messy to
+formulate technically"*. Sinngemäß verneint er im selben Post auch die Frage, ob ein
+KI-erzeugter Beweis von P ≠ NP bevorstehe, und begründet das mit einer Basisrate statt
+mit einer Prinzipienaussage — diese Wiedergabe stammt jedoch aus A1s Gegenproben und
+wurde von A7 nicht bestätigt. `[NUR-SNIPPET]` Wir setzen hier bewusst **kein** zweites
+ungeprüftes Wortlautzitat gegen das erste.
 
 **Fall 2 — verschmolzene Umfragezahlen.** Über sieben Anfragen lieferte die Suchschicht
 dieselben Kennzahlen („~80 %", „99 % unter Expert:innen") abwechselnd für 2012 und für
 2019. Mit hoher Wahrscheinlichkeit eine Quellenverschmelzung, kein Datum.
 
-**Fall 3 — ein nicht existierendes Papier.** Die Leitung gab „STOC 2026 Best Paper:
-*Refuter Problems for Proof Complexity*" als Rechercheanker weiter. Ein Papier dieses
-Titels existiert nicht; die STOC-2026-Arbeit heißt „Finding Bugs in Short Proofs".
-Gefunden von A3.
+**Fall 3 — ein nicht existierender Titel.** Die Leitung gab „STOC 2026 Best Paper:
+*Refuter Problems for Proof Complexity*" als Rechercheanker weiter. Erfunden waren
+**Titel und Preisträgerstatus**: Die STOC-2026-Arbeit heißt „Finding Bugs in Short
+Proofs". Der *Gegenstand* — Refuter-Probleme in der Proof Complexity — existiert
+sehr wohl (ECCC TR24-190). Die Konfabulation war also nicht thematisch, sondern
+bibliographisch, und deshalb besonders schwer zu bemerken. Gefunden von A3.
+
+**Fall 4 — eine wandernde Zahl.** Diesen Fall hat A8 in der Prüfung des fertigen
+Papiers gefunden, und er ist der aufschlussreichste, weil er die **Herkunft** eines
+Fehlers zeigt statt nur seine Existenz. §8.5 nennt für die Navier-Stokes-Arbeit
+„17 Stunden Formalisierung". Zwei Abschnitte später verwirft §8.7 die Angabe
+„17 Stunden" für den GPT-5/Erdős-Vorfall als unbelegbar. Mit hoher Wahrscheinlichkeit
+ist das kein Zufall: **Dieselbe Zahl ist von einem Fall auf einen anderen gewandert.**
+Damit besitzt dieses Papier nicht nur eine Fehlerkorrektur, sondern einen
+Kontaminationsnachweis — ein Beleg dafür, wie eine Angabe ohne Primärverankerung den
+Kontext wechselt und dabei plausibel bleibt.
 
 **Alle drei stammen aus der Leitungsrecherche. Alle drei wurden von Fachagenten
 gefunden.** Das ist die operative Lehre: Die Fehler entstanden dort, wo schnell und
@@ -947,21 +1114,52 @@ Diese bleiben stehen:
 
 ### 10.4 Zur Vollständigkeit der Konsensrunde
 
-**Die Konsensrunde wurde nur teilweise durchgeführt.** Von zehn angeschriebenen
-Agenten antwortete einer (S1) vollständig; drei weitere wurden durch ein
-API-Ratenlimit abgebrochen, bevor sie antworten konnten; sechs wurden nicht mehr
-erreicht.
+**Die Konsensrunde wurde vollständig durchgeführt — im zweiten Anlauf.** Ein erster
+Durchgang brach nach einer einzigen Antwort (S1) an einem API-Ratenlimit ab. Nach
+Fertigstellung des Papiers wurden alle zehn Agenten erneut angeschrieben, diesmal mit
+dem fertigen Text statt mit einer Vorlage. **Alle zehn haben geantwortet.**
 
-Das relativiert das Wort „Konsens" im Titel dieses Papiers, aber weniger, als es
-zunächst scheint: Die wechselseitige Prüfung fand während der gesamten Projektlaufzeit
-statt, nur asynchron. A2 korrigierte A1s Autorenzuordnung; A3 korrigierte zwei Leads
+Das war die produktivere Reihenfolge. Ein fertiges Papier lässt sich konkreter
+angreifen als eine Thesensammlung: Der überwiegende Teil der Rückläufe bestand aus
+Textstellenkritik, und **jede in §10.5 aufgeführte Korrektur stammt aus dieser Runde**.
+
+Hinzu kommt, dass die wechselseitige Prüfung ohnehin während der gesamten
+Projektlaufzeit stattfand, nur asynchron. A2 korrigierte A1s Autorenzuordnung; A3 korrigierte zwei Leads
 der Leitung und eine Statusmarkierung von A1; A5 korrigierte eine Aussage des
 Strategieberichts; A7 und A8 verifizierten wechselseitig und unabhängig dieselbe
 Autorenliste; A1 korrigierte den Entwurf seines eigenen abgebrochenen Vorgängers;
 S1 zog in der Konsensrunde eine eigene Behauptung zurück.
 
-Der Austausch hat also stattgefunden. Er war nur nicht als Runde organisiert, sondern
-als fortlaufende Korrekturkette. Eine formal vollständige Abstimmung steht aus.
+Der Austausch war also beides: eine fortlaufende Korrekturkette während der Arbeit
+und eine vollständige Abstimmungsrunde am fertigen Text.
+
+### 10.5 Was die Abstimmungsrunde am Papier geändert hat
+
+Die Prüfung durch die zehn Agenten hat **sachliche Fehler im fertigen Papier
+aufgedeckt**. Die wichtigsten, jeweils mit Finder:
+
+| Korrektur | von |
+|---|---|
+| „Seed-Prover: 5 von 6 IMO-Aufgaben" war falsch — es waren 4 vollständige plus 1 teilweise Lösung; die fünfte entstand nachträglich per extended search | A7 |
+| Rechenfehler: 9 % von 124 sind rund 11 Personen, nicht sieben | A1 |
+| Die AC⁰-Zeile stand fälschlich in der Endpunkt-Tabelle — dort funktioniert die Technik, weil es in AC⁰ keine PRFs gibt | S2 |
+| Das Urteil „M1 nicht erfüllt, M3 verletzt…" über Xu/Zhou war Begutachtung eines ungelesenen Volltexts — Verstoß gegen die eigene Selbstbindung | S2 |
+| „Zwei unabhängige Widerlegungen" war eine Aufstufung; es sind Kritiken, eine davon Preprint | S2 |
+| Die Extrapolation „620.000 Jahre" wurde als methodisch wertlos bezeichnet und trotzdem prominent geführt | S2 |
+| „Konvergenz gegen c ≈ 0,386 bestätigt die ETH" — die ETH behauptet nur s₃ > 0, und die Reihe misst die Analysetechnik, nicht s₃ | A4 |
+| Williams: „fast linear → quadratisch" beschreibt die abgeleitete Zeitschranke, nicht die Simulation | A2 |
+| „B1 fällt aus" gilt nur für die P ≠ NP-Richtung; für P = NP existiert das endliche Objekt, dort scheitert B2 | A1 |
+| Natural Proofs fehlte die dritte Eigenschaft *usefulness* — genau die, die die Schranke liefert | A1 |
+| §7.4 („erst ETH umstoßen") widersprach §11.1 — die Hürde gilt nur für allgemeine Schaltkreise | A2 |
+| Der Matrixmultiplikations-Befund fehlte ganz; er ist der einzige Fall, in dem eine KI-Mathematik-*Meldung* nachweislich falsch ist | A6 |
+| **Fall 4 in §9**: die „17 Stunden" wanderten von Navier–Stokes zum Erdős-Vorfall — ein Kontaminationsnachweis | A8 |
+| Motivzuschreibung („umgebucht") gegenüber benannten Autoren gestrichen | S2 |
+| B1/B2/B3 als „Kriterium" bezeichnet, obwohl post hoc gebildet und nie prospektiv getestet | S2 |
+
+Ein Dissens blieb bestehen und ist eingearbeitet: A3 akzeptierte die Ablehnung von
+B3′, wies aber nach, dass die angekündigte Konsequenz nicht vollzogen war — die
+B3-Definition in §7.1 blieb unverändert und wurde von Hardness Magnification erfüllt.
+Der Nebensatz, der das repariert, steht jetzt dort.
 
 ---
 
@@ -971,13 +1169,27 @@ Aus der Analyse folgen drei konkrete, heute angreifbare Fragen. Keine davon lös
 P vs. NP; alle drei sind mehr als Literaturarbeit.
 
 **11.1 KI-gestützte Suche nach Circuit-SAT-Algorithmen.** Williams' algorithmische
-Methode ist die einzige bekannte Stelle, an der B1, B2 und B3 zusammenfallen: Das
-gesuchte Objekt ist ein Algorithmus, seine Leistung ist messbar, und der Lifting-Rahmen
-ist ein bewiesener Satz. Die Frage lautet: **Kann evolutionäre LLM-Suche nach dem
-AlphaEvolve-Muster nichttriviale Circuit-SAT-Algorithmen für eingeschränkte
-Schaltkreisklassen finden — etwa für TC⁰, wo bislang nichts bekannt ist?** Der Ertrag
-wären untere Schranken gegen schwache Klassen, nicht P ≠ NP. Aber es ist die
-methodisch anschlussfähigste offene Frage, die dieses Projekt identifiziert hat.
+Methode ist die einzige Stelle, die dieses Projekt gefunden hat, an der B1, B2 und B3
+weitgehend zusammenfallen: Das gesuchte Objekt ist ein Algorithmus, seine Laufzeit ist
+messbar, und der Lifting-Rahmen ist ein bewiesener Satz — bei eingeschränkten Klassen
+zudem ohne ETH-Hürde (§7.4).
+
+Die Frage lautet: **Kann evolutionäre LLM-Suche nach dem AlphaEvolve-Muster
+nichttriviale Circuit-SAT-Algorithmen für Schaltkreisklassen oberhalb von ACC⁰ finden
+— etwa für TC⁰, gegen das bislang keine unteren Schranken bekannt sind?**
+
+Zwei Einschränkungen gehören unmittelbar dazu, sonst wird der Vorschlag naiv.
+**Erstens** ist „gegen TC⁰ ist nichts bekannt" eine Aussage über *untere Schranken*,
+nicht über *SAT-Algorithmen* — für Tiefe-2-Threshold-Schaltkreise existieren
+nichttriviale Algorithmen bereits. **Zweitens, und das ist der eigentliche Haken,
+ist B2 nur teilweise erfüllt:** Die Laufzeit eines Kandidatenalgorithmus ist messbar,
+aber seine **Korrektheit ist selbst eine Beweispflicht**. Daran hängt die Sache — nicht
+am Finden schneller Heuristiken. Wer den Vorschlag aufgreift, arbeitet genau an dieser
+Stelle oder an keiner.
+
+Der Ertrag wären untere Schranken gegen schwache Klassen, nicht P ≠ NP. Es ist
+dennoch die methodisch anschlussfähigste offene Frage, die dieses Projekt
+identifiziert hat.
 
 **11.2 Ein Claim-Register für die KI-Ära.** Die Woeginger-Liste endete 2016. Seither
 hat sich die Produktionsrate von Pseudobeweisen durch Sprachmodelle vervielfacht, und
@@ -1008,8 +1220,11 @@ AlphaEvolves 19-Variablen-Gadget mit Gewichtsverhältnissen von 1429:1 ist eine 
 mathematische Entdeckung. Sie liegt nur vollständig innerhalb der Hypothese, deren
 Wahrheitswert die eigentliche Frage ist.
 
-Die drei Bedingungen B1, B2 und B3 sagen, wo die Grenze verläuft. P vs. NP verletzt
-alle drei, am gravierendsten die dritte. Und die dritte Bedingung ist keine technische
+Die drei Bedingungen B1, B2 und B3 beschreiben, wo die Grenze verläuft. Sie sind
+**post hoc an sechs Fällen gebildet und nie prospektiv getestet** — eine ordnende
+Beschreibung, kein validiertes Kriterium; das Red Team hat auf dieser Einschränkung
+zu Recht bestanden. Als Beschreibung greift sie: P vs. NP verletzt alle drei
+Bedingungen, am gravierendsten die dritte. Und die dritte Bedingung ist keine technische
 Hürde, sondern die Formulierung dessen, was offen ist: Die Barrieren und die bewiesenen
 Endpunkte der Einzeltechniken **sind** die Feststellung, dass kein tragfähiger Rahmen
 bekannt ist.
@@ -1019,9 +1234,12 @@ bekannt ist.
 
 Das ist keine pessimistische Aussage über KI. Es ist eine Aussage darüber, was für
 ein Problem P vs. NP ist. Wer erwartet, dass mehr Rechenleistung oder ein größeres
-Modell die Frage beantwortet, hat sie nicht verstanden — und zwar auf dieselbe Weise
-nicht verstanden wie jemand, der Knapsacks pseudopolynomielles dynamisches Programm
-für einen effizienten Algorithmus hält.
+Modell die Frage beantwortet, unterschätzt, woran es fehlt: nicht an Suchkapazität,
+sondern an einer Vorstellung davon, was zu suchen wäre.
+
+Auch das ist zu präzisieren: Aus *kein tragfähiger Rahmen bekannt* folgt nicht
+*kein Rahmen findbar*. Williams' NEXP ⊄ ACC⁰ zeigt, dass Rahmen entstehen können,
+wo zuvor keiner war.
 
 Das produktivste Ergebnis dieses Projekts ist deshalb nicht der Negativbefund,
 sondern seine Struktur: ein Kriterium, das angibt, welche mathematischen Fragen für

@@ -3,7 +3,14 @@
 **Agent:** A1 "Kanon & Landkarte"
 **Stand:** 12. September 2026
 **Methode:** ausschließlich WebSearch (WebFetch in dieser Umgebung gesperrt, siehe `docs/02-team-briefing.md` §1).
-33 Suchanfragen, jeder nichttriviale Claim mit mindestens zwei unterschiedlich formulierten Anfragen trianguliert.
+Rund 50 Suchanfragen über zwei Arbeitsdurchgänge; jeder nichttriviale Claim mit mindestens zwei unterschiedlich formulierten Anfragen trianguliert.
+
+**Revisionshinweis (zweiter Durchgang).** Dieser Bericht wurde nach einer Erstfassung überarbeitet. Vier Punkte haben sich dabei **substanziell geändert**, und die Änderungen sind im Text jeweils als solche kenntlich gemacht statt still eingearbeitet:
+1. **Ein Zitat wurde entfernt.** Der Fortnow zugeschriebene Satz »we don't even have a viable approach« ist **nicht belegbar** (§5.1). Die Erstfassung führte ihn als bestätigt. Das war ein Fehler dieses Agenten.
+2. **Der Gasarch-Zahlenwiderspruch ist teilweise *härter* geworden**, nicht weicher: Die 66 % sind erklärt, die Differenz 80 % vs. 88 % ist es nicht, und die frühere »plausible Auflösung« ist inzwischen durch einen Gegenbefund belastet (§4.2).
+3. **Der Barrieren-Umgehungsmechanismus bei Williams ist jetzt belegt**, nicht nur referiert (§3.5b).
+4. **Williams' √-Platz-Simulation (2025) gehört zu P vs. PSPACE**, nicht in eine Randnotiz (§6.6).
+5. **Die Leitachse war in der überholten Fassung referiert** (»endliches vs. unendliches Ergebnis«) und ist auf die korrigierte B1/B2/B3-Fassung des Briefings umgestellt; dabei ist ein **teilweiser Gegenbefund** entstanden (§8, Punkt 3).
 
 **Lesehinweis zu den Markierungen:**
 - `[KANON]` — Lehrbuchwissen, seit Jahrzehnten in jedem Standardlehrbuch (Sipser, Arora–Barak, Papadimitriou), nicht strittig. Konfidenz hoch. Diese Aussagen sind in dieser Umgebung nicht am Volltext nachgeprüft, aber sie sind auch nicht das, was Nachprüfung braucht.
@@ -16,10 +23,13 @@
 
 ## 0. Kurzfassung für eilige Leser
 
-1. P vs. NP ist im September 2026 **offen**. Es gibt keinen anerkannten Beweis in irgendeine Richtung, und es gibt — nach Aussage eines der prominentesten Fachvertreter, Lance Fortnow, im Juni 2026 — **nicht einmal einen tragfähigen Ansatz**.
-2. Die große Mehrheit der Fachwelt erwartet **P ≠ NP**. Die kursierenden Prozentzahlen für die Gasarch-Umfrage 2019 (66 % vs. ~80 % vs. 88 %) sind **kein Widerspruch in der Sache**: Die 66 % beziehen sich nachweislich auf eine *andere Frage* (»wird das Problem vor 2100 gelöst?«). Details und Beleg in §4.
+1. P vs. NP ist im September 2026 **offen**. Es gibt keinen anerkannten Beweis in irgendeine Richtung. Lance Fortnow hat im Juni 2026 öffentlich genau die Frage dieses Projekts gestellt — steht ein **KI-erzeugter** Beweis von P ≠ NP bevor? — und sie mit »No, it isn't« beantwortet: Er erwarte zu seinen Lebzeiten keinen Beweis, »by man or machine, separately or working together« (§5).
+   **Warnung an die Redaktion:** Der in einer früheren Fassung *dieses* Berichts als bestätigt geführte Wortlaut »we don't even have a viable approach« ist **nicht belegbar** und darf nicht zitiert werden. Er wurde entfernt; die Fehlerbeschreibung steht in §5.
+2. Die große Mehrheit der Fachwelt erwartet **P ≠ NP** — von rund 61 % (2002) auf rund 80–88 % (2019), unter ausgewiesenen Fachleuten nochmals deutlich höher. Von den drei kursierenden Zahlen für 2019 ist eine erklärt und eine Differenz **ungelöst**: Die **66 %** beantworten nachweislich eine *andere Frage* (»wird das Problem vor 2100 gelöst?«); die Differenz **80 % vs. 88 %** ließ sich nicht auflösen, und die naheliegende Erklärung ist durch einen Gegenbefund belastet. Das Papier darf hier **keine Einzelzahl** nennen (§4.2).
+   Es gibt **keine Umfrage nach 2019** — wer für 2026 Konsenszahlen zitiert, zitiert Zahlen von 2018 (§4.3).
 3. Die drei Barrieren (Relativization, Natural Proofs, Algebrization) sind **Sätze über Beweistechniken**, nicht über das Problem. Sie zeigen *nicht*, dass P vs. NP unlösbar oder unabhängig von ZFC ist. Es existieren publizierte Resultate, die alle drei Barrieren nachweislich umgehen (Williams, NEXP ⊄ ACC⁰, JACM 2014, Gödel-Preis 2024).
-4. Die härteste einzelne Zahl zur Lage des Feldes: Die beste bekannte untere Schranke für die Größe eines *allgemeinen* Booleschen Schaltkreises für eine explizite Funktion liegt bei **3,1n − o(n)** (Li–Yang, STOC 2022). Für P ≠ NP bräuchte man eine *superpolynomielle* Schranke. Der Abstand zwischen »3,1·n« und »n^{ω(1)}« ist die ehrlichste Beschreibung des Forschungsstands.
+4. **Methodischer Eigenbefund, der ins Papier gehört.** Zwei der Korrekturen an diesem Bericht hatten dieselbe Ursache: Eine Suchschicht, die *synthetisiert* statt zu zitieren, bestätigt bereitwillig, was die Frage nahelegt — ein plausibel klingendes Fortnow-Zitat (§5.1) und stabil wirkende, in Wahrheit verschmolzene Umfragezahlen (§4.2(3)). Für ein Papier über KI-gestützte Wahrheitsfindung ist das kein Betriebsunfall, sondern Material.
+5. Die härteste einzelne Zahl zur Lage des Feldes: Die beste bekannte untere Schranke für die Größe eines *allgemeinen* Booleschen Schaltkreises für eine explizite Funktion liegt bei **3,1n − o(n)** (Li–Yang, STOC 2022). Für P ≠ NP bräuchte man eine *superpolynomielle* Schranke. Der Abstand zwischen »3,1·n« und »n^{ω(1)}« ist die ehrlichste Beschreibung des Forschungsstands.
 
 ---
 
@@ -94,6 +104,8 @@ NP-vollständige Probleme sind also die »schwersten« Probleme in NP: Alle ande
 Cook, »The Complexity of Theorem-Proving Procedures«, STOC 1971; Levin unabhängig 1973. Beweisidee: Man kodiert den gesamten Rechenverlauf einer nichtdeterministischen Polynomialzeit-Maschine auf einer Eingabe x als Boolesche Formel (»Tableau«-Konstruktion), deren Erfüllbarkeit genau der Existenz eines akzeptierenden Rechenwegs entspricht. Dass das *überhaupt* geht, ist der eigentliche Inhalt: Ein einziges, konkretes kombinatorisches Problem kodiert die Berechnungen *aller* NP-Maschinen.
 
 **Karp 1972: 21 NP-vollständige Probleme.** `[KANON]` Karp zeigte, dass 21 zentrale kombinatorische Probleme (u. a. CLIQUE, VERTEX COVER, HAMILTONKREIS, KNAPSACK, PARTITION, CHROMATIC NUMBER) NP-vollständig sind — jeweils durch Reduktion von einem bereits als NP-vollständig bekannten Problem. Heute sind mehrere tausend Probleme bekannt. Diese Sammlung ist der Grund, warum NP-Vollständigkeit ein *praktisch* relevanter Begriff ist und nicht nur ein logisches Kuriosum.
+
+**Historische Fußnote, die sich für die Zielgruppe lohnt.** `[NUR-SNIPPET]`, Konfidenz mittel-hoch (in zwei Suchen konsistent): **John Nash** hat die Frage in einem handschriftlichen Brief an die **NSA von 1955** — also rund 16 Jahre vor Cook — bereits beinahe gestellt: Er argumentierte dort über den Aufwand des Schlüsselbrechens in Begriffen, die der modernen Komplexitätsvermutung sehr nahekommen. Aaronson erwähnt das im Eröffnungskapitel des Nash-Gedenkbands (§4.4) ausdrücklich. Für das Papier ist die Episode nützlich, weil sie zeigt, dass die Frage nicht aus der Logik, sondern aus der **Kryptographie** kommt — dieselbe Kopplung, die in der Natural-Proofs-Barriere (§3.2) wiederkehrt.
 
 **Historisch/institutionell:** P vs. NP wurde im Jahr 2000 als eines der sieben **Millennium-Probleme** des Clay Mathematics Institute ausgewählt (Preisgeld 1 Mio. USD); die offizielle Problembeschreibung stammt von Stephen Cook. `[VERIFIZIERT]` (claymath.org/millennium/p-vs-np/, trianguliert)
 
@@ -267,8 +279,13 @@ Razborov und Rudich beobachteten: **Praktisch alle bekannten Beweise unterer Sch
 
 Ein Beweis **algebrisiert**, wenn er in diesem erweiterten Modell gültig bleibt. IP = PSPACE algebrisiert (deshalb ist Algebrization eine echte Verschärfung: die Barriere erfasst mehr Techniken als Relativization).
 
-**Der Satz (sinngemäß).** `[NUR-SNIPPET]`
-> Es gibt algebrische Orakel, relativ zu denen P = NP gilt, und andere, relativ zu denen P ≠ NP gilt. **Algebrisierende Techniken — also Arithmetisierung in der bekannten Form — reichen für P vs. NP nicht aus.** Die Arbeit führt dazu ein Modell der »algebraischen Anfragekomplexität« ein und beweist die nötigen unteren Schranken in diesem Modell.
+**Der Satz.** Die in zwei unabhängigen Suchen übereinstimmende Kernformulierung lautet: `[VERIFIZIERT]` für den Aussagegehalt, `[NUR-SNIPPET]` für den Wortlaut
+
+> Nahezu alle großen offenen Probleme der Komplexitätstheorie — **ausdrücklich einschließlich P vs. NP**, ferner P vs. RP und NEXP vs. P/poly — **erfordern nicht-algebrisierende Techniken.**
+
+Technisch: Es gibt algebrische Orakel, relativ zu denen P = NP gilt, und andere, relativ zu denen P ≠ NP gilt. Die Arbeit führt dazu ein Modell der **algebraischen Anfragekomplexität** ein und beweist die nötigen unteren Schranken in diesem Modell.
+
+**Die Entstehungslogik, die man kennen muss, um die Barriere richtig zu lesen** (in der Suchsynthese ausdrücklich so dargestellt, `[NUR-SNIPPET]`): Aaronson und Wigderson gingen davon aus, dass ein P≠NP-Beweis zwei Barrieren überwinden muss — Relativization und Natural Proofs. Da inzwischen Schranken bekannt waren, die **beide gleichzeitig** überwinden, stellten sie die Frage, ob es eine **dritte** Barriere gibt. Algebrization ist die Antwort darauf. Das ist ein wichtiges Detail für das Papier: Die Barrieren sind nicht als geschlossener Katalog entstanden, sondern **nacheinander, jeweils als Reaktion darauf, dass die vorige umgangen wurde**. `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` Daraus folgt zweierlei: (i) Barrieren werden tatsächlich umgangen, sonst gäbe es die jeweils nächste nicht; (ii) es gibt keinen Grund anzunehmen, dass die Liste mit drei Einträgen vollständig ist — die 2025/2026er Preprints (§3.2, §3.3 unten) sind genau die Fortsetzung dieser Bewegung.
 
 **Die Bedeutung.** Das ist die deprimierendste der drei Barrieren, weil sie die einzige Technik trifft, die zuvor nachweislich eine Barriere durchbrochen hatte. Die Aussage lautet im Kern: *Auch der Ausweg aus Barriere 1 führt nicht weiter.* Aaronson und Wigderson formulierten daraus die Forderung nach »non-algebrizing techniques« als Kriterium für ernstzunehmende Ansätze.
 
@@ -300,7 +317,11 @@ Die Aussage **»Die Barrieren zeigen, dass P vs. NP unlösbar ist«** ist **fals
 - **Gödel-Preis 2024** für diese Arbeit — die Auszeichnung würdigte laut Suchsynthese ausdrücklich das »reichhaltige wechselseitige Verhältnis zwischen algorithmischen Techniken und Methoden für untere Schranken«. `[VERIFIZIERT]`
 - **Aussage:** NEXP (nichtdeterministische Exponentialzeit) hat keine nicht-uniformen ACC⁰-Schaltkreise polynomieller Größe. ACC⁰ = konstante Tiefe, unbeschränkter Fan-In, mit AND/OR/NOT und MOD_m-Gattern für beliebige feste m. Die Schranke lässt sich laut Suchsynthese auf quasipolynomielle Größe verstärken; zusätzlich: E^NP hat keine ACC⁰-Schaltkreise der Größe 2^{n^{o(1)}}. `[NUR-SNIPPET]`
 - **Die Methode (»algorithmische Methode«):** Williams zeigt, dass ein **nichttrivial schnellerer SAT-Algorithmus** für ACC⁰-Schaltkreise — Laufzeit O(2ⁿ/n^k) statt 2ⁿ — bereits eine untere Schranke für NEXP impliziert. Dann konstruiert er einen solchen Algorithmus (über die Reduktion von ACC⁰ auf SYM⁺-Schaltkreise, schnelle rechteckige Matrixmultiplikation und dynamische Programmierung). Der Beweis läuft also über den **Umweg über bessere Algorithmen** — obere Schranken erzeugen untere Schranken. `[NUR-SNIPPET]`, über zwei Suchen konsistent.
-- **Warum es die Barrieren umgeht:** Der Beweis nutzt **strukturelle, nicht-relativierende Eigenschaften konkreter ACC⁰-Schaltkreise** (die Normalform-Reduktion auf SYM⁺). Jede Black-Box-Behandlung wäre damit unvereinbar; insbesondere sind alle bekannten SAT-Algorithmen, die Brute Force schlagen, nicht-relativierend. Damit entfallen Relativization und Algebrization. Die Natural-Proofs-Barriere entfällt, weil das Argument **nicht largeness-basiert** ist: Es zeigt nicht »die typische Funktion ist hart«, sondern zielt über die Easy-Witness-Methode auf eine ganz spezifische Sprache in NEXP. `[NUR-SNIPPET]`, Konfidenz mittel-hoch; die Aussage »umgeht alle drei Barrieren« ist in der Community Standarddarstellung.
+- **Warum es die Barrieren umgeht — jetzt mit Mechanismus.** `[VERIFIZIERT]` (über zwei unabhängige Suchen bestätigt; die Gödel-Preis-Laudatio 2024 nennt Relativization und Natural Proofs ausdrücklich, eine zweite Quellensynthese nennt alle drei einschließlich Algebrization)
+  - **Relativization und Algebrization** entfallen aus **einem** Grund, und der ist der eigentliche Clou des Ansatzes: Der Beweis hängt an einem **nichttrivialen SAT-Algorithmus für ACC⁰**, und die in zwei Suchen übereinstimmende Begründung lautet — *alle bekannten Satisfiability-Algorithmen, die die erschöpfende Suche schlagen, brechen zusammen, sobald man der Instanz ein Orakel (oder dessen algebraische Fortsetzung) hinzufügt.* Wer schneller als Brute Force ist, **muss** Struktur in der Instanz ausnutzen, die eine Black-Box-Methode nicht sehen kann. Genau deshalb kann ein Beweis, der über einen solchen Algorithmus läuft, prinzipiell nicht relativieren und nicht algebrisieren. `[NUR-SNIPPET]` für den Wortlaut, Konfidenz **hoch** für den Mechanismus.
+  - **Natural Proofs** entfällt, weil das Argument **nicht largeness-basiert** ist: Es zeigt nicht »die typische Funktion ist hart«, sondern zielt über die Easy-Witness-Methode auf eine ganz spezifische Sprache in NEXP. `[NUR-SNIPPET]`, Konfidenz mittel-hoch.
+  - `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` **Das ist die pointierteste Aussage des ganzen Berichts für die Projektleitfrage:** Der einzige bekannte Weg an den Orakel-Barrieren vorbei führt über den Bau eines **konkreten, endlichen, messbaren Objekts** — eines Algorithmus. Dazu §8.
+- **Weiterführend:** R. R. Williams, *Complexity Lower Bounds from Algorithm Design*, eingeladener Beitrag LICS 2021 — die Selbstdarstellung der Methode durch den Autor. `[VERIFIZIERT]` für Existenz, Inhalt `[NUR-SNIPPET]`.
 - **Ehrliche Einordnung der Reichweite:** ACC⁰ ist eine **sehr schwache** Schaltkreisklasse — konstante Tiefe. NEXP ist eine **sehr große** Komplexitätsklasse, gewaltig größer als NP. Für P ≠ NP bräuchte man eine untere Schranke für ein **NP**-Problem gegen **allgemeine** Schaltkreise **polynomieller** Größe. Der Abstand ist enorm. Williams' Resultat ist der Beweis, dass die Barrieren überwindbar sind — nicht, dass man nahe dran ist. `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 
 **(c) Murray–Williams: NQP ⊄ ACC⁰.** `[VERIFIZIERT]`
@@ -324,37 +345,55 @@ William (Bill) Gasarch (University of Maryland) hat drei Umfragen unter Theoreti
 
 Alle drei Angaben zu Venue, Jahr und Teilnehmerzahl sind über mindestens zwei unterschiedlich formulierte Suchen bestätigt.
 
-### 4.2 Der dokumentierte Zahlenwiderspruch — und seine Auflösung
+### 4.2 Der dokumentierte Zahlenwiderspruch — teils aufgelöst, teils **härter geworden**
 
-**Das Problem.** Im Umlauf sind für die Umfrage 2019 die Zahlen **66 %**, **~80 %** und **88 %** als »Anteil für P ≠ NP«. Die Projektleitung hat diesen Widerspruch in `docs/00-briefing.md` und `docs/02-team-briefing.md` als Testfall für die Triangulationspflicht markiert.
+**Das Problem.** Im Umlauf sind für die Umfrage 2019 die Zahlen **66 %**, **~80 %** und **88 %** als »Anteil für P ≠ NP«. Die Projektleitung hat diesen Widerspruch als Testfall für die Triangulationspflicht markiert. Ergebnis nach insgesamt sieben gezielten Suchen: **Ein Teil löst sich auf, ein Teil nicht — und der verbleibende Teil ist nach zusätzlicher Recherche schwerer geworden, nicht leichter.**
 
-**Der Befund nach fünf gezielten Suchen.** `[NUR-SNIPPET]`, Konfidenz **hoch**:
+#### (1) Die 66 % — aufgelöst `[NUR-SNIPPET]`, Konfidenz hoch
 
-> Die **66 % beziehen sich auf eine andere Frage**. Gasarchs Umfragen fragen nicht nur »P = NP oder P ≠ NP?«, sondern auch »**Wann wird das Problem gelöst?**«. Die 66 % sind der Anteil derjenigen, die eine Lösung **vor dem Jahr 2100** erwarten.
+> Die **66 % beziehen sich auf eine andere Frage.** Gasarchs Umfragen fragen nicht nur »P = NP oder P ≠ NP?«, sondern auch »**Wann wird das Problem gelöst?**«. Die 66 % sind der Anteil derjenigen, die eine Lösung **vor dem Jahr 2100** erwarten.
 
-Belegkette (zwei unabhängig formulierte Suchen, konsistentes Ergebnis):
-- Für die Frage »vor 2100 gelöst?«: **2002: 62 %**, **2012: 53 %**, **2019: 66 %**.
-- Für »wird nie gelöst«: **2002: 5 %**, **2012: 3 %**, **2019: 9 %**.
+Belegkette (zwei unabhängig formulierte Suchen, konsistent):
+- »vor 2100 gelöst?« — **2002: 62 %**, **2012: 53 %**, **2019: 66 %**
+- »wird nie gelöst« — **2002: 5 %**, **2012: 3 %**, **2019: 9 %**
 - Dazu ein Gasarch zugeschriebener Kommentar sinngemäß: Der Anstieg von 53 % auf 66 % »amazes me because, since 2012, there has been little (no?) progress on resolving P =? NP«. `[NUR-SNIPPET]`
 
-**Damit ist der Widerspruch in der Sache aufgelöst:** 66 % und 80 % sind Antworten auf **verschiedene Fragen** und stehen nicht in Konkurrenz. Der Widerspruch war ein Artefakt der Suchsynthese, die zwei Kennzahlen derselben Umfrage nebeneinanderstellte.
+**Damit ist die 66-%-Zahl aus dem Rennen:** Sie steht nicht in Konkurrenz zu 80 % oder 88 %, sondern beantwortet eine andere Frage. Der ursprünglich vermutete Widerspruch war hier ein Artefakt der Suchsynthese, die zwei Kennzahlen derselben Umfrage nebeneinanderstellte.
 
-**Die Zahlen zur eigentlichen Frage P = NP vs. P ≠ NP:**
+#### (2) Die Differenz 80 % vs. 88 % — **nicht** aufgelöst, und die naheliegende Erklärung ist inzwischen **belastet**
+
+Die Erstfassung dieses Berichts hielt fest, die plausibelste Erklärung sei: **80 % bezogen auf alle 124 Befragten, 88 % bezogen auf die Teilmenge derer, die sich überhaupt festlegten** (Rest: »weiß nicht« / »unabhängig« / »nicht wohlgestellt«). Diese Erklärung ist arithmetisch stimmig und war nicht belegt.
+
+**Neuer Befund, der sie untergräbt** `[NUR-SNIPPET]`, Konfidenz mittel: Eine Suchsynthese gibt die Zahlen für 2019 als **88 % für P ≠ NP, 12 % für P = NP** an und fügt ausdrücklich hinzu, **niemand** habe sich für Unabhängigkeit oder »keine Meinung« entschieden. Wenn das stimmt, gibt es **keine Abstentionen** — und dann können »alle Befragten« und »nur Meinungsäußernde« gar nicht auseinanderfallen. Die 80/88-Differenz wäre dann **nicht** durch unterschiedliche Bezugsgrößen erklärbar, sondern schlicht ein Fehler auf einer der beiden Seiten.
+
+**Konsequenz, verbindlich nach `docs/02-team-briefing.md` §1:** Beide Zahlen werden berichtet, der Widerspruch wird gekennzeichnet, und die frühere »plausible Auflösung« wird **zurückgezogen**. Im Papier ist die korrekte Formulierung: *»In der dritten Gasarch-Umfrage (2019, 124 Befragte) sprachen sich rund 80–88 % für P ≠ NP aus; die in Umlauf befindlichen Zahlen differieren, und die Differenz ließ sich ohne Volltextzugang nicht auflösen.«* Eine Einzelzahl darf **nicht** angegeben werden.
+
+#### (3) Ein methodischer Nebenbefund, der ins Papier gehört
+
+`[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` Über sieben Suchen hinweg lieferte die Suchsynthese für die Umfragen **2012** und **2019** wiederholt **dieselben** Kennzahlen — »etwa 80 % für P ≠ NP« und »99 % unter denen, die viel darüber nachgedacht haben«. Für zwei verschiedene Umfragen mit verschiedenen Teilnehmerzahlen ist das mit hoher Wahrscheinlichkeit eine **Verschmelzung zweier Quellen** in der Synthese, nicht ein tatsächlicher Befund. Eine einzelne Suche gab zudem für 2019 die undekodierbare Zahlenfolge **»66 %/9 %/0 %/91 %«** aus, ohne Legende; ich konnte sie nicht zuordnen und berichte sie nur als Beleg dafür, wie instabil diese Schicht ist.
+
+**Die Lehre für das Papier:** Für **grobe** Aussagen (»große Mehrheit erwartet P ≠ NP«) ist die Suchschicht tragfähig. Für **Prozentzahlen auf den Punkt** ist sie es nicht. Das ist kein Nebenproblem dieses Berichts, sondern ein Beleg zur Projektleitfrage: Eine KI-gestützte Rechercheschicht **synthetisiert Plausibles** — genau wie in §5.1. Wer Zahlen aus ihr übernimmt, ohne den Volltext zu sehen, publiziert Vermutungen im Gewand von Daten.
+
+#### (4) Die Zahlen, soweit belastbar
 
 | Jahr | Anteil P ≠ NP | Bezugsgröße | Beleglage |
 |---|---|---|---|
-| 2002 | **61 von 100** (61 %) | alle Befragten; davon 7 mit ausdrücklichen Zweifeln; die restlichen 39 verteilen sich auf P = NP (ca. 9), »keine Meinung« und »Frage nicht wohlgestellt« | `[NUR-SNIPPET]`, Konfidenz mittel-hoch für 61; die Aufschlüsselung der restlichen 39 (9/22/8) **konnte ich nicht verifizieren** |
-| 2012 | **ca. 81–83 %**; in einer Quellensynthese »125 von 152« (82 %), in einer anderen »81 Prozent von mehr als 150 Befragten« | alle Befragten | `[NUR-SNIPPET]`, Konfidenz mittel. Die genaue Zahl der P=NP-Stimmen **konnte ich nicht verifizieren** |
-| 2019 | **ca. 80 %** (über alle 124 Befragten) bzw. **88 %** (in einer Synthese, offenbar bezogen auf die *Meinungsäußernden*, mit 12 % für P=NP als Komplement) | siehe links | `[NUR-SNIPPET]`, Konfidenz mittel |
-| 2019, Teilmenge »Experten« | **99 %** unter denjenigen, die angaben, **viel über das Problem nachgedacht** zu haben | Experten-Teilmenge | `[NUR-SNIPPET]`, in zwei Suchen konsistent, Konfidenz mittel-hoch |
+| 2002 | **61 von 100** (61 %); davon **7 mit ausdrücklichen Zweifeln**. Für P = NP: **9** | alle Befragten | `[VERIFIZIERT]` über zwei unabhängige Suchen (61 / 7 / 9 in beiden konsistent). Die Aufschlüsselung der restlichen 30 (»keine Meinung«, »Frage nicht wohlgestellt«) **konnte ich nicht verifizieren** |
+| 2012 | **ca. 81–83 %**; eine Synthese nennt »125 von 152« (82 %), eine andere »81 %«, eine dritte »etwa 80 %« | alle Befragten | `[NUR-SNIPPET]`, Konfidenz **niedrig-mittel** für die genaue Zahl (siehe Nebenbefund (3)), hoch für die Größenordnung |
+| 2019 | **ca. 80 %** *oder* **88 %** — **Widerspruch nicht aufgelöst**, siehe (2) | bei 124 Befragten | `[NUR-SNIPPET]`, Konfidenz **niedrig** für die genaue Zahl, hoch für »große Mehrheit« |
+| 2019, Teilmenge »viel darüber nachgedacht« | **99 %** | Experten-Teilmenge | `[NUR-SNIPPET]`, in mehreren Suchen konsistent — **aber** auch für 2012 ausgegeben (Nebenbefund (3)), daher Konfidenz **mittel** und Zuordnung zum Jahr unsicher |
 
-**Verbleibende Unschärfe, die im Papier stehen bleiben muss.** Die Differenz **80 % vs. 88 %** für 2019 konnte ich **nicht abschließend auflösen**. Die plausibelste Erklärung — 80 % bezogen auf alle 124 Befragten, 88 % bezogen auf die Teilmenge derer, die sich überhaupt festlegten (Rest: »weiß nicht« / »nicht wohlgestellt«) — ist **arithmetisch stimmig, aber von mir nicht belegt**. Gemäß `docs/02-team-briefing.md` §1 werden **beide Zahlen berichtet und der Widerspruch gekennzeichnet**, nicht geglättet.
+**Zusatzbefund 2012.** Gesondert ausgewiesene Teilgruppe von **21 Preisträgern** (Gödel-Preis, Turing-Award o. ä.): **17 (81 %) für P ≠ NP** (2 davon nur schwach), **2 (9 %) für P = NP**, **2 (9 %) »weiß nicht«**. `[NUR-SNIPPET]`, Konfidenz mittel. Als Kontrollgruppe interessant: Der Wert unterscheidet sich **nicht** nennenswert vom Gesamtwert — das spricht gegen die gelegentlich geäußerte Vermutung, die P≠NP-Mehrheit sei ein Effekt uninformierter Teilnehmer.
 
-**Zusatzbefund 2012.** In der Umfrage 2012 gab es eine gesondert ausgewiesene Teilgruppe von **21 Preisträgern** (Gödel-Preis, Turing-Award o. ä.): davon **17 (81 %) für P ≠ NP** (2 davon nur schwach), **2 (9 %) für P = NP**, **2 (9 %) »weiß nicht«**. `[NUR-SNIPPET]`, Konfidenz mittel. Der Wert ist als Kontrollgruppe interessant: Der Expertenanteil unterscheidet sich in dieser Gruppe **nicht** nennenswert vom Gesamtwert.
+**Die inhaltlich belastbare Gesamtaussage** — und mehr sollte das Papier nicht behaupten: `[VERIFIZIERT]` über alle Suchen hinweg konsistent
+
+> In allen drei Umfragen (2002, 2012, 2019) erwartet eine **deutliche und über die Zeit wachsende Mehrheit** der befragten Theoretikerinnen und Theoretiker **P ≠ NP**: von rund 61 % (2002) auf rund 80–88 % (2019). Unter denjenigen, die sich intensiv mit dem Problem befasst haben, ist die Zustimmung nochmals deutlich höher. Die Gegenposition P = NP ist eine kleine, aber nicht verschwindende Minderheit, die ausdrücklich auch respektierte Fachvertreter umfasst.
+
+**Wichtige Relativierung, die im Papier stehen muss.** `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` Eine Umfrage ist **kein mathematisches Argument**. Der Konsens dokumentiert die Erwartung des Feldes, nicht den Wahrheitswert. Historisch gab es Fälle, in denen eine breite Fachmehrheit falsch lag. Der Wert der Zahlen für unser Papier ist ein anderer: Sie zeigen, dass **niemand mit einer baldigen Lösung rechnet** und dass die Erwartungshaltung über 17 Jahre hinweg **stabil** geblieben ist — und das ist der Referenzpunkt, gegen den ein behaupteter KI-Durchbruch sich beweisen müsste.
 
 ### 4.3 Gibt es eine Umfrage 2024–2026?
 
-**Negativbefund.** Zwei gezielte Suchen nach einer vierten Gasarch-Umfrage bzw. einer vergleichbaren Erhebung 2024–2026 ergaben **keinen Treffer**. Die jüngste dokumentierte Umfrage dieser Art ist die dritte (2019). `[NUR-SNIPPET]`, Konfidenz mittel-hoch (Abwesenheitsbeleg per Suche ist schwächer als ein Positivbefund).
+**Negativbefund.** Inzwischen **drei** gezielte, unterschiedlich formulierte Suchen nach einer vierten Gasarch-Umfrage bzw. einer vergleichbaren Erhebung 2024–2026 ergaben **keinen Treffer**; eine davon fragte ausdrücklich nach einer »fourth poll« und lieferte ausschließlich Verweise auf die Umfragen von 2002, 2012 und 2019. Die jüngste dokumentierte Umfrage dieser Art ist die dritte (2019). `[NUR-SNIPPET]`, Konfidenz **hoch** für die Größenordnung des Befundes, mit der prinzipiellen Einschränkung, dass ein Abwesenheitsbeleg per Suche schwächer ist als ein Positivbefund.
 
 **Konsequenz für das Papier.** Es gibt **keine belastbare quantitative Erhebung des Meinungsstandes nach 2019** — insbesondere keine, die den Einfluss der KI-Entwicklung seit 2023 auf die Erwartungen des Feldes messen würde. Das ist eine echte Forschungslücke und sollte als solche benannt werden. Wer für 2026 Prozentzahlen zum Fachkonsens zitiert, zitiert in Wahrheit Zahlen von 2018.
 
@@ -363,30 +402,38 @@ Belegkette (zwei unabhängig formulierte Suchen, konsistentes Ergebnis):
 | Arbeit | Autor | Jahr/Venue | Status |
 |---|---|---|---|
 | *The Status of the P versus NP Problem* | Lance Fortnow | Communications of the ACM 52(9), 78–86, September 2009 | `[VERIFIZIERT]` — der meistgelesene Übersichtsartikel; wird bis heute in Kursen als Standardlektüre eingesetzt (Treffer bei CMU- und Duke-Kursseiten) |
-| *A Status Report on the P versus NP Question* | Eric Allender | Advances in Computers, Bd. 77, Kapitel 4, S. 117–147 | `[VERIFIZIERT]` für Venue/Kapitel/Seiten. **Jahresangabe widersprüchlich:** eine Quelle nennt 2008, eine andere 2009. Beide berichtet, nicht geglättet. Inhalt `[NUR-SNIPPET]`, nicht am Volltext geprüft |
-| *P =? NP* | Scott Aaronson | in: J. F. Nash Jr., M. Th. Rassias (Hg.), *Open Problems in Mathematics*, Springer 2016, Kapitel 1, DOI 10.1007/978-3-319-32162-2_1 | `[VERIFIZIERT]` für Venue/Jahr/Herausgeber. **Anmerkung:** Der Auftrag nannte »2017«; die Buchpublikation ist **2016** datiert (Preprint-/Manuskriptfassungen kursieren mit anderen Jahreszahlen). Der Text ist die ausführlichste allgemeinverständliche Bestandsaufnahme, inkl. Barrieren, GCT und Unabhängigkeitsfrage |
+| *A Status Report on the P versus NP Question* | Eric Allender | Advances in Computers, Bd. 77, Kapitel 4, S. 117–147, **2009** | `[VERIFIZIERT]` für Venue/Band/Kapitel/Seiten/Jahr. **Der in der Erstfassung notierte Widerspruch 2008 vs. 2009 ist aufgelöst:** eine dritte, gezielte Suche liefert übereinstimmend 2009 (dblp Bd. 77, ScienceDirect, Rutgers-Publikationsliste). Inhalt `[NUR-SNIPPET]`, nicht am Volltext geprüft |
+| *P =? NP* | Scott Aaronson | in: J. F. Nash Jr., M. Th. Rassias (Hg.), *Open Problems in Mathematics*, Springer **2016**, Kapitel 1, S. 1–122, DOI 10.1007/978-3-319-32162-2_1 | `[VERIFIZIERT]` für Venue/Jahr/Herausgeber/Umfang über drei Suchen. **Anmerkung:** Der Auftrag nannte »2017«; die Buchpublikation ist **2016** datiert. Mit ~116–122 Seiten die **ausführlichste allgemeinverständliche Bestandsaufnahme** überhaupt, ausdrücklich für ein breites Publikum aus Mathematik, Naturwissenschaft und Technik geschrieben, inkl. Barrieren, GCT und Unabhängigkeitsfrage. **Für unsere Zielgruppe die erste Empfehlung.** Inhalt im Einzelnen `[NUR-SNIPPET]` |
 | *Fifty Years of P vs. NP and the Possibility of the Impossible* | Lance Fortnow | Communications of the ACM 65(1), 76–85, Januar 2022, DOI 10.1145/3460351 | `[VERIFIZIERT]` für Venue/Band/Seiten/DOI über zwei unabhängige Suchen. Enthält die Optiland-These (§7.3) |
 
 ---
 
-## 5. Fortnow 2026 — Wortlautprüfung
+## 5. Fortnow Juni 2026 — Wortlautprüfung und **Korrektur eines Pseudo-Zitats**
 
-**Auftrag:** Verifikation des Wortlauts von Lance Fortnows Aussage zu P vs. NP in Lean (Blogpost »Respect the P v NP Problem«, 10.06.2026).
+### 5.1 Der korrigierte Befund
 
-**Ergebnis: bestätigt, über zwei unabhängig formulierte Suchen.** `[NUR-SNIPPET]`, Konfidenz **hoch** für den Sinngehalt, **mittel-hoch** für den exakten Wortlaut (kein Volltextzugang).
+**Eine frühere Fassung dieses Berichts führte hier das Zitat »At this time we don't even have a viable approach to settling the P v NP problem« als über zwei Suchen bestätigt. Das war falsch.** Agent A7 hat den Wortlaut mit Konfidenz hoch als nicht belegbar zurückgewiesen (`docs/02-team-briefing.md` §3); zwei eigene, unterschiedlich formulierte Suchen konnten ihn ebenfalls **nicht** reproduzieren — eine gezielt auf die Phrase gerichtete Suche meldete ausdrücklich, die Wendung komme in den Treffern nicht vor. **Der Wortlaut wird im Papier nicht verwendet.** `[NUR-SNIPPET]`, Konfidenz der Zurückweisung: hoch.
 
-- **Fundstelle:** Computational Complexity Blog, Post »Respect the P v NP Problem«, URL `https://blog.computationalcomplexity.org/2026/06/respect-p-v-np-problem.html`, Datum 10. Juni 2026. `[VERIFIZIERT]` für Existenz, URL und Datum.
-- **Zentrale Aussage, in beiden Suchen übereinstimmend wiedergegeben:**
-  > »At this time we don't even have a viable approach to settling the P v NP problem.«
-  Der im Team-Briefing als unverifiziert geführte Lead (»we don't even have a viable approach«) ist damit **bestätigt**.
-- **Der Lean-Bezug, ebenfalls in beiden Suchen:** Fortnow rät ausdrücklich davon ab, das Problem über eine Formalisierung in Lean angehen zu wollen — sinngemäß »don't waste your time trying a formal approach via Lean«. Begründung laut Synthese: »Computational complexity is very messy to formulate technically.«
-- **Zusätzliches Zitat, in einer Suche wörtlich wiedergegeben:**
-  > »I can't get an AI willing to give me a full Lean-verified proof of something trivial like P closed under complement, forget the PCP theorem.«
-- **Fortnows Schlussfolgerung, sinngemäß:** Wenn jemand oder etwas P ≠ NP beweist, dann über den **richtigen intuitiven Ansatz**, nicht über einen formalistischen.
+`[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` Der Vorfall ist selbst ein Befund und gehört ins Papier. Das Zitat klingt fachlich plausibel, passt zur Erwartung des Lesers und ist genau deshalb durch drei Rechercheebenen gewandert (Leitungs-Vorrecherche → Team-Briefing → A1-Erstfassung), bevor es geprüft wurde. Eine Suchmaschine, die eine *Synthese* statt eines Volltextes liefert, bestätigt bereitwillig, was die Frage bereits nahelegt. Das ist dieselbe Fehlermechanik, die das Feld mit fehlerhaften Beweisversuchen füllt, nur eine Etage höher: **Plausibilität wird als Evidenz verbucht.** Wer über KI-gestützte Wahrheitsfindung schreibt, sollte diesen Eigenfehler dokumentieren, nicht still korrigieren.
 
-**Einordnung.** `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` Die Aussage ist stärker als »das Problem ist schwer«. Sie ist die Feststellung, dass es **keinen Kandidatenplan** gibt — kein Programm, von dem die Fachwelt glaubt, dass es bei genügend Arbeit zum Ziel führt. Das ist der relevante Unterschied zu Problemen wie der Fermat-Vermutung vor Wiles (Taniyama–Shimura war ein bekannter Weg) oder zur Geometric Complexity Theory, wo es zwar einen Plan gibt, dessen Urheber Mulmuley aber selbst Größenordnungen von ~100 Jahren veranschlagt. Für die Leitfrage des Projekts — leistet KI hier substanziellen Fortschritt? — ist das der entscheidende Kontextpunkt: **Ein Werkzeug kann einen Plan beschleunigen; es kann keinen Plan ersetzen, den es nicht gibt.**
+### 5.2 Was in dem Post tatsächlich steht
 
-Dieser Post steht zudem im Zusammenhang mit Fortnows Post »Navier-Stokes and Lean« (September 2026, `https://blog.computationalcomplexity.org/2026/09/navier-stokes-and-lean.html`) — dort geht es um die Unterscheidung, dass Lean die *Ableitung* verifiziert, nicht die *Angemessenheit der Voraussetzungen* (Muss-Kriterium M4). Die inhaltliche Ausarbeitung liegt bei A7.
+**Fundstelle.** Computational Complexity Blog (Fortnow/Gasarch), Post »Respect the P v NP Problem«, `https://blog.computationalcomplexity.org/2026/06/respect-p-v-np-problem.html`. `[VERIFIZIERT]` für Existenz und URL.
+**Datumsdifferenz, nicht geglättet:** Eine Suchsynthese nennt den **10. Juni 2026**, eine zweite den **14. Juni 2026**. Gesichert ist nur der Monat (Juni 2026, aus dem URL-Pfad). `[NUR-SNIPPET]`
+
+**Inhalt, über zwei unabhängig formulierte Suchen konsistent** `[NUR-SNIPPET]`, Konfidenz mittel-hoch:
+
+1. **Die Doppelstruktur des Problems.** Fortnow unterscheidet zwei Lesarten von P vs. NP: die **formale mathematische Vermutung** (Clay-Millennium-Problem) und die **intuitive Frage**, ob alles effizient Verifizierbare auch effizient berechenbar ist. Die Pointe des Posts hängt an dieser Trennung.
+2. **Optiland, mit KI als Treiber.** Fortschritte in Optimierung und Lernen hätten uns in die Lage versetzt, die *praktisch auftretenden* NP-Probleme zu lösen, **während die kryptographischen Verfahren ungebrochen bleiben**. Die intuitive Lesart bewegt sich also — die formale nicht. (Ausführlich §7.3.)
+3. **Die Leitfrage dieses Projekts, vom Fachvertreter selbst gestellt und beantwortet.** Der Post fragt ausdrücklich, ob ein **KI-erzeugter Beweis von P ≠ NP** bevorstehe. Antwort laut Suchsynthese: **»No, it isn't.«** Fortnow erwarte zu seinen Lebzeiten keinen Beweis von P vs. NP — **»by man or machine, separately or working together«**. `[NUR-SNIPPET]`, Konfidenz mittel-hoch für den Sinngehalt, **niedrig für den exakten Wortlaut** (kein Volltextzugang — siehe §5.1 für den Grund, hier besonders vorsichtig zu sein).
+4. **Die Begründung ist eine Basisraten-Aussage, keine Prinzipienaussage.** Fortnow erkennt die Widerlegung des **Erdős-Einheitsabstandsproblems** als beeindruckende KI-Leistung an, stellt ihr aber gegenüber, dass auf jeden KI-Mathematikbeweis **Hunderte** von Problemen kommen, an denen KI ohne Fortschritt versucht wurde. `[NUR-SNIPPET]` — Dieser Punkt ist für A8 (Claim-Audit) und die Gesamtsynthese wichtig: Die öffentliche Wahrnehmung sieht die Treffer, nicht den Nenner.
+5. **Der Lean-Punkt** (aus dem Team-Briefing §3, dort als belegt geführt, von mir **nicht** eigenständig nachgeprüft): »Don't waste your time trying a formal approach via Lean« und »Computational complexity is very messy to formulate technically«; ferner, dass Fortnow nicht einmal triviale Abgeschlossenheitslemmata für P KI-gestützt in Lean verifiziert bekam. Zuständig ist A7. `[NUR-SNIPPET]`, übernommen, Konfidenz mittel.
+
+### 5.3 Einordnung
+
+`[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` Der korrigierte Befund ist für das Projekt **stärker** als das entfernte Pseudo-Zitat. Statt einer allgemeinen Klage über die Schwierigkeit des Problems liegt eine **direkte, datierte, öffentliche Stellungnahme des einschlägigsten Fachvertreters zur Leitfrage des Projekts** vor — im selben Monat, in dem das Papier entsteht, und mit einer Begründung, die nicht »KI ist schwach« lautet, sondern **»die sichtbaren Erfolge sind eine Auswahl aus einem sehr großen Nenner«**. Zugleich ist die Quelle ein **Blogpost**, also keine peer-reviewte Aussage, sondern eine begründete Expertenmeinung; sie ist im Papier als solche zu kennzeichnen und nicht als Befund.
+
+Der Zusammenhang mit Fortnows Post »Navier-Stokes and Lean« (September 2026, `https://blog.computationalcomplexity.org/2026/09/navier-stokes-and-lean.html`) — Lean verifiziert die *Ableitung*, nicht die *Angemessenheit der Voraussetzungen* (Muss-Kriterium M4) — wird von A7 ausgearbeitet.
 
 ---
 
@@ -437,7 +484,7 @@ Der aussichtsreichste Weg zu P ≠ NP führt über Schaltkreis-untere-Schranken:
 |---|---|---|
 | 1984 | 3n − o(n) | Blum |
 | 2016 | (3 + 1/86)·n − o(n) | Find, Golovnev, Hirsch, Kulikov (FOCS 2016) |
-| 2021/2022 | **3,1n − o(n)** | Li, Yang (STOC 2022; ECCC TR21-023) |
+| 2021/2022 | **3,1n − o(n)** | **Jiatu Li, Tianqi Yang** (Tsinghua), STOC 2022; ECCC TR21-023 `[VERIFIZIERT]`, über zwei unabhängige Suchen einschließlich Autorennamen und Institution |
 
 Die Schranken gelten für explizite Funktionen (affine Disperser), die sogar in P liegen. Die Technik heißt **Gate Elimination**: Man belegt Eingänge geschickt mit Konstanten und zeigt, dass dabei jedes Mal mehrere Gatter verschwinden.
 
@@ -463,6 +510,9 @@ Die Schranken gelten für explizite Funktionen (affine Disperser), die sogar in 
 - Es gilt aber: **P ≠ EXP** und PSPACE ⊆ EXP. Zudem folgt aus dem Raumhierarchie-Satz L ⊊ PSPACE.
 - P = PSPACE würde P = NP implizieren (wegen NP ⊆ PSPACE). Die Frage ist also mindestens so schwer wie P vs. NP.
 - Es existieren Orakel, die P und PSPACE kollabieren lassen, und Orakel, die L und NP kollabieren lassen — also relativiert auch hier nichts. `[NUR-SNIPPET]`
+- **Echte Bewegung 2025 — und zwar an genau dieser Frage.** `[VERIFIZIERT]` (über zwei unabhängige Suchen bestätigt, einschließlich ECCC-Nummer) R. Williams, *Simulating Time With Square-Root Space*, ECCC TR25-017, Februar 2025, STOC 2025: **Jede Mehrband-Turingmaschine mit Laufzeit t ist in Platz O(√(t log t)) simulierbar.** Das ist die erste substanzielle Verbesserung gegenüber der Schranke O(t/log t) von Hopcroft–Paul–Valiant aus den 1970ern, also nach rund 50 Jahren. Technisch läuft es über eine Reduktion auf eine implizit definierte **Tree-Evaluation**-Instanz und baut auf dem platzsparenden Tree-Evaluation-Algorithmus von **Cook und Mertz (STOC 2024)** auf. `[NUR-SNIPPET]` für die Beweistechnik.
+  **Warum das hierher gehört:** Laut Suchsynthese liefert die Arbeit **direkten Fortschritt bei P vs. PSPACE** — sie identifiziert explizite Probleme, die in Platz O(n) lösbar sind, auf Mehrband-Turingmaschinen aber im Wesentlichen n² Zeit erfordern. `[NUR-SNIPPET]`, Konfidenz mittel-hoch. Damit korrigiere ich die Einordnung der Erstfassung (dort unter §6.8 als bloß »angrenzend« geführt): Es ist ein Resultat **an** der Zeit-Platz-Achse, nicht nur neben ihr. Ein Folge-Preprint (arXiv:2508.14831, *TIME[t] ⊆ SPACE[O(√t)] via Tree Height Compression*) verschärft die Schranke offenbar um den Logarithmusfaktor; `[PREPRINT]`, Inhalt ungeprüft.
+  `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` **Einordnung für das Papier:** Das ist der stärkste Beleg dafür, dass das Feld 2025/26 **nicht** stillsteht — und zugleich dafür, wo es sich bewegt: an Zeit-**Platz**-Fragen, wo Diagonalisierung und Simulation noch greifen, nicht an der Zeit-**Nichtdeterminismus**-Frage P vs. NP, wo sie durch Baker–Gill–Solovay ausgeschlossen sind (§6.3). Der Kontrast ist didaktisch wertvoll: Ein 50-Jahre-Stillstand *kann* gebrochen werden — nur eben dort, wo keine Barriere im Weg steht.
 - **Crank-Warnung:** Es kursiert ein arXiv-Preprint »The Separation of NP and PSPACE« (arXiv:2106.11886, Tianrong Lin, mehrfach revidiert, zuletzt laut Suchtreffer April 2025), der NP ≠ PSPACE per Diagonalisierung zu beweisen behauptet. **`[CLAIM]`, nicht anerkannt.** Schon die Methodenbeschreibung (Diagonalisierung) kollidiert mit §6.3/§3.1. A8 sollte das in die Crank-Auditierung aufnehmen. Analog kursieren »A Homological Separation of P from NP« (arXiv:2510.17829) und weitere. `[CLAIM]`
 
 ### 6.7 Wichtige Strukturaussagen unter der Annahme P ≠ NP `[KANON]`
@@ -474,7 +524,7 @@ Die Schranken gelten für explizite Funktionen (affine Disperser), die sogar in 
 ### 6.8 Angrenzende Bewegung 2025/2026
 
 Zur Einordnung, dass das Feld nicht stillsteht — nur eben nicht bei P vs. NP:
-- **Ryan Williams (Februar 2025):** Jede Mehrband-Turingmaschine mit Zeit t ist in Platz O(√(t log t)) simulierbar — die erste substanzielle Verbesserung der Zeit-Platz-Simulation seit rund 50 Jahren. `[NUR-SNIPPET]`, aus der Vorrecherche der Leitung übernommen, von mir nicht eigenständig nachgeprüft. Kein P-vs-NP-Resultat, aber ein Beleg, dass in Nachbarfragen echte Bewegung ist.
+- **Ryan Williams (Februar 2025), »Simulating Time With Square-Root Space«:** Der Verifikationslead der Leitung ist **bestätigt** (ECCC TR25-017, STOC 2025, zwei unabhängige Suchen). Wegen des direkten Bezugs zu P vs. PSPACE ist die Darstellung nach **§6.6** verschoben.
 - **Meta-Komplexität / MCSP:** »SAT Reduces to the Minimum Circuit Size Problem« (ECCC 2023/165) als bislang stärkster Hinweis auf NP-Vollständigkeit von MCSP; Stichwort »hardness magnification«. `[PREPRINT]`, aus der Vorrecherche übernommen.
 - **Geometric Complexity Theory (Mulmuley–Sohoni):** Der einzige ausgearbeitete langfristige Angriffsplan auf P vs. NP, über algebraische Geometrie und Darstellungstheorie. Mulmuley selbst veranschlagt Größenordnungen von ~100 Jahren; zentrale Positivitätshypothesen gelten als »formidable«. `[NUR-SNIPPET]`, aus der Vorrecherche übernommen. Wichtig für M1: GCT ist explizit als nicht-relativierender, nicht-naturaler Ansatz konzipiert.
 
@@ -538,40 +588,57 @@ Die Begründung, laut Suchsynthese in zwei Varianten konsistent: Fortschritte in
 
 **Der Wert der These für unser Papier** ist hoch, weil sie eine naheliegende Fehlinterpretation unseres Hauptbefundes präventiv korrigiert: Wenn KI-Systeme spektakuläre Erfolge bei kombinatorischen Problemen erzielen, ist die Versuchung groß, daraus eine Bewegung in Richtung P = NP zu lesen. Fortnows These beschreibt genau, warum das nicht folgt: **Die praktischen Vorteile eines P=NP-Szenarios und die theoretische Aussage P = NP sind entkoppelt.** Wir können immer mehr von Ersterem bekommen, ohne dass sich an Letzterem irgendetwas ändert.
 
-Es lohnt, dies neben Fortnows Aussage vom Juni 2026 (§5) zu lesen: Derselbe Autor, der die praktische Optimierungswelt optimistisch beschreibt, hält die theoretische Frage für so weit von einer Lösung entfernt, dass es »nicht einmal einen tragfähigen Ansatz« gibt. Das ist kein Widerspruch — es ist der Kern der Sache.
+Es lohnt, dies neben Fortnows Post vom Juni 2026 (§5) zu lesen — dort steht **beides im selben Text**: Derselbe Autor, der Optiland als bereits eingetretene, KI-getriebene Realität beschreibt, verneint im selben Atemzug, dass ein KI-erzeugter Beweis von P ≠ NP bevorstehe. Das ist kein Widerspruch — es ist der Kern der Sache. `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` Optiland ist die Erklärung dafür, **warum der Eindruck von Fortschritt entsteht, obwohl die formale Frage unbewegt ist**: Die intuitive Lesart von »P = NP« (können wir die Probleme lösen?) bewegt sich sichtbar; die formale Lesart (gilt der Satz?) bewegt sich nicht. Wer beide Lesarten nicht trennt, liest KI-Erfolge als Annäherung an eine Antwort.
 
 ---
 
 ## 8. Antwort auf die Leitachse (`docs/02-team-briefing.md` §2)
 
-**Die Leitachse lautet:** suchbare endliche Zeugen vs. unendliche Quantifizierung über alle Algorithmen.
+**Die Leitachse lautet** (in der *korrigierten* Fassung des Briefings, §2): **endlicher Suchkern in einem menschlichen Lifting-Rahmen** vs. **Probleme ohne endlichen Suchkern**. Der Schnitt verläuft ausdrücklich **nicht** zwischen »endlichem und unendlichem Ergebnis« — endlich ist allein das *gesuchte Objekt*; die Allgemeinheit kommt über **B3** herein (den von Menschen bewiesenen Lifting-Rahmen). Eine frühere Fassung dieses Abschnitts hat die Achse in der überholten Form referiert; das ist hier korrigiert.
 
 **Befund: Der Kanon bestätigt die Achse — und liefert ihr die formale Begründung.** `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 
-1. **Die formale Asymmetrie ist Lehrbuchwissen (§2).** P = NP ist existenziell (ein Algorithmus genügt, §1.6); P ≠ NP ist universell über eine unendliche, nicht endlich parametrisierte Klasse. Nur die erste Richtung hat überhaupt die Form »finde ein Objekt«.
+1. **Die formale Asymmetrie ist Lehrbuchwissen (§2) und liefert B1/B2 direkt.** P = NP ist existenziell: **ein** Algorithmus genügt (§1.6) — ein endliches, maschinell repräsentierbares Objekt (B1 erfüllt). P ≠ NP ist universell über die Klasse *aller* Algorithmen; es gibt kein endliches Objekt, dessen Vorlage die Sache erledigt, und damit auch kein billiges Verifikationsorakel (B1 und B2 verletzt).
+   **Wichtige Präzisierung, die das Papier nicht verschludern darf:** Auch die P=NP-Richtung ist **nicht** KI-zugänglich, obwohl B1 formal erfüllt ist. Denn zu verifizieren wäre nicht »der Algorithmus läuft auf diesen Instanzen schnell«, sondern »er ist auf **allen** Eingaben korrekt und im **Worst Case** polynomiell« (V1/V2 aus §1.6) — und das ist wieder eine universelle Aussage. **B2 fällt also auf beiden Seiten aus**, nur aus verschiedenen Gründen. Wer das übersieht, hält die P=NP-Richtung fälschlich für ein Suchproblem im Sinne von AlphaEvolve. `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 2. **Die Barrieren sind exakt die Formalisierung der Schwierigkeit auf der universellen Seite.** Alle drei sagen dasselbe in verschiedenen Sprachen: Wer über *alle* Algorithmen quantifizieren will, darf die Algorithmen nicht als Black Box behandeln (Relativization), nicht über eine typische Eigenschaft argumentieren (Natural Proofs) und nicht über ihre algebraische Fortsetzung (Algebrization). Er muss die **innere Struktur** ausnutzen — und dafür gibt es kein maschinell prüfbares Erfolgskriterium.
-3. **Das einzige Resultat, das die Barrieren überwindet (Williams, §3.5), tut es ausgerechnet über einen algorithmischen Umweg**: Es baut einen *konkreten, endlichen* SAT-Algorithmus für ACC⁰ und wandelt ihn in eine untere Schranke um. Das ist ein bemerkenswerter Teilbeleg **für** die Achse und zugleich ein Hinweis auf ihre Grenze: Die erfolgreichste bekannte Methode für untere Schranken läuft über die Konstruktion eines suchbaren Objekts. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]` — Hieraus ergibt sich eine konkrete Frage an A6/A8: Kann KI-gestützte Suche **bessere Circuit-SAT-Algorithmen** für eingeschränkte Klassen finden? Das wäre der Ort, an dem KI-Suche und untere Schranken sich tatsächlich berühren — und es ist ein Suchproblem mit maschinell prüfbarem Kriterium (Laufzeit messbar, Korrektheit testbar).
-4. **Fortnow (§5) bestätigt die Achse aus der Gegenrichtung.** »We don't even have a viable approach« heißt genau: Es gibt kein Suchproblem, das man einem Suchverfahren vorlegen könnte. Ein Optimierer braucht eine Zielfunktion; für P vs. NP gibt es keine.
+3. **Teilweiser GEGENBEFUND — und der wichtigste Einzelbeitrag dieses Berichts zur Leitachse.** `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
+   Das prominenteste Resultat, das die Barrieren überwindet (Williams, §3.5b), tut es ausgerechnet über einen **algorithmischen Umweg**: Es baut einen *konkreten, endlichen* SAT-Algorithmus für ACC⁰ und wandelt ihn über das Easy-Witness-Lemma in eine untere Schranke um. Und der jetzt belegte Mechanismus (§3.5b) sagt, dass das **kein Zufall** ist: Wer die erschöpfende Suche schlägt, *muss* Instanzstruktur ausnutzen, die eine Black-Box-Methode nicht sieht — **deshalb** kann ein so gebauter Beweis nicht relativieren und nicht algebrisieren.
+   **Das ist genau die B1/B2/B3-Konstellation der Leitachse, angewandt auf untere Schranken:**
+   - **B1** ✓ Das gesuchte Objekt ist endlich und maschinell repräsentierbar: ein Algorithmus.
+   - **B2** ✓ (eingeschränkt) Korrektheit und Laufzeit eines Circuit-SAT-Algorithmus sind messbar und testbar — ungleich billiger als »kein Algorithmus leistet X«.
+   - **B3** ✓ **Der Lifting-Rahmen existiert und ist von Menschen bewiesen**: Williams' Satz »nichttrivialer C-SAT-Algorithmus ⟹ untere Schranke gegen C«, gestützt auf das Easy-Witness-Lemma.
+   **Folgerung:** Die Leitachse ist damit **nicht widerlegt, sondern geschärft**. P vs. NP *als Ganzes* hat keinen endlichen Suchkern. Aber es gibt einen **nichtleeren Teilbereich der Lower-Bound-Forschung, der einen hat** — und es ist ausgerechnet derjenige, der als einziger die Barrieren durchbrochen hat.
+   **Konkrete, überprüfbare Frage an A6/A8, die aus diesem Befund folgt:** Kann KI-gestützte Suche **bessere Circuit-SAT-Algorithmen für eingeschränkte Schaltkreisklassen** finden? Das ist die strukturell *einzige* mir bekannte Stelle, an der KI-Suche und untere Schranken sich mit erfüllten B1, B2 **und** B3 berühren — also die einzige Stelle, an der der AlphaEvolve-Mechanismus überhaupt greifen könnte. **Wichtige Dämpfung:** Das würde Schranken gegen *schwache* Klassen liefern, nicht P ≠ NP; der Abstand aus §3.5b (ACC⁰/NEXP vs. allgemeine Schaltkreise/NP) bleibt unberührt. Es ist ein Forschungsvorschlag, kein Weg zur Lösung.
+4. **Fortnow (§5) bestätigt die Achse aus der Gegenrichtung — allerdings mit einem anderen Argument, als die Erstfassung dieses Berichts annahm.** Seine Begründung ist **nicht** »es gibt keinen Ansatz« (dieser Wortlaut ist nicht belegbar, §5.1), sondern eine **Basisraten-Aussage**: Auf jeden sichtbaren KI-Beweiserfolg kommen Hunderte erfolgloser Versuche. Das ist ein *empirischer* Beleg für die Achse statt eines strukturellen — und damit ein schwächerer, aber ehrlicherer. Das strukturelle Argument muss der Bericht selbst tragen: Ein Optimierer braucht ein maschinell prüfbares Erfolgskriterium (B2); für die universelle Aussage »kein Algorithmus leistet X« gibt es keines, und B3 fehlt, weil kein Lifting-Rahmen bekannt ist. `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
 5. **Optiland (§7.3) erklärt, warum die Achse leicht übersehen wird.** Die praktischen Erfolge bei suchbaren Problemen sind real und sichtbar; die Nicht-Bewegung bei der universellen Frage ist unsichtbar. Der Eindruck von Fortschritt entsteht aus der Verwechslung beider.
 
-**Kein Gegenbefund.** Ich habe in diesem Bereich nichts gefunden, das die Achse widerlegt oder substanziell relativiert.
+**Zusammenfassend: kein Widerspruch, aber eine Präzisierung in zwei Richtungen.** `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]`
+- **Verschärfend:** Auch die P=NP-Richtung ist kein KI-taugliches Suchproblem, weil die *Verifikation* universell ist (Punkt 1). Die Achse trifft beide Richtungen, nicht nur die untere Schranke.
+- **Abschwächend:** Innerhalb der Lower-Bound-Forschung existiert ein Teilbereich **mit** endlichem Suchkern und **mit** menschlich bewiesenem Lifting-Rahmen — die algorithmische Methode (Punkt 3). Wer die Achse als »KI kann hier prinzipiell nichts beitragen« liest, überdehnt sie. Die korrekte Lesart ist: **KI kann dort beitragen, wo B1–B3 zugleich erfüllt sind; für P vs. NP als Ganzes sind sie es nicht, für einen schmalen und interessanten Randbereich schon.**
 
 ---
 
 ## 9. Was ich NICHT verifizieren konnte
 
-Vollständige Liste der offenen Punkte dieses Berichts:
+Vollständige Liste der offenen Punkte. **Fett** markiert sind die Punkte, die sich gegenüber der Erstfassung dieses Berichts **verändert** haben.
 
-1. **Die Differenz 80 % vs. 88 % (Gasarch 2019).** Die Erklärung »alle Befragten vs. nur Meinungsäußernde« ist plausibel und arithmetisch stimmig, aber nicht belegt. Beide Zahlen sind im Bericht stehen geblieben.
-2. **Die genaue Aufschlüsselung der Umfrage 2002** (die Zahlen 9 / 22 / 8 für P=NP / keine Meinung / sonstiges). Nur »61 von 100 für P≠NP« ist belegt, und dass 7 davon ausdrückliche Zweifel äußerten.
-3. **Die genaue Zahl der P=NP-Stimmen 2012.** Die Synthesen nennen 81 % bzw. »125 von 152« für P≠NP; der Rest ist nicht aufgeschlüsselt.
-4. **Das Publikationsjahr von Allenders *Status Report*** — 2008 oder 2009, die Quellen widersprechen sich. Beide berichtet.
-5. **Der exakte Wortlaut** sämtlicher Zitate (Fortnow, Aaronson, Gasarch). Kein Volltextzugang; alle Zitate sind Suchsynthesen und entsprechend markiert.
-6. **Die Inhalte** von Allenders und Aaronsons Übersichtsartikeln. Nur Existenz und Venue verifiziert.
-7. **Der genaue technische Satz der Algebrization-Barriere.** Ich konnte den Mechanismus (Low-Degree-Extension als erweitertes Orakel) verifizieren, nicht aber die exakten Satzformulierungen und Quantoren.
-8. **Die Behauptung »Williams umgeht alle drei Barrieren«** im technisch strengen Sinn. Der Teil zu Relativization/Algebrization (nicht-relativierende Eigenschaften von ACC⁰) ist über zwei Suchen bestätigt; der Teil zu Natural Proofs (Verletzung von largeness) ist Community-Standarddarstellung, aber von mir nicht am Volltext geprüft.
-9. **Ob es zwischen 2019 und 2026 eine Umfrage gibt.** Negativbefund aus zwei Suchen; ein Abwesenheitsbeleg per Suche ist prinzipiell schwächer als ein Positivbefund.
-10. **Die Inhalte der 2026er Preprints** (arXiv:2606.12631, arXiv:2601.09702, arXiv:2511.14038). Nur Existenz, Titel und Abstract-Synthese.
+**Aufgelöst (nicht mehr offen):**
+- **Publikationsjahr von Allenders *Status Report*: 2009.** Eine dritte gezielte Suche liefert übereinstimmend 2009 (dblp Bd. 77, ScienceDirect, Rutgers). Der Widerspruch 2008/2009 ist erledigt.
+- **Aufschlüsselung der Umfrage 2002: 61 für P ≠ NP (davon 7 mit Zweifeln), 9 für P = NP.** Über zwei unabhängige Suchen konsistent. Offen bleibt nur die Aufteilung der restlichen 30.
+- **»Williams umgeht alle drei Barrieren«.** Jetzt mit Mechanismus belegt (§3.5b): Verbesserte SAT-Algorithmen brechen zusammen, sobald man Orakel oder deren algebraische Fortsetzungen hinzufügt — daher kann ein darauf gestützter Beweis weder relativieren noch algebrisieren. Konfidenz hoch. **Einschränkung:** Die offizielle Gödel-Preis-Laudatio 2024 nennt laut Suchsynthese ausdrücklich nur Relativization und Natural Proofs; die Algebrization-Aussage stammt aus einer zweiten Quelle.
+- **Williams 2025 (√-Platz-Simulation).** Der Lead der Leitung ist bestätigt (ECCC TR25-017, STOC 2025).
+
+**Weiterhin offen:**
+1. **Die Differenz 80 % vs. 88 % (Gasarch 2019) — ungelöst, und die frühere »plausible Auflösung« wurde zurückgezogen** (§4.2(2)): Eine Suchsynthese nennt für 2019 ausdrücklich **null** Abstentionen, was die Erklärung »alle Befragten vs. nur Meinungsäußernde« arithmetisch unmöglich macht. Beide Zahlen bleiben im Bericht, ohne Auflösung.
+2. **Die genaue Zahl der P≠NP-Stimmen 2012.** Synthesen nennen 81 %, 82 % (»125 von 152«) und »etwa 80 %«. Konfidenz niedrig-mittel.
+3. **Die Jahreszuordnung der »99 % unter Expert:innen«.** Dieselbe Kennzahl wurde in verschiedenen Suchen sowohl 2012 als auch 2019 zugeschrieben (§4.2(3)).
+4. **Der exakte Wortlaut** sämtlicher Zitate (Fortnow, Aaronson, Gasarch). Kein Volltextzugang. Für Fortnows »No, it isn't« / »by man or machine« gilt das verschärft: Sinngehalt mittel-hoch, **Wortlaut niedrig** — nach dem Vorfall in §5.1 ist bei genau dieser Quelle besondere Zurückhaltung geboten.
+5. **Das genaue Datum des Fortnow-Posts** (10. oder 14. Juni 2026; zwei Synthesen widersprechen sich). Gesichert ist nur »Juni 2026«.
+6. **Ob der Wortlaut »we don't even have a viable approach« irgendwo existiert.** Ich konnte ihn in zwei Anläufen nicht reproduzieren und weise ihn mit A7 zurück; ein Abwesenheitsbeleg bleibt prinzipiell schwächer als ein Positivbefund. Die Konsequenz ist gleichwohl eindeutig: **nicht zitieren.**
+7. **Die Inhalte** von Allenders und Aaronsons Übersichtsartikeln. Nur Existenz und Venue verifiziert.
+8. **Die exakten Satzformulierungen und Quantoren der Algebrization-Barriere.** Mechanismus (Low-Degree-Extension als erweitertes Orakel) und Aussagegehalt (»P vs. NP erfordert nicht-algebrisierende Techniken«) sind verifiziert; die formale Satzfassung nicht.
+9. **Die Inhalte der 2025/2026er Preprints** (arXiv:2606.12631, arXiv:2601.09702, arXiv:2511.14038, arXiv:2508.14831, arXiv:2606.27139). Nur Existenz, Titel und Abstract-Synthese.
+10. **Aaronsons Übersichtsartikel »P =? NP«: Jahr 2016 oder 2017?** Der Auftrag nannte 2017, die Springer-Buchpublikation ist 2016 datiert. Ich habe die Buchangabe übernommen; Manuskript- und Preprint-Fassungen kursieren mit abweichenden Jahren. Geringe Relevanz, aber nicht geglättet.
 
 ---
 
@@ -593,6 +660,17 @@ Vollständige Liste der offenen Punkte dieses Berichts:
 - S. Aaronson: *P =? NP*, in: Nash/Rassias (Hg.), *Open Problems in Mathematics*, Springer 2016, DOI 10.1007/978-3-319-32162-2_1 — https://www.scottaaronson.com/papers/pnp.pdf
 - S. Aaronson: *Is P Versus NP Formally Independent?* — https://www.scottaaronson.com/papers/indep.pdf
 - A. Kolokolova: *Complexity Barriers as Independence*, 2016 — https://www.cs.mun.ca/~kol/papers/barriers-incomputable-revised.pdf
+
+**Neu im zweiten Durchgang verifiziert**
+- R. Williams: *Simulating Time With Square-Root Space*, ECCC TR25-017, Februar 2025; STOC 2025 — https://eccc.weizmann.ac.il/report/2025/017/ · https://people.csail.mit.edu/rrw/time-vs-space.pdf
+- J. Li, T. Yang: *3.1n − o(n) Circuit Lower Bounds for Explicit Functions*, STOC 2022; ECCC TR21-023 — https://eccc.weizmann.ac.il/report/2021/023/
+- R. R. Williams: *Complexity Lower Bounds from Algorithm Design*, eingeladener Beitrag LICS 2021 — https://people.csail.mit.edu/rrw/LICS21.pdf
+- Gödel-Preis 2024, offizielle Laudatio (SIGACT) — https://sigact.org/prizes/g%C3%B6del/citation2024.html
+- R. Williams: *Nonuniform ACC Circuit Lower Bounds*, JACM 61(1), Art. 2, 2014 — https://dl.acm.org/doi/10.1145/2559903 · Konferenzfassung https://www.cs.cmu.edu/~ryanw/acc-lbs.pdf
+- S. Aaronson, A. Wigderson: *Algebrization: A New Barrier in Complexity Theory* — https://www.scottaaronson.com/papers/alg.pdf · ToCT-Fassung https://dl.acm.org/doi/pdf/10.1145/1490270.1490272
+- E. Allender: *A Status Report on the P versus NP Question*, Advances in Computers 77, Kap. 4, S. 117–147, **2009** — https://people.cs.rutgers.edu/~allender/papers/advances.in.computing.pdf
+- L. Fortnow: *Fifty Years of P vs. NP and the Possibility of the Impossible*, CACM 65(1), 2022 — https://lance.fortnow.com/papers/files/pvnp50.pdf
+- Cook, Mertz: platzsparender Tree-Evaluation-Algorithmus, STOC 2024 (Grundlage von Williams 2025) `[NUR-SNIPPET]`
 
 **Umfragen**
 - W. Gasarch: *The P =? NP Poll*, SIGACT News Complexity Theory Column 36, 2002 — https://www.cs.umd.edu/~gasarch/papers/poll.pdf

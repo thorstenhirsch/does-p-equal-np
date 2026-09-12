@@ -93,11 +93,20 @@ offen ist. Wer MCSP als „naheliegenden nächsten Schritt" verkauft, hat die Ri
 verwechselt. Das ist strukturell dasselbe Muster wie bei der Hardness Magnification (§3): eine
 scheinbar bescheidene Aussage, die eine unbescheidene enthält.
 
-Umgekehrt gibt es **Nicht-Härte-Hinweise**: Unter glaubwürdigen kryptographischen Annahmen
-(*indistinguishability obfuscation* plus subexponentiell sichere Einwegfunktionen) ist **GapMCSP
-nicht NP-vollständig unter randomisierten Levin-Reduktionen**. `[NUR-SNIPPET]`, Konfidenz mittel —
-diese Aussage konnte ich nur über eine Suchantwort belegen und die Autorenschaft nicht sauber
-zuordnen. **Explizit als nicht ausreichend trianguliert gekennzeichnet.**
+Umgekehrt gibt es **Nicht-Härte-Hinweise**: **Mazor und Pass**, *Gap MCSP Is Not (Levin)
+NP-Complete in Obfustopia*, **CCC 2024** (DOI 10.4230/LIPIcs.CCC.2024.36, IACR ePrint 2024/420).
+Unter der Annahme von *indistinguishability obfuscation* (iO) plus subexponentiell sicherer
+Einwegfunktionen ist eine geeignete **Gap-Version von MCSP nicht NP-vollständig unter randomisierten
+Levin-Reduktionen** (zeugenerhaltende many-to-one-Reduktionen); dasselbe gilt für MKTP.
+`[VERIFIZIERT]` für Existenz/Autoren/Venue (drei konsistente Treffer: TAU-CRIS, DROPS, ePrint),
+`[NUR-SNIPPET]` für die genaue Formulierung. Konfidenz **mittel-hoch**.
+
+**Bedeutung** (`[EIGENE EINSCHÄTZUNG]`, Konfidenz mittel-hoch): Das Feld hat also Evidenz in **beide**
+Richtungen — Ilangos Zufallsorakel-Reduktion (§1.5) spricht für NP-Vollständigkeit, Mazor–Pass gegen
+NP-Vollständigkeit *unter einer bestimmten, engen Reduktionsklasse*. Beides sind bedingte bzw.
+relativierte Aussagen, und sie widersprechen sich formal nicht (Levin-Reduktionen ≠ P/poly-Reduktionen
+relativ zu einem Orakel). Wer „Evidenz für NP-Vollständigkeit von MCSP" zitiert, ohne die
+Gegenrichtung zu nennen, stellt die Lage einseitig dar.
 
 ### 1.4 Die Grenze partiell / total — der Kern des Auftrags
 
@@ -162,10 +171,11 @@ Abstand zwischen „ich darf don't-cares setzen" und „ich muss untere Schranke
 
 ### 1.5 „SAT Reduces to the Minimum Circuit Size Problem **with a Random Oracle**"
 
-**Was das Papier ist.** ECCC TR23-165 (2023, Revision März 2025), publiziert **FOCS 2023**,
-Journalfassung **SIAM Journal on Computing**, DOI 10.1137/24M1652568. `[VERIFIZIERT]` für Existenz,
-Venue und Journalfassung (drei Treffer: IEEE Xplore, ECCC, SIAM/DOI). Damit ist dies
-**peer-reviewt**, nicht bloß Preprint — eine Korrektur gegenüber der Vorrecherche in
+**Was das Papier ist.** Autor: **Rahul Ilango, allein** (nicht Hirahara — häufige Fehlzuschreibung).
+ECCC TR23-165 (2023, Revision März 2025), publiziert **FOCS 2023**, S. 733–742; Journalfassung
+**SIAM Journal on Computing**, DOI 10.1137/24M1652568. `[VERIFIZIERT]` für Autor, Existenz, Venue,
+Seitenzahlen und Journalfassung (vier Treffer: dblp FOCS 2023, IEEE Xplore, ECCC, SIAM/DOI). Damit ist
+dies **peer-reviewt**, nicht bloß Preprint — eine Korrektur gegenüber der Vorrecherche in
 `research/a1-kanon-und-barrieren.md` §478, wo es als `[PREPRINT]` geführt wird.
 
 **Was gezeigt wird.** Mit **Wahrscheinlichkeit 1** über die Wahl eines zufälligen Orakels O gibt es
@@ -185,16 +195,75 @@ diese Zusammenfassung (zwei unabhängige Suchen konsistent).
 3. **Die Reduktion ist nicht-uniform (P/poly) und black-box.** Sie fällt damit nicht unter die
    Murray–Williams-Konsequenzen aus §1.3 — was zugleich erklärt, *warum* sie möglich war: Die
    Orakelrelativierung ist exakt das Schlupfloch, das die Barriereresultate offenlassen.
-4. **Zufallsorakel-Evidenz ist historisch unzuverlässig.** Die sogenannte *Random Oracle Hypothesis*
-   — Aussagen, die relativ zu einem Zufallsorakel mit Wahrscheinlichkeit 1 gelten, gelten auch
-   unrelativiert — ist **widerlegt**. Das klassische Gegenbeispiel ist IP vs. PSPACE:
-   IP = PSPACE gilt unrelativiert, aber relativ zu einem Zufallsorakel gilt IP^O ≠ PSPACE^O mit
-   Wahrscheinlichkeit 1. `[NUR-SNIPPET]` — **noch zu triangulieren**, siehe §7.
-   Wenn das zutrifft, ist „mit Wahrscheinlichkeit 1 relativ zu einem Zufallsorakel" genau die
-   Evidenzform, bei der die Fachgeschichte bereits einmal danebenlag.
+4. **Zufallsorakel-Evidenz ist historisch nachweislich unzuverlässig.** Die *Random Oracle
+   Hypothesis* (Bennett–Gill) besagt: Beziehungen zwischen Komplexitätsklassen, die in fast allen
+   relativierten Welten gelten, gelten auch unrelativiert. Sie ist **widerlegt**:
+   R. Chang, B. Chor, O. Goldreich, J. Hartmanis, J. Håstad, D. Ranjan, P. Rohatgi,
+   *The Random Oracle Hypothesis is False*, **Journal of Computer and System Sciences 49(1),
+   24–39, 1994**. Gezeigt wird: für **fast alle** Orakel A gilt IP^A ≠ PSPACE^A — was der
+   unrelativierten Wahrheit IP = PSPACE (Shamir 1990) direkt widerspricht. Ferner gilt für fast alle
+   A: coNP^A ⊄ IP^A. `[VERIFIZIERT]` für Existenz, Autoren, Venue, Band, Seiten, Jahr und Kernaussage
+   (vier konsistente Treffer: ScienceDirect, ACM DL, Weizmann Pure, UMBC).
+
+   **Das ist der schärfste Einwand gegen die Evidenzkraft von Ilangos Resultat**
+   (`[EIGENE EINSCHÄTZUNG]`, Konfidenz hoch): „Mit Wahrscheinlichkeit 1 relativ zu einem Zufallsorakel"
+   ist **exakt die Evidenzform, die historisch bereits einmal in die Irre führte** — und zwar bei
+   einem der spektakulärsten Resultate der Komplexitätstheorie überhaupt. Das Papier selbst
+   argumentiert nachvollziehbar, dass die Orakelrelativierung hier eine *Barriereumgehung* und kein
+   Artefakt ist; aber die Beweislast dafür liegt beim Resultat, nicht beim Skeptiker.
 
 **Bewertung:** ernstzunehmendes, peer-reviewtes Resultat; *Evidenz*, kein Beweis; und eine Evidenzform
 mit belegter Fehlschlagshistorie. Konfidenz in diese Bewertung: mittel-hoch.
+
+### 1.6 Hirahara & Ilango, FOCS 2025 — der aktuellste Stand
+
+**Arbeit:** S. Hirahara, R. Ilango, *NP-hardness of the Minimum Circuit Size Problem from
+Well-Studied Assumptions*, **FOCS 2025**. `[VERIFIZIERT]` für Existenz, Autoren und Venue (zwei
+unabhängig formulierte Suchen, konsistent; die Arbeit wird zudem in einer dritten, unabhängigen
+Arbeit referenziert).
+
+**Was gezeigt wird** `[NUR-SNIPPET]`, Konfidenz **mittel** (Referatlage, kein Volltext):
+**bedingte NP-Härte von constant-gap MCSP** unter **quasipolynomialzeit-, nicht-Levin-Reduktionen**,
+ausgehend von „well-studied assumptions". **Welche** Annahmen das genau sind, konnte ich **nicht**
+feststellen (siehe §7). Eine referierende Drittquelle charakterisiert sie als „seemingly much
+stronger assumptions" im Vergleich zu anderen bedingten Resultaten.
+
+**Einordnung** (`[EIGENE EINSCHÄTZUNG]`, Konfidenz mittel-hoch) — hier ist Sorgfalt entscheidend,
+weil der Titel maximal missverständlich ist:
+
+| Was der Titel suggeriert | Was tatsächlich dasteht |
+|---|---|
+| „MCSP ist NP-hart" | **constant-gap MCSP**, nicht exaktes MCSP |
+| unbedingt | **bedingt** auf nicht näher bestimmte Annahmen |
+| Polynomialzeitreduktion | **quasipolynomialzeit**-Reduktion |
+| Standard-Reduktionsbegriff | ausdrücklich **nicht-Levin** |
+
+Jede dieser vier Abschwächungen ist einzeln erheblich; zusammen bedeuten sie, dass die offene Frage
+aus §1.4 **unberührt bleibt**. Die Abschwächungen sind zudem kein Zufall: die Reduktionsklasse ist
+genau so gewählt, dass die Konsequenzentabelle aus §1.3 und das Mazor–Pass-Negativresultat
+(Levin-Reduktionen!) nicht greifen. Das ist gutes Handwerk und zugleich der Beleg dafür, wie eng der
+verbleibende Spielraum ist.
+
+**Für unser Papier wichtig:** Dies ist der Stand September 2026 und damit **aktueller als alle im
+Auftragstext genannten Leads**. Wer den Stand mit Hiraharas FOCS-2022-Arbeit beschreibt, ist drei
+Jahre im Rückstand. Die Richtung der Entwicklung ist aber bemerkenswert konstant: **immer feinere
+Varianten werden hart, die Standardvariante bleibt offen.**
+
+### 1.7 Weitere Meta-Komplexitätsresultate 2025/2026 (Kurzliste)
+
+- **Hirahara, Ilango, Loff**, *Communication Complexity is NP-hard*, arXiv:2507.10426 (2025)
+  `[PREPRINT]` / `[NUR-SNIPPET]`: beantwortet eine Frage Yaos — die Berechnung der
+  2-Wege-Kommunikationskomplexität einer gegebenen Funktion ist NP-hart. Strukturell dasselbe
+  Muster: ein *Meta*-Problem (Komplexität berechnen) wird hart, während MCSP offen bleibt.
+  Konfidenz mittel-hoch für Existenz/Autoren.
+- **Kabanets, Kolokolova**, *Kolmogorov's Approach to P vs. NP: Chain Rules for Time-Bounded
+  Kolmogorov Complexity*, **STOC 2026**, DOI 10.1145/3798129.3800780; ECCC TR25-089.
+  `[VERIFIZIERT]` für Existenz/Venue/DOI. Inhalt `[NUR-SNIPPET]`, nicht näher geprüft: Kettenregeln
+  für zeitbeschränkte Kolmogorovkomplexität als Zugang zu P vs. NP. **Dass eine Arbeit mit diesem
+  Titel 2026 bei STOC erscheint, ist selbst ein Befund**: Meta-Komplexität wird explizit als
+  P-vs-NP-Programm vermarktet.
+- *Cryptographic Implications of Worst-Case Hardness of Time-Bounded Kolmogorov Complexity*,
+  IACR ePrint 2026/668 `[PREPRINT]`, nicht geprüft.
 
 ---
 
@@ -400,7 +469,7 @@ derselben Weise betroffen ist.
 | **Res(k)** | aktive Front; untere Schranken für zufällige CNF über Expansion (CCC 2025). |
 | **Cutting Planes** | exponentielle untere Schranken bekannt (u. a. über *feasible interpolation*, Pudlák 1997). **Erledigt.** |
 | **AC⁰-Frege** (bounded-depth Frege) | exponentielle untere Schranken (Ajtai 1988; Krajíček–Pudlák–Woods; Beame–Impagliazzo–Pitassi–Pudlák–Woods). **Erledigt** — aber: untere Schranken für **zufällige Δ-CNF** gelten als „das große langjährige offene Problem", sogar für nichtkonstantes Δ und Tiefe 2. |
-| **AC⁰[p]-Frege** | **OFFEN.** Keine superpolynomiellen unteren Schranken bekannt. Direktes Analogon zur Situation bei ACC⁰-Schaltkreisen. |
+| **AC⁰[p]-Frege** | **OFFEN seit über drei Jahrzehnten.** Keine superpolynomiellen unteren Schranken. Der naheliegende Weg — die **Razborov–Smolensky-Approximationsmethode**, mit der die AC⁰[p]-*Schaltkreis*-Schranken gelingen, auf das Beweissystem zu übertragen — ist **niemandem geglückt**. `[NUR-SNIPPET]`, über zwei Suchen trianguliert, Konfidenz hoch. |
 | **TC⁰-Frege** | **OFFEN.** |
 | **Frege** | **OFFEN.** Keine nichttriviale untere Schranke. |
 | **Extended Frege** | **OFFEN.** Keine nichttriviale untere Schranke. Entspricht im Wesentlichen der Beweiskraft normaler mathematischer Argumentation über Polynomialzeitbegriffe. |
@@ -408,6 +477,12 @@ derselben Weise betroffen ist.
 `[NUR-SNIPPET]` für die Detailzuschreibungen, Konfidenz mittel-hoch; `[VERIFIZIERT]` für die
 Grobstruktur (schwache Systeme erledigt, Frege/EF offen) — das ist Konsenswissen und wurde über
 mehrere Suchen bestätigt.
+
+**Bemerkenswerte Selbstverstärkung** `[NUR-SNIPPET]`, Konfidenz mittel: Es existiert ein Resultat
+*Exponential Lower Bounds for AC⁰-Frege Imply Superpolynomial Frege Lower Bounds* — hinreichend
+starke Schranken für das *schwache* System würden also das *starke* mitliefern. Das ist die
+proof-complexity-Entsprechung zur Hardness Magnification (§3) und zeigt, dass das Muster
+„bescheidene Schranke ⟹ Durchbruch" nicht auf die Meta-Komplexität beschränkt ist.
 
 **Wichtiger struktureller Befund** `[NUR-SNIPPET]`, Konfidenz mittel-hoch:
 Für **schwache** Systeme (Resolution, Cutting Planes) gibt es *feasible interpolation*: man leitet
@@ -466,10 +541,34 @@ Query-Zugriff auf einen *angeblichen* Beweis der Länge s für eine harte Tautol
 ungültigen Ableitungsschritt**. Die Komplexität dieser Suchaufgabe ist eng an die **Metamathematik**
 der zugrundeliegenden unteren Schranke gekoppelt; die Analyse erfolgt im TFNP-Rahmen.
 
-**Best-Paper-Status:** Die Columbia-CS-Meldung „The Theory Group Wins Big at STOC 2026" berichtet
-von **zwei** Best Paper Awards bei STOC 2026 und nennt diese Arbeit im Umfeld. Ob sie **einen der
-beiden Awards erhielt**, konnte ich **nicht sauber verifizieren** — siehe §7.
-`[CLAIM]`, Konfidenz niedrig-mittel für die Award-Zuschreibung, hoch für Existenz und Venue.
+**Zwei Richtigstellungen zum Auftragstext** — beide sind für die Redlichkeit des Papiers relevant:
+
+**(a) Der Titel.** Der Auftrag nennt „Refuter Problems for Proof Complexity". Unter *genau diesem*
+Titel ließ sich kein publiziertes Papier finden; die Suche nach der exakten Phrase führt auf
+**ECCC TR24-190** und auf arXiv:2411.15515, dessen Fassungen unterschiedliche Titel tragen
+(*Metamathematics of Resolution Lower Bounds: A TFNP Perspective* → *Finding Bugs in Short Proofs:
+The Metamathematics of Resolution Lower Bounds*). **Widersprüchliche Venue-Angaben, nicht geglättet:**
+eine Suchantwort ordnet die Arbeit **STOC 2025** zu, der verifizierte DOI 10.1145/3798129.3800793
+gehört jedoch zum **STOC-2026**-Band (Proceedings-DOI-Präfix 10.1145/3798129). Beide Angaben werden
+hier berichtet; der DOI ist das stärkere Indiz. Zusätzliche inhaltliche Snippets: Refuter-Probleme
+für Resolutions-*width*-Schranken sind **PLS-vollständig**; für Resolutions-*size*-Schranken führen
+die Autoren eine neue Klasse **rwPHP(PLS)** im decision-tree-TFNP ein (randomisierte Variante von
+PLS). `[NUR-SNIPPET]`, Konfidenz mittel.
+
+**(b) Der Best-Paper-Status ist nicht belegbar — vermutlich falsch.** `[CLAIM] widerlegt`,
+Konfidenz **mittel-hoch**. Die auffindbaren STOC-2026-Best-Paper-Meldungen nennen drei andere
+Arbeiten:
+- Jonas Haferkamp (Ruhr-Universität Bochum) — Best Paper Award STOC 2026;
+- Chinmay Nirkhe (UW Allen School), *Separating QMA from QCMA with a classical oracle*;
+- *Boolean function monotonicity testing requires (almost) n^{1/2} queries* (Mark Chen, Xi Chen,
+  Hao Cui, William Pires, Jonah Stockwell, Columbia) — das ist die Arbeit, auf die sich die
+  Columbia-Meldung „The Theory Group Wins Big at STOC 2026" bezieht.
+
+Die Refuter-Arbeit erscheint in **keiner** dieser Meldungen als Preisträger. **Der Lead „STOC 2026
+Best Paper: Refuter Problems for Proof Complexity" sollte im Papier nicht verwendet werden**, bis
+jemand mit Volltextzugang ihn bestätigt. Dies ist ein weiteres Exemplar des in
+`02-team-briefing.md` §3 beschriebenen Musters (plausibel klingende Zuschreibung, die durch eine
+Rechercheerzählung wandert).
 
 **Warum relevant für uns** `[EIGENE EINSCHÄTZUNG]`, Konfidenz mittel: Refuter-Probleme sind der
 Versuch, aus einer **nicht-konstruktiven** Aussage („es gibt keinen kurzen Beweis") einen
@@ -480,12 +579,35 @@ beweisbar ist, ist das ein Indiz auf die Beweisstärke, die man für sie braucht
 ### 4.5 Extended Frege → P ≠ NP: Statusupdate zu A1
 
 `research/a1-kanon-und-barrieren.md` §455 führt arXiv:2312.08163 (*Towards P ≠ NP from Extended
-Frege lower bounds*) als `[PREPRINT]`. **Update:** Die Arbeit ist inzwischen im
-**Journal of the ACM** erschienen, DOI 10.1145/3801091. `[VERIFIZIERT]` für die Journalfassung
-(DOI-Treffer). **Inhalt konnte ich nicht verifizieren** — siehe §7. Vorsicht ist geboten: Der Titel
-sagt „Towards", nicht „From"; es handelt sich mit hoher Wahrscheinlichkeit um eine **bedingte**
-Implikation mit Zusatzannahmen, nicht um einen Weg, der nur noch abgelaufen werden muss.
-`[EIGENE EINSCHÄTZUNG]`, Konfidenz mittel.
+Frege lower bounds*, Pich & Santhanam) als `[PREPRINT]`. **Update:** Die Arbeit ist inzwischen im
+**Journal of the ACM** erschienen, DOI 10.1145/3801091. `[VERIFIZIERT]` für die Journalfassung.
+
+**Inhalt** `[NUR-SNIPPET]`, Konfidenz mittel-hoch (eine ausführliche, in sich konsistente
+Suchantwort):
+
+> Wenn die Bedingungen **I–II** gelten **und** es eine Folge Boolescher Funktionen gibt, die schwer
+> durch p-große Schaltkreise zu approximieren sind, **derart dass p-große
+> Schaltkreisuntere-Schranken keine p-großen Beweise im Extended-Frege-System haben**, dann gilt
+> **P ≠ NP**.
+>
+> **Bedingung I:** S₂¹ beweist, dass eine konkrete Funktion in E schwer durch Schaltkreise
+> subexponentieller Größe zu approximieren ist.
+> **Bedingung II:** S₂¹ beweist, dass eine p-Zeit-Reduktion Schaltkreise, die Einwegfunktionen
+> brechen, in p-große Schaltkreise überführt, die p-große Schaltkreise über der Gleichverteilung
+> mit Membership Queries lernen.
+>
+> S₂¹ ist Buss' Theorie der bounded arithmetic, die Polynomialzeitschließen formalisiert.
+
+**Bewertung** (`[EIGENE EINSCHÄTZUNG]`, Konfidenz hoch): Der Titel sagt „Towards", und das zu Recht.
+Die Konklusion P ≠ NP hängt an **drei** Voraussetzungen, von denen zwei **Formalisierbarkeits-
+aussagen in S₂¹** sind — also Behauptungen darüber, dass ein schwaches Beweissystem einen bestimmten
+komplexitätstheoretischen Sachverhalt herleiten kann. Das ist ein bemerkenswerter methodischer Zug:
+er verbindet §4 (Beweiskomplexität) und §5 (Metamathematik) und macht die **Beweisstärke selbst zur
+Hypothese**. Es ist aber kein „Weg, der nur noch abgelaufen werden muss" — es ist eine bedingte
+Implikationskette mit einer offenen Prämisse (EF nicht p-bounded) und zwei
+Formalisierungsannahmen. Kriterium **M5** aus `02-team-briefing.md` §4 („keine Axiomschmuggelware")
+ist hier nicht verletzt — die Autoren benennen die Bedingungen explizit —, aber eine
+Sekundärdarstellung, die nur den Titel zitiert, würde es verletzen.
 
 ---
 
@@ -591,19 +713,32 @@ entsprechend zu kennzeichnen.
 
 ### 5.5 Wie ernst nimmt die Fachwelt das? (Gasarch-Umfragen)
 
-`[NUR-SNIPPET]`, Konfidenz mittel — und mit ausdrücklichem Vorbehalt nach `02-team-briefing.md` §1
-(belegter Fall widersprüchlicher Umfragezahlen).
+`[NUR-SNIPPET]`, und mit ausdrücklichem Vorbehalt nach `02-team-briefing.md` §1 (belegter Fall
+widersprüchlicher Umfragezahlen bei genau dieser Umfrage).
 
-Aus einer Suchantwort, Anteil „wird **nie** gelöst":
-- 2002: **5 %**
-- 2012: **3 %**
-- 2019: **9 %**
+**Anteil „wird nie gelöst"** — über **zwei** unterschiedlich formulierte Suchen konsistent
+berichtet, Konfidenz **mittel-hoch**:
 
-Dieselbe Suchantwort berichtet für 2019, **niemand** habe Unabhängigkeit (von ZFC) für wahrscheinlich
-gehalten — also **0 %**. `[NUR-SNIPPET]`, Konfidenz **niedrig-mittel**: Diese Zahl konnte ich **nicht
-triangulieren**; sie stammt aus einer einzigen Suchantwort. Die Zahlenreihe 5/3/9 stammt ebenfalls
-aus einer einzigen Antwort. **Vor Verwendung im Papier ist eine unabhängige Prüfung durch A1
-(Umfragezuständigkeit) erforderlich.** Siehe §7.
+| Umfrage | Teilnehmer | „wird nie gelöst" |
+|---|---|---|
+| 2002 | 100 | **5 %** |
+| 2012 | 152 | **3 %** |
+| 2019 | 124 | **9 %** |
+
+Der Anstieg 2012 → 2019 ist auffällig (Verdreifachung), aber bei 124 Befragten entspricht er
+etwa **sieben Personen**. `[EIGENE EINSCHÄTZUNG]`: Bei dieser Stichprobengröße ist das
+**kein belastbarer Trend**; die Zahl darf im Papier nicht als „wachsende Resignation im Feld"
+verkauft werden.
+
+**Unabhängigkeit:** Für 2019 wird berichtet, **niemand** habe Unabhängigkeit (von ZFC) für
+wahrscheinlich gehalten — **0 %**. `[NUR-SNIPPET]`, Konfidenz **mittel**: zweimal berichtet, aber
+beide Male mit einem Hedge („presumably from ZFC") in der Suchantwort selbst; die Fragestellung der
+Umfrage ist ohne Volltext nicht rekonstruierbar.
+
+**Zum Hauptergebnis** (Zuständigkeit A1, hier nur als Kontext): 2019 wird mit **~80 %** für P ≠ NP
+berichtet, **99 %** unter denjenigen, die sich intensiv mit dem Problem befasst haben. Das
+Team-Briefing dokumentiert für dieselbe Umfrage auch die Zahl **66 %**. **Der Widerspruch bleibt
+bestehen und wird hier nicht geglättet** — Abstimmung mit A1 erforderlich.
 
 Quellen für die Umfragen selbst (Existenz `[VERIFIZIERT]`): Gasarch, *Guest Column: The P=?NP Poll*,
 SIGACT News 2002; *Guest Column: The Second P =? NP Poll*, SIGACT News 2012; *Guest Column: The Third
@@ -634,7 +769,9 @@ sie, warum nichts vorangeht.
 | C2 | MOCSP NP-hart zu approximieren (Huang–Ilango–Ren STOC 2023) | subexp. sichere injektive OWF **und** subexp. sichere Witness Encryption | mittel-hoch |
 | C3 | OWF existiert ⟺ NP-Härte der Approximation distributioneller Kolmogorovkomplexität **und** worst-case-Härte von NP (Hirahara STOC 2023) | Charakterisierung, keine Auflösung | mittel |
 | C4 | Razborov 1995: Unbeweisbarkeit gewisser Schaltkreisschranken in S₂²(α) | **starke PRGs** | mittel-hoch |
-| C5 | GapMCSP **nicht** NP-vollständig unter randomisierten Levin-Reduktionen | **iO** + subexp. OWF | niedrig-mittel (nicht trianguliert) |
+| C5 | GapMCSP (und MKTP) **nicht** NP-vollständig unter randomisierten Levin-Reduktionen (Mazor–Pass, CCC 2024) | **iO** + subexp. sichere OWF | mittel-hoch |
+| C7 | **constant-gap MCSP NP-hart** unter quasipolynomialzeit-, nicht-Levin-Reduktionen (Hirahara–Ilango, FOCS 2025) | „well-studied assumptions" — **welche, ungeklärt** | mittel |
+| C8 | EF nicht p-bounded **+ Bedingungen I–II in S₂¹ + hart-zu-approximierende Funktion** ⟹ **P ≠ NP** (Pich–Santhanam, JACM) | zwei **Formalisierbarkeitsannahmen** in S₂¹ | mittel |
 | C6 | SAT ≤ MCSP^O für zufälliges O mit Wahrscheinlichkeit 1 | **Relativierung** — keine kryptographische, aber eine **modelltheoretische** Zusatzannahme | mittel-hoch |
 
 **Wichtigste Beobachtung zu C2** (`[EIGENE EINSCHÄTZUNG]`, Konfidenz mittel-hoch, vgl. §2.3): Die
@@ -647,6 +784,23 @@ C4 ist eine Härteannahme (macht die Welt *schwerer*), C6 ist eine Modellwechsel
 (ändert das *Problem*). Die zweite Sorte ist gefährlicher, weil sie leicht als Fortschritt am
 ursprünglichen Problem missverstanden wird.
 
+**Drei Sorten von Zusatzannahme — eine Systematik für das Papier** (`[EIGENE EINSCHÄTZUNG]`,
+Konfidenz mittel-hoch). Die obige Tabelle vermischt Dinge, die man trennen sollte:
+
+1. **Härteannahmen** (OWF, PRG, iO, ETH): Sie postulieren, dass die Welt schwer ist. Gefahr: Viele
+   von ihnen implizieren P ≠ NP bereits, so dass die „Konklusion" mitunter in der Prämisse steckt
+   (§2.3, C2).
+2. **Modellwechsel** (Relativierung, C6): Das *Problem* wird ausgetauscht. Die Random-Oracle-
+   Hypothese ist widerlegt (§1.5), also ist der Transfer zurück nicht gedeckt.
+3. **Formalisierbarkeitsannahmen** (C8, Bedingungen I–II in S₂¹): Postuliert wird, dass ein
+   *schwaches Beweissystem* einen Sachverhalt herleiten kann. Das ist die neueste und am wenigsten
+   eingeübte Sorte. Sie ist nicht offensichtlich unplausibel, aber sie ist auch nicht offensichtlich
+   harmlos — und sie ist genau die Sorte, bei der Kriterium **M5** („Axiomschmuggelware") am
+   leichtesten übersehen wird.
+
+**Nur eine einzige Kette in beiden Tabellen ist unbedingt, bewiesen und nichttrivial: U5
+(Liu–Pass).** Und sie führt nicht zu P ≠ NP. Das ist, kompakt, der Stand des Feldes.
+
 ### 6.3 Rangliste der Angriffslinien
 
 `[EIGENE EINSCHÄTZUNG]`, jeweils mit Konfidenz. Kriterium: Wahrscheinlichkeit, in den nächsten
@@ -654,9 +808,19 @@ ursprünglichen Problem missverstanden wird.
 
 **Rang 1 — Meta-Komplexität (Hirahara-Programm).** Konfidenz mittel.
 Einziges Teilfeld mit belegter Serie überwundener Barrieren (Kos Relativierungsbarriere, black-box
-worst-case-to-average-case). Realistisches Nahziel ist aber nicht P ≠ NP, sondern der **Ausschluss
-von Heuristica und Pessiland** — die Landkarte der fünf Welten zu verkleinern. Die Grenze zu totalem
-MCSP (§1.4) ist die entscheidende Blockade, und sie ist qualitativ.
+worst-case-to-average-case) und mit kontinuierlichem Output bis **FOCS 2025 / STOC 2026** (§1.6,
+§1.7). Realistisches Nahziel ist aber nicht P ≠ NP, sondern der **Ausschluss von Heuristica und
+Pessiland** — die Landkarte der fünf Welten zu verkleinern. Die Grenze zu totalem MCSP (§1.4) ist
+die entscheidende Blockade, und sie ist qualitativ.
+
+**Warnung zur Dynamik des Feldes** (`[EIGENE EINSCHÄTZUNG]`, Konfidenz mittel-hoch): Die
+Publikationsdichte täuscht leicht Konvergenz vor. Betrachtet man die Sequenz 2018 → 2020 → 2022 →
+2023 → 2024 → 2025, so werden **immer speziellere Varianten** hart (partiell, multi-output,
+Orakelversion, Gap-Version, unter Krypto-Annahmen, unter quasipolynomiellen Reduktionen), während
+gleichzeitig **Negativresultate** auftauchen (Mazor–Pass: nicht Levin-NP-vollständig in Obfustopia).
+Das ist das Bild eines Feldes, das die **Umgebung** eines Problems kartiert, nicht eines, das auf
+das Problem zuläuft. Für das Papier ist diese Unterscheidung zentral: *Aktivität ist nicht
+Annäherung.*
 
 **Rang 2 — Proof Complexity / Cook–Reckhow.** Konfidenz niedrig-mittel.
 Vorteil: einziger Weg, der nicht über Schaltkreisuntere-Schranken führt, also nicht in derselben
@@ -718,29 +882,33 @@ locality barrier blockiert. **Zwei unabhängige Ausfälle, nicht einer.**
 
 Explizite Negativliste, wie in `00-briefing.md` §4 gefordert:
 
-1. **Autorenschaft von *SAT Reduces to MCSP with a Random Oracle*.** Existenz, Venue (FOCS 2023),
-   ECCC-Nummer und SIAM-DOI sind belegt; die Autorennamen konnte ich über Snippets **nicht**
-   feststellen.
-2. **Die Widerlegung der Random Oracle Hypothesis** (IP vs. PSPACE relativ zu Zufallsorakel). Ich
-   halte das für korrektes Kanonwissen, konnte es aber in dieser Sitzung **nicht triangulieren**.
-   Vor Verwendung prüfen (Chang, Chor, Goldreich, Hartmanis, Håstad, Ranjan, Rohatgi, ca. 1994 —
-   Zuschreibung **ungeprüft**).
-3. **Inhalt von *Towards P ≠ NP from Extended Frege lower bounds*** (JACM, DOI 10.1145/3801091).
-   Nur Existenz und Journalfassung belegt. Autorenschaft (vermutlich Pich/Santhanam) **ungeprüft**.
-4. **Best-Paper-Status** der STOC-2026-Refuter-Arbeit. Zwei Best Papers bei STOC 2026 sind belegt;
-   die Zuordnung zu dieser Arbeit **nicht**.
-5. **Gasarch-Zahlen** „nie gelöst" (5 % / 3 % / 9 %) und „0 % Unabhängigkeit 2019": je **eine**
-   Suchantwort, **nicht trianguliert**. Das Briefing warnt für genau diese Umfrage vor
-   widersprüchlichen Zahlen. Abstimmung mit A1 erforderlich.
-6. **iO ⟹ GapMCSP nicht NP-vollständig unter randomisierten Levin-Reduktionen** (C5): eine
-   Suchantwort, Autorenschaft unbekannt.
-7. **Ob MOCSP dasselbe Problem betrifft wie Hiraharas GapMCSP/GapMINKT** (§2.3) — ohne Volltext
-   nicht klärbar.
-8. **Exakte Formalisierung** in Razborov 1995 (was genau „α kodiert einen Schaltkreis der Größe
+1. **Welche Annahmen** Hirahara–Ilango (FOCS 2025) verwenden. „Well-studied assumptions" ist alles,
+   was der Titel hergibt; eine Drittquelle nennt sie „seemingly much stronger". **Das ist die
+   wichtigste offene Lücke dieses Berichts**, weil sie über die Einordnung des aktuellsten
+   Resultats entscheidet. Ohne Volltext nicht klärbar.
+2. **Ob MOCSP dasselbe Problem betrifft wie Hiraharas GapMCSP/GapMINKT** (§2.3) — ohne Volltext
+   nicht klärbar. Betrifft die Frage, ob die Heuristica-Ausschlusskette C1+C2 wirklich schließt.
+3. **Venue der Refuter-Arbeit**: STOC 2025 (eine Suchantwort) vs. STOC 2026 (verifizierter DOI).
+   **Widerspruch bewusst stehengelassen.** Ebenso ungeklärt, ob ECCC TR24-190 und arXiv:2411.15515
+   dieselbe Arbeit sind (die Titel unterscheiden sich zwischen den Fassungen).
+4. **Exakte Formalisierung** in Razborov 1995 (was genau „α kodiert einen Schaltkreis der Größe
    n^{log* n} für SAT" in S₂²(α) bedeutet). Nur die Abstract-Ebene ist belegt.
-9. **Die genaue Liste der erledigten vs. offenen Beweissysteme in §4.2** in ihren
-   Einzelzuschreibungen (wer hat wann welche Schranke bewiesen). Grobstruktur ist Konsenswissen,
-   Details `[NUR-SNIPPET]`.
+5. **Venue und genauer Inhalt** von Pich–Santhanam, *Unprovability of Strong Complexity Lower Bounds
+   in Bounded Arithmetic* (arXiv:2305.15235) — nur Existenz belegt.
+6. **Die Einzelzuschreibungen in §4.2** (wer hat wann welche Schranke bewiesen). Die Grobstruktur
+   (schwache Systeme erledigt, Frege/EF offen) ist Konsenswissen und trianguliert; die Zuordnung
+   einzelner Namen zu einzelnen Resultaten ist `[NUR-SNIPPET]`.
+7. **Der Wortlaut** von Aaronsons Fazit („P ≠ NP is either true or false") — eine Suchantwort,
+   Konfidenz mittel-hoch für den Sinngehalt, nicht am Volltext geprüft.
+8. **Die genaue Formulierung des Ben-David–Halevi-Resultats** (§5.4) — insbesondere, was „NP wäre im
+   Wesentlichen Polynomialzeit" technisch heißt. Nur sinngemäß belegt.
+9. **Inhalt** von Kabanets–Kolokolova (STOC 2026) über den Titel hinaus.
+
+**Erledigte Punkte aus dem Erstentwurf** (zur Nachvollziehbarkeit): Autorenschaft der
+Zufallsorakel-Arbeit (→ Rahul Ilango, allein, FOCS 2023 S. 733–742), Widerlegung der Random Oracle
+Hypothesis (→ JCSS 49(1), 24–39, 1994), Inhalt der Extended-Frege-Arbeit (→ Bedingungen I–II),
+Best-Paper-Status (→ nicht belegbar, drei andere Preisträger identifiziert), Gasarch-Zahlen
+(→ trianguliert), iO-Negativresultat (→ Mazor–Pass, CCC 2024).
 
 ---
 

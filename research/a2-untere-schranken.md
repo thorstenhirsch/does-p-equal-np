@@ -16,7 +16,7 @@ Widerspruch als solcher im Text.
 
 ---
 
-## 0. Die fünf Kernbefunde
+## 0. Die sieben Kernbefunde
 
 1. **Die beste bewiesene untere Schranke für ein explizites Problem über der vollen binären
    Basis B₂ ist `3,1n − o(n)` (Li & Yang, STOC 2022).** Sie gilt für *affine dispersers* —
@@ -243,7 +243,7 @@ Klasse (konstante Tiefe). NEXP ist eine **gewaltig größere** Klasse als NP. Ge
 eine Schranke für ein **NP**-Problem gegen **allgemeine polynomielle** Schaltkreise. Williams'
 Resultat beweist, dass die Barrieren überwindbar sind — nicht, dass man nahe dran wäre.
 
-### 2.4b TC⁰ — wo die Front *wirklich* endet
+### 2.5 TC⁰ — wo die Front *wirklich* endet
 
 TC⁰ (konstante Tiefe, Schwellwert-/Majority-Gatter) ist die Klasse **unmittelbar oberhalb**
 von ACC⁰ und **unterhalb** von NC¹. Sie ist das nächste Ziel nach Williams' ACC⁰-Resultat —
@@ -265,7 +265,7 @@ von MOD-Gattern zu Schwellwertgattern bricht alles zusammen. Und TC⁰ ist immer
 Klasse konstanter Tiefe, unendlich weit von P/poly entfernt.
 `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
 
-### 2.5 Warum nichts davon hochskaliert: Natural Proofs und ihre Verwandten
+### 2.6 Warum nichts davon hochskaliert: Natural Proofs und ihre Verwandten
 
 Die Razborov–Rudich-Barriere (JCSS 1997, Gödelpreis 2007) besagt: Ein Beweis, der
 (a) **constructive** (das Härtekriterium ist effizient prüfbar) und (b) **large**
@@ -415,8 +415,7 @@ ein *Rahmen* für explizite Schranken. Der ReLU-Bezug ist bemerkenswert (Schaltk
 neuronaler Grundbausteine), aber Tiefe 2 ist ein sehr schwaches Modell. Kein P-vs-NP-Bezug,
 und die Arbeit behauptet auch keinen.
 
-### 3.4 "Self-Improvement for Circuit-Analysis Problems" (STOC 2024) und
-### die Orthogonal Vectors Conjecture (FOCS 2024)
+### 3.4 "Self-Improvement" (STOC 2024) und die Orthogonal Vectors Conjecture (FOCS 2024)
 
 Beide sind Williams-Arbeiten und gehören methodisch zusammen — sie drehen die algorithmische
 Methode **um**.
@@ -471,7 +470,7 @@ als ein **Schaltkreis-Analogon der Relativization**. `[NUR-SNIPPET]`, Konfidenz 
 **Bemerkenswert:** Hardness magnification **umgeht** nachweislich die natural-proofs-Barriere
 (leicht superlineare Schranken für MCSP-Varianten implizieren die Nicht-Existenz naturaler
 Beweise). Es hilft nur nichts, weil sofort eine *neue* Barriere auftaucht. Das ist der
-vierte Fall desselben Musters aus §2.5. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
+vierte Fall desselben Musters aus §2.6. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
 
 ### 3.6 Refuter-Probleme: Konstruktivität als neue Achse (STOC 2026)
 
@@ -757,6 +756,17 @@ Schranke für eine viel zu große Klasse gegen ein viel zu schwaches Modell.
 **Ein zweiter, schwächerer Teilgegenbefund: Refuter (§3.6).** Auch hier ist das gesuchte
 Objekt ein Algorithmus mit testbarem Verhalten. Aber Refuter setzen eine bereits bewiesene
 untere Schranke voraus — sie erzeugen keine. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]`
+
+**Ein dritter, interessanter Fall: Range Avoidance (§3.7).** Hier *ist* das gesuchte Objekt
+buchstäblich endlich und maschinell repräsentierbar (eine Zeichenkette außerhalb des Bildes
+eines Schaltkreises; bzw. ein Ramsey-Graph, eine rigide Matrix, eine harte Wahrheitstafel),
+und der Lifting-Rahmen existiert. B1 und B3 sind erfüllt. **B2 aber nicht:** Die
+Verifikation, dass eine Zeichenkette *außerhalb* des Bildes liegt, ist selbst ein
+coNP-artiges Problem — die bekannten Algorithmen brauchen deshalb ein NP-Orakel bzw.
+S₂-Quantoren. Genau daran hängt, dass das Resultat S₂E und nicht P erreicht.
+**Das ist ein präziser, technischer Beleg für die Leitachse:** Der Ort, an dem B2
+zusammenbricht, ist exakt der Ort, an dem die Klasse zu groß wird, um etwas über P vs. NP
+zu sagen. `[EIGENE EINSCHÄTZUNG, Konfidenz mittel]` — meine Analyse, nicht Literaturbefund.
 
 ---
 

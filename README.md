@@ -30,4 +30,4 @@ Die Recherche erfolgte **ohne Volltextzugang** — WebFetch war für alle releva
 Domains gesperrt, nutzbar war nur eine Suchschnittstelle mit synthetisierten
 Trefferzusammenfassungen. Wir können belegen, *dass* eine Arbeit existiert, nicht
 zuverlässig, *was* in ihr steht. Das Papier legt das offen und dokumentiert in §9
-drei Fälle, in denen die Suchschicht nachweislich Plausibles erfunden hat.
+vier Fälle, in denen die Suchschicht nachweislich Plausibles erfunden hat.

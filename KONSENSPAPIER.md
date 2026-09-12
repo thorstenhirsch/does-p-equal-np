@@ -26,11 +26,11 @@ P versus NP fails all three. The three classical barriers, together with the pro
 endpoints of each individual lower-bound technique, *are* the observation that no
 viable lifting framework is known.
 
-We also report a finding about our own instrument: in three documented cases the
+We also report a finding about our own instrument: in four documented cases the
 search layer we relied on synthesised plausible but false claims — a fabricated
-quotation, conflated survey figures, and a non-existent conference paper. All three
-originated in the coordinating agent's own research and were caught by specialist
-agents. We consider this material rather than mishap, and document it in full.
+quotation, conflated survey figures, a non-existent paper title, and a figure that
+migrated from one case to another. All four originated in the coordinating agent's
+own research and were caught by specialist agents. We consider this material rather than mishap, and document it in full.
 
 ---
 
@@ -77,11 +77,13 @@ elimination kann superlineare Schranken **prinzipiell nicht** liefern — das is
 Satz, kein Erfahrungsurteil. Analoges gilt für monotone Schaltkreise, AC⁰, Valiant-
 Rigidität, hardness magnification und den ursprünglichen GCT-Plan.
 
-**Viertens, und in eigener Sache: Unser Rechercheinstrument hat in drei
+**Viertens, und in eigener Sache: Unser Rechercheinstrument hat in vier
 dokumentierten Fällen Plausibles erfunden.** Ein Pseudo-Zitat, verschmolzene
-Umfragezahlen, ein nicht existierendes Konferenzpapier. Alle drei stammen aus der
-Leitungsrecherche, alle drei wurden von Fachagenten gefunden. Für ein Papier über
-KI-gestützte Wahrheitsfindung ist das kein Betriebsunfall, sondern Material.
+Umfragezahlen, ein nicht existierender Papiertitel — und eine Zahl, die von einem
+Fall auf einen anderen gewandert ist. Alle vier stammen aus der Leitungsrecherche,
+alle vier wurden von Fachagenten gefunden, der vierte erst bei der Prüfung des
+fertigen Papiers. Für ein Papier über KI-gestützte Wahrheitsfindung ist das kein
+Betriebsunfall, sondern Material.
 
 ---
 
@@ -1017,7 +1019,7 @@ Dieses Kapitel steht im Papier, weil sein Gegenstand — KI-gestützte Erkenntni
 sein Verfahren ist. Ein Papier, das die Verlässlichkeit maschineller Wahrheitsfindung
 untersucht und die eigenen Fehlleistungen verschweigt, wäre unbrauchbar.
 
-**In drei dokumentierten Fällen hat die Suchschicht Plausibles synthetisiert:**
+**In vier dokumentierten Fällen hat die Suchschicht Plausibles synthetisiert:**
 
 **Fall 1 — ein Pseudo-Zitat.** Der Projektleitung wurde Lance Fortnow der Satz
 zugeschrieben, es gebe „not even a viable approach" — in unserer Wiedergabe zudem
@@ -1056,7 +1058,7 @@ Damit besitzt dieses Papier nicht nur eine Fehlerkorrektur, sondern einen
 Kontaminationsnachweis — ein Beleg dafür, wie eine Angabe ohne Primärverankerung den
 Kontext wechselt und dabei plausibel bleibt.
 
-**Alle drei stammen aus der Leitungsrecherche. Alle drei wurden von Fachagenten
+**Alle vier stammen aus der Leitungsrecherche. Alle vier wurden von Fachagenten
 gefunden.** Das ist die operative Lehre: Die Fehler entstanden dort, wo schnell und
 breit recherchiert wurde, und wurden dort gefunden, wo langsam und eng geprüft wurde.
 Redundanz war nicht Verschwendung, sondern der Mechanismus, der funktioniert hat.
@@ -1067,7 +1069,15 @@ auf ihn selbst nicht gewirkt. Das gehört hierher, nicht in eine Fußnote.
 
 **Die Konsequenz für die Belastbarkeit dieses Papiers:** Grobe Aussagen —
 Existenz von Arbeiten, Richtung von Befunden, Größenordnungen — sind tragfähig.
-**Nicht tragfähig sind Prozentzahlen, Zitatwortlaute und Preisträgerzuordnungen.**
+**Nicht tragfähig sind Prozentzahlen, Zitatwortlaute, Preisträgerzuordnungen,
+Titelangaben und isolierte Einzelzahlen.**
+
+Der Befund hat eine unbequeme Kehrseite, auf die das Red Team bestanden hat: Alle
+vier Fälle betrafen **Attributionen ohne Primärverankerung** — ein Zitat, eine
+Umfragezahl, ein Titel, eine Stundenangabe. Genau solche Angaben stehen auch in §4.1
+und §4.3. Was jene Tabellen zusätzlich haben, ist interne Konsistenz über mehrere
+Datenpunkte hinweg. Das stützt die **Größenordnung**; die einzelnen Ziffern stützt
+es nicht.
 Wo dieses Papier solche Angaben macht, sind sie markiert oder als strittig
 gekennzeichnet.
 
@@ -1087,7 +1097,7 @@ gekennzeichnet.
 
 ### 10.2 Angenommen
 
-Nach der Konsensrunde aufgenommen:
+Nach der Abstimmungsrunde aufgenommen (Einzelnachweis der Textkorrekturen in §10.5):
 
 - **Beidseitiges B2** (A1): auch P = NP ist kein Suchproblem. Vom Strategieagenten
   als „schärfster Punkt" bewertet.
@@ -1273,6 +1283,7 @@ Die vollständigen Einzelberichte liegen im Repository:
 | `docs/01-redteam-S2.md` | Barrieren, Basisraten, Akzeptanzprotokoll | 10.700 W. |
 | `docs/02-team-briefing.md` | Verbindliches Briefing, Kriterienraster | |
 | `docs/03-konsensvorlage.md` | Synthese T1–T10 für die Abstimmung | |
+| `docs/04-abstimmungsrunde.md` | Die zehn Rückläufe zum fertigen Papier | |
 | `research/00-lead-sondierung.md` | Vorbefunde der Leitung | 900 W. |
 | `research/a1-kanon-und-barrieren.md` | Fundamentkapitel, Barrieren, Umfragen | 12.800 W. |
 | `research/a2-untere-schranken.md` | Schaltkreisschranken, bewiesene Endpunkte | 7.500 W. |

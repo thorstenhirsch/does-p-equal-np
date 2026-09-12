@@ -45,6 +45,22 @@ Widerspruch als solcher im Text.
    2024) und ist 2024–2026 weiter produktiv (Self-Improvement, OVC→Schaltkreisschranken,
    √-Platz-Simulation). Sie ist zugleich **nicht** in Sichtweite von NP gegen P/poly.
    `[VERIFIZIERT]` für Existenz und Struktur, `[EIGENE EINSCHÄTZUNG]` für die Reichweite.
+6. **Nachtrag von erheblichem Gewicht — die Schranke hängt fast ausschließlich davon ab,
+   wie *mächtig* die Klasse sein darf, in der die harte Funktion liegen soll.**
+   Für NP: 3,1n. Für **S₂E** (symmetric exponential time): **2ⁿ/n**, also
+   *nahezu maximal* — Chen, Hirahara, Li, Ren (STOC 2024, JACM 73(1), Feb. 2026), über
+   einen Algorithmus für das **Range-Avoidance**-Problem. `[VERIFIZIERT]`, Konfidenz hoch.
+   Die Differenz zwischen 3,1n und 2ⁿ/n ist kein Modellunterschied, sondern ein
+   **Klassenunterschied**. Wer über "den Stand bei unteren Schranken" redet, muss beides
+   angeben: *welches Schaltkreismodell* und *welche Klasse die harte Funktion bewohnt*.
+7. **Für die gate-elimination-Technik ist der Endpunkt bewiesen, nicht vermutet.**
+   Golovnev, Hirsch, Knop, Kulikov, *On the Limits of Gate Elimination* (MFCS 2016,
+   JCSS 2018): Die Methode kann Schranken der Form cn nicht über eine gewisse, nur von
+   der Zahl der Substitutionen pro Induktionsschritt abhängende Konstante c hinaus
+   liefern — und **keine superlinearen Schranken**. `[VERIFIZIERT]`, Konfidenz hoch.
+   Da alle bekannten allgemeinen Schranken auf gate elimination beruhen, heißt das:
+   Die aktuelle Technikfamilie ist von einem Satz daran gehindert, jemals 3,1n → n·log n
+   zu erreichen.
 
 ---
 
@@ -63,8 +79,9 @@ Zahl nennt, ohne das Modell zu nennen, sagt nichts.
 | **AC⁰** (konst. Tiefe d, PARITY) | exp(Ω(n^{1/(d−1)})) | Furst–Saxe–Sipser 1981 / Ajtai 1983 / Håstad 1986 | `[VERIFIZIERT]` |
 | **AC⁰[p]**, p prim (MOD_q, q≠p) | exponentiell | Razborov 1987, Smolensky 1987 | `[VERIFIZIERT]` |
 | **ACC⁰** | nur: NEXP ⊄ ACC⁰; NQP ⊄ ACC⁰ | Williams 2011/2014; Murray–Williams 2018 | `[VERIFIZIERT]` |
-| **TC⁰** (Schwellwert, konst. Tiefe) | im Wesentlichen nichts jenseits fast-linear | — | `[NUR-SNIPPET]` |
-| **P/poly gegen NP** (das Ziel) | **nichts Superlineares** | — | offen |
+| **TC⁰** (Schwellwert, konst. Tiefe) | **nichts** — nicht einmal n^{1,1} für LTF-Schaltkreise | Razborov–Wigderson n^{log n} nur für Tiefe 3 mit AND unten | `[NUR-SNIPPET]` |
+| **P/poly**, harte Funktion in **S₂E** | **2ⁿ/n** (nahezu maximal) | Chen–Hirahara–Li–Ren, STOC 2024 / JACM 2026 | `[VERIFIZIERT]` |
+| **P/poly gegen NP** (das Ziel) | **nichts Superlineares** — nicht einmal 10n | — | offen |
 
 Zum Kalibrieren gehört die **nicht-explizite** Gegenzahl: Nach Shannon (1949) / Lupanov
 benötigen *fast alle* Booleschen Funktionen auf n Variablen rund `2ⁿ/n` Gatter. Für n = 1000
@@ -225,6 +242,28 @@ Verschärfung: NQP = NTIME[n^polylog n] ⊄ ACC⁰ (Murray–Williams, STOC 2018
 Klasse (konstante Tiefe). NEXP ist eine **gewaltig größere** Klasse als NP. Gebraucht wird
 eine Schranke für ein **NP**-Problem gegen **allgemeine polynomielle** Schaltkreise. Williams'
 Resultat beweist, dass die Barrieren überwindbar sind — nicht, dass man nahe dran wäre.
+
+### 2.4b TC⁰ — wo die Front *wirklich* endet
+
+TC⁰ (konstante Tiefe, Schwellwert-/Majority-Gatter) ist die Klasse **unmittelbar oberhalb**
+von ACC⁰ und **unterhalb** von NC¹. Sie ist das nächste Ziel nach Williams' ACC⁰-Resultat —
+und dort ist der Stand schlicht:
+
+- Für allgemeine TC⁰-Schaltkreise ist **keine** superpolynomielle untere Schranke bekannt,
+  auch nicht für irgendeine Funktion in EXP^NP. `[NUR-SNIPPET]`
+- Die Suchsynthese formuliert es drastisch: Man kennt **nicht einmal untere Schranken der
+  Größe n^{1,1} für LTF-Schaltkreise** (Schaltkreise aus linearen Schwellwertfunktionen).
+  `[NUR-SNIPPET]`, Konfidenz mittel (eine Suche, Formulierung aus einer Übersichtsarbeit).
+- Was es gibt: Razborov–Wigderson, n^{log n} für Schaltkreise der **Tiefe 3** mit AND-Gattern
+  in der untersten Schicht; Impagliazzo–Paturi–Saks für PARITY gegen LTF-Schaltkreise
+  beschränkter Tiefe (vor über 25 Jahren); superlineare Gatter- und superquadratische
+  Drahtzahlschranken für Tiefe 2 und 3 (arXiv:1511.07860). `[NUR-SNIPPET]`
+
+**Das ist die präziseste verfügbare Ortsangabe der Front.** Sie liegt nicht "irgendwo
+zwischen AC⁰ und P/poly". Sie liegt **genau eine Gatterart über ACC⁰** — beim Übergang
+von MOD-Gattern zu Schwellwertgattern bricht alles zusammen. Und TC⁰ ist immer noch eine
+Klasse konstanter Tiefe, unendlich weit von P/poly entfernt.
+`[EIGENE EINSCHÄTZUNG, Konfidenz mittel-hoch]`
 
 ### 2.5 Warum nichts davon hochskaliert: Natural Proofs und ihre Verwandten
 

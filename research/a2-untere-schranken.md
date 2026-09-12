@@ -276,15 +276,33 @@ natural**: "zufällige Restriktionen vereinfachen" und "hat Niedriggrad-Approxim
 effizient prüfbare Eigenschaften, die fast alle Funktionen *nicht* haben. `[VERIFIZIERT]`
 
 Die Erfolge von §2.1–§2.3 sind also keine Zwischenschritte auf einem Weg. Sie sind die
-Ausbeute einer Technikfamilie, deren Reichweite anschließend **bewiesen begrenzt** wurde:
-- monoton → begrenzt durch **Tardos** (exponentielle Lücke, §2.3),
-- AC⁰/AC⁰[p] → begrenzt durch **Razborov–Rudich** (natural proofs),
-- gate elimination über U₂ → begrenzt durch **Amano–Tarui** (5n ist tight, §1.3),
-- hardness magnification → begrenzt durch die **locality barrier** (§3.5).
+Ausbeute einer Technikfamilie, deren Reichweite anschließend **bewiesen begrenzt** wurde.
+**Die Liste der bewiesenen Endpunkte** — sie ist der wichtigste strukturelle Befund dieses
+Berichts:
+
+| Technik | Größter Erfolg | Bewiesener Endpunkt |
+|---|---|---|
+| Approximationsmethode, monoton | CLIQUE exponentiell (Razborov 1985) | **Tardos 1988**: exponentielle Lücke monoton ↔ allgemein |
+| Zufällige Restriktionen (AC⁰), polynomial method (AC⁰[p]) | exponentielle Schranken | **Razborov–Rudich 1994/97**: natural proofs |
+| **gate elimination** (B₂ *und* U₂) | 3,1n bzw. 5n | **Golovnev–Hirsch–Knop–Kulikov 2016/18**: keine superlinearen Schranken möglich; **Amano–Tarui**: 5n ist für k-mixed tight |
+| Matrix rigidity (Valiants Programm) | — | **Alman–Williams 2017**: bester Kandidat (Hadamard) ist nicht rigide |
+| hardness magnification | — | **locality barrier** (JACM 2022) |
+| algebrisierende Argumente | — | Aaronson–Wigderson 2008; **neu: Chen–Hu–Ren, ITCS 2026**, "New Algebrization Barriers to Circuit Lower Bounds via Communication Complexity of Missing-String" `[NUR-SNIPPET]` |
 
 `[EIGENE EINSCHÄTZUNG, Konfidenz hoch]` für die Zusammenstellung; jede Einzelaussage ist
-oben belegt. **Das Muster ist bemerkenswert konsistent: Für praktisch jede erfolgreiche
-Technik wurde anschließend ihr eigener Endpunkt bewiesen.**
+oben belegt bzw. wird unten belegt. **Das Muster ist bemerkenswert konsistent: Für praktisch
+jede erfolgreiche Technik wurde anschließend ihr eigener Endpunkt bewiesen — und das Feld
+produziert 2026 immer noch *neue* Barrieren, nicht nur neue Schranken.**
+
+**Besonders hervorzuheben (weil es die Kernzahl dieses Berichts direkt betrifft):**
+Golovnev, Hirsch, Knop und Kulikov beweisen in *On the Limits of Gate Elimination*
+(MFCS 2016, JCSS 2018), dass ein typisches gate-elimination-Argument — man eliminiert pro
+Substitutionsschritt mehrere Gatter und iteriert — **prinzipiell** nicht über eine Schranke
+cn hinauskommt, wobei c allein von der Anzahl der Substitutionen pro Schritt abhängt.
+Superlineare Schranken sind mit dieser Technik **nicht erreichbar**. `[VERIFIZIERT]`
+(über zwei Suchen bestätigt, JCSS-Journalfassung nachgewiesen).
+**Damit ist die Aussage "3,1n ist kein Zwischenstand auf dem Weg zu n^{ω(1)}" kein
+Erfahrungsurteil mehr, sondern ein Satz.**
 
 ---
 
@@ -292,9 +310,10 @@ Technik wurde anschließend ihr eigener Endpunkt bewiesen.**
 
 ### 3.1 Ryan Williams, "Simulating Time With Square-Root Space" (Feb. 2025)
 
-**Fundstellen (triangulierend bestätigt):** arXiv:2502.17779; ECCC TR25-017;
-STOC 2025 (dl.acm.org/doi/10.1145/3717823.3718225); Journalfassung dl.acm.org/doi/10.1145/3798104.
-`[VERIFIZIERT]` für Existenz und Venue.
+**Fundstellen (triangulierend bestätigt):** arXiv:2502.17779; **ECCC TR25-017**
+(24. Februar 2025, eccc.weizmann.ac.il/report/2025/017/ — die im Auftrag genannte
+Report-Nummer ist damit **bestätigt**); STOC 2025 (dl.acm.org/doi/10.1145/3717823.3718225);
+Journalfassung dl.acm.org/doi/10.1145/3798104. `[VERIFIZIERT]` für Existenz und Venue.
 
 **Aussage.** Für alle t(n) ≥ n gilt: **TIME[t] ⊆ SPACE[O(√(t log t))]** für
 Mehrband-Turingmaschinen. `[NUR-SNIPPET]`, über drei Treffer konsistent.
